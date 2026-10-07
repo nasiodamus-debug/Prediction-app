@@ -1,0 +1,175 @@
+{
+ "season": null,
+ "week": {
+  "number": 4
+ },
+ "events": [
+  {
+   "id": "401872965",
+   "date": "2026-10-04T13:30Z",
+   "name": "Indianapolis Colts at Washington Commanders",
+   "season": {
+    "year": 2026,
+    "type": 2,
+    "slug": "regular-season"
+   },
+   "status": {
+    "type": {
+     "id": "1",
+     "name": "STATUS_SCHEDULED",
+     "state": "pre",
+     "completed": false,
+     "description": "Scheduled",
+     "detail": "Sun, October 4th at 9:30 AM EDT",
+     "shortDetail": "10/4 - 9:30 AM EDT"
+    }
+   },
+   "competitions": [
+    {
+     "venue": {
+      "id": "5534",
+      "fullName": "Tottenham Hotspur Stadium",
+      "address": {
+       "city": "London",
+       "country": "England"
+      },
+      "indoor": false
+     },
+     "neutralSite": true,
+     "competitors": [
+      {
+       "homeAway": "home",
+       "score": "0",
+       "linescores": null,
+       "team": {
+        "id": "28",
+        "displayName": "Washington Commanders"
+       }
+      },
+      {
+       "homeAway": "away",
+       "score": "0",
+       "linescores": null,
+       "team": {
+        "id": "11",
+        "displayName": "Indianapolis Colts"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "401872971",
+   "date": "2026-10-04T17:00Z",
+   "name": "New England Patriots at Buffalo Bills",
+   "season": {
+    "year": 2026,
+    "type": 2,
+    "slug": "regular-season"
+   },
+   "status": {
+    "type": {
+     "id": "1",
+     "name": "STATUS_SCHEDULED",
+     "state": "pre",
+     "completed": false,
+     "description": "Scheduled",
+     "detail": "Sun, October 4th at 1:00 PM EDT",
+     "shortDetail": "10/4 - 1:00 PM EDT"
+    }
+   },
+   "competitions": [
+    {
+     "venue": {
+      "id": "11938",
+      "fullName": "Highmark Stadium",
+      "address": {
+       "city": "Orchard Park",
+       "state": "NY",
+       "country": "USA"
+      },
+      "indoor": false
+     },
+     "neutralSite": false,
+     "competitors": [
+      {
+       "homeAway": "home",
+       "score": "0",
+       "linescores": null,
+       "team": {
+        "id": "2",
+        "displayName": "Buffalo Bills"
+       }
+      },
+      {
+       "homeAway": "away",
+       "score": "0",
+       "linescores": null,
+       "team": {
+        "id": "17",
+        "displayName": "New England Patriots"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "401872972",
+   "date": "2026-10-04T17:00Z",
+   "name": "New York Jets at Chicago Bears",
+   "season": {
+    "year": 2026,
+    "type": 2,
+    "slug": "regular-season"
+   },
+   "status": {
+    "type": {
+     "id": "1",
+     "name": "STATUS_SCHEDULED",
+     "state": "pre",
+     "completed": false,
+     "description": "Scheduled",
+     "detail": "Sun, October 4th at 1:00 PM EDT",
+     "shortDetail": "10/4 - 1:00 PM EDT"
+    }
+   },
+   "competitions": [
+    {
+     "venue": {
+      "id": "3933",
+      "fullName": "Soldier Field",
+      "address": {
+       "city": "Chicago",
+       "state": "IL",
+       "country": "USA"
+      },
+      "indoor": false
+     },
+     "neutralSite": false,
+     "competitors": [
+      {
+       "homeAway": "home",
+       "score": "0",
+       "linescores": null,
+       "team": {
+        "id": "3",
+        "displayName": "Chicago Bears"
+       }
+      },
+      {
+       "homeAway": "away",
+       "score": "0",
+       "linescores": null,
+       "team": {
+        "id": "20",
+        "displayName": "New York Jets"
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,127 @@
+{
+ "status": "success",
+ "results": {
+  "stats": {
+   "categories": [
+    {
+     "name": "passing",
+     "stats": [
+      {
+       "name": "teamGamesPlayed",
+       "value": 3.0,
+       "displayValue": "3"
+      },
+      {
+       "name": "totalPoints",
+       "value": 101.0,
+       "displayValue": "101"
+      }
+     ]
+    },
+    {
+     "name": "rushing",
+     "stats": [
+      {
+       "name": "rushingAttempts",
+       "value": 90.0,
+       "displayValue": "90"
+      },
+      {
+       "name": "teamGamesPlayed",
+       "value": 3.0,
+       "displayValue": "3"
+      },
+      {
+       "name": "totalOffensivePlays",
+       "value": 184.0,
+       "displayValue": "184"
+      },
+      {
+       "name": "totalPoints",
+       "value": 101.0,
+       "displayValue": "101"
+      }
+     ]
+    },
+    {
+     "name": "receiving",
+     "stats": [
+      {
+       "name": "teamGamesPlayed",
+       "value": 3.0,
+       "displayValue": "3"
+      },
+      {
+       "name": "totalPoints",
+       "value": 101.0,
+       "displayValue": "101"
+      }
+     ]
+    },
+    {
+     "name": "miscellaneous",
+     "stats": [
+      {
+       "name": "possessionTimeSeconds",
+       "value": 5166.0,
+       "displayValue": "5166"
+      }
+     ]
+    },
+    {
+     "name": "defensive",
+     "stats": [
+      {
+       "name": "teamGamesPlayed",
+       "value": 3.0,
+       "displayValue": "3"
+      }
+     ]
+    },
+    {
+     "name": "returning",
+     "stats": [
+      {
+       "name": "teamGamesPlayed",
+       "value": 3.0,
+       "displayValue": "3"
+      }
+     ]
+    },
+    {
+     "name": "kicking",
+     "stats": [
+      {
+       "name": "teamGamesPlayed",
+       "value": 3.0,
+       "displayValue": "3"
+      }
+     ]
+    },
+    {
+     "name": "punting",
+     "stats": [
+      {
+       "name": "teamGamesPlayed",
+       "value": 3.0,
+       "displayValue": "3"
+      }
+     ]
+    },
+    {
+     "name": "scoring",
+     "stats": [
+      {
+       "name": "totalPoints",
+       "value": 101.0,
+       "displayValue": "101"
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "team": {
+  "displayName": "Buffalo Bills"
+ }
+}

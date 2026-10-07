@@ -1,0 +1,215 @@
+{
+ "bizCode": 10000,
+ "message": "0#0",
+ "data": {
+  "totalNum": 4,
+  "tournaments": [
+   {
+    "id": "sr:tournament:17",
+    "name": "Premier League",
+    "categoryName": "England",
+    "events": [
+     {
+      "eventId": "sr:match:72221292",
+      "estimateStartTime": 1791631800000,
+      "status": 0,
+      "matchStatus": "Not start",
+      "homeTeamName": "Arsenal",
+      "awayTeamName": "Leeds United",
+      "markets": [
+       {
+        "id": "1",
+        "name": "1X2",
+        "outcomes": [
+         {
+          "id": "1",
+          "odds": "1.43",
+          "desc": "Home"
+         },
+         {
+          "id": "2",
+          "odds": "4.88",
+          "desc": "Draw"
+         },
+         {
+          "id": "3",
+          "odds": "7.36",
+          "desc": "Away"
+         }
+        ]
+       },
+       {
+        "id": "18",
+        "name": "Over/Under",
+        "specifier": "total=2.5",
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.68",
+          "desc": "Over 2.5"
+         },
+         {
+          "id": "13",
+          "odds": "2.15",
+          "desc": "Under 2.5"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "eventId": "sr:match:72221294",
+      "estimateStartTime": 1791640800000,
+      "status": 0,
+      "matchStatus": "Not start",
+      "homeTeamName": "Aston Villa",
+      "awayTeamName": "Brentford",
+      "markets": [
+       {
+        "id": "1",
+        "name": "1X2",
+        "outcomes": [
+         {
+          "id": "1",
+          "odds": "2.66",
+          "desc": "Home"
+         },
+         {
+          "id": "2",
+          "odds": "3.57",
+          "desc": "Draw"
+         },
+         {
+          "id": "3",
+          "odds": "2.60",
+          "desc": "Away"
+         }
+        ]
+       },
+       {
+        "id": "18",
+        "name": "Over/Under",
+        "specifier": "total=2.5",
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.64",
+          "desc": "Over 2.5"
+         },
+         {
+          "id": "13",
+          "odds": "2.20",
+          "desc": "Under 2.5"
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "sr:tournament:7",
+    "name": "UEFA Champions League",
+    "categoryName": "International Clubs",
+    "events": [
+     {
+      "eventId": "sr:match:74165904",
+      "estimateStartTime": 1791909900000,
+      "status": 0,
+      "matchStatus": "Not start",
+      "homeTeamName": "Lens",
+      "awayTeamName": "Sporting",
+      "markets": [
+       {
+        "id": "1",
+        "name": "1X2",
+        "outcomes": [
+         {
+          "id": "1",
+          "odds": "2.40",
+          "desc": "Home"
+         },
+         {
+          "id": "2",
+          "odds": "3.81",
+          "desc": "Draw"
+         },
+         {
+          "id": "3",
+          "odds": "2.77",
+          "desc": "Away"
+         }
+        ]
+       },
+       {
+        "id": "18",
+        "name": "Over/Under",
+        "specifier": "total=2.5",
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.55",
+          "desc": "Over 2.5"
+         },
+         {
+          "id": "13",
+          "odds": "2.40",
+          "desc": "Under 2.5"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "eventId": "sr:match:74165906",
+      "estimateStartTime": 1791909900000,
+      "status": 0,
+      "matchStatus": "Not start",
+      "homeTeamName": "Sabah Masazir",
+      "awayTeamName": "Slavia Prague",
+      "markets": [
+       {
+        "id": "1",
+        "name": "1X2",
+        "outcomes": [
+         {
+          "id": "1",
+          "odds": "3.51",
+          "desc": "Home"
+         },
+         {
+          "id": "2",
+          "odds": "3.78",
+          "desc": "Draw"
+         },
+         {
+          "id": "3",
+          "odds": "2.04",
+          "desc": "Away"
+         }
+        ]
+       },
+       {
+        "id": "18",
+        "name": "Over/Under",
+        "specifier": "total=2.5",
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.62",
+          "desc": "Over 2.5"
+         },
+         {
+          "id": "13",
+          "odds": "2.25",
+          "desc": "Under 2.5"
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}

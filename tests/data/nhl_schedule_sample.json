@@ -1,0 +1,549 @@
+{
+"gameWeek": [
+{
+"date": "2026-04-10",
+"games": []
+},
+{
+"date": "2026-04-11",
+"games": [
+{
+"id": 2025021261,
+"gameType": 2,
+"gameState": "OFF",
+"startTimeUTC": "2026-04-11T16:30:00Z",
+"homeTeam": {
+"id": 6,
+"commonName": {
+"default": "Bruins"
+},
+"placeName": {
+"default": "Boston"
+},
+"abbrev": "BOS",
+"score": 1
+},
+"awayTeam": {
+"id": 14,
+"commonName": {
+"default": "Lightning"
+},
+"placeName": {
+"default": "Tampa Bay"
+},
+"abbrev": "TBL",
+"score": 2
+}
+},
+{
+"id": 2025021262,
+"gameType": 2,
+"gameState": "OFF",
+"startTimeUTC": "2026-04-11T17:00:00Z",
+"homeTeam": {
+"id": 2,
+"commonName": {
+"default": "Islanders"
+},
+"placeName": {
+"default": "New York"
+},
+"abbrev": "NYI",
+"score": 0
+},
+"awayTeam": {
+"id": 9,
+"commonName": {
+"default": "Senators",
+"fr": "S\u00e9nateurs"
+},
+"placeName": {
+"default": "Ottawa"
+},
+"abbrev": "OTT",
+"score": 3
+}
+},
+{
+"id": 2025021263,
+"gameType": 2,
+"gameState": "OFF",
+"startTimeUTC": "2026-04-11T19:00:00Z",
+"homeTeam": {
+"id": 5,
+"commonName": {
+"default": "Penguins"
+},
+"placeName": {
+"default": "Pittsburgh"
+},
+"abbrev": "PIT",
+"score": 3
+},
+"awayTeam": {
+"id": 15,
+"commonName": {
+"default": "Capitals"
+},
+"placeName": {
+"default": "Washington"
+},
+"abbrev": "WSH",
+"score": 6
+}
+}
+]
+},
+{
+"date": "2026-04-12",
+"games": [
+{
+"id": 2025021276,
+"gameType": 2,
+"gameState": "OFF",
+"startTimeUTC": "2026-04-12T19:00:00Z",
+"homeTeam": {
+"id": 15,
+"commonName": {
+"default": "Capitals"
+},
+"placeName": {
+"default": "Washington"
+},
+"abbrev": "WSH",
+"score": 3
+},
+"awayTeam": {
+"id": 5,
+"commonName": {
+"default": "Penguins"
+},
+"placeName": {
+"default": "Pittsburgh"
+},
+"abbrev": "PIT",
+"score": 0
+}
+},
+{
+"id": 2025021277,
+"gameType": 2,
+"gameState": "OFF",
+"startTimeUTC": "2026-04-12T22:00:00Z",
+"homeTeam": {
+"id": 2,
+"commonName": {
+"default": "Islanders"
+},
+"placeName": {
+"default": "New York"
+},
+"abbrev": "NYI",
+"score": 1
+},
+"awayTeam": {
+"id": 8,
+"commonName": {
+"default": "Canadiens"
+},
+"placeName": {
+"default": "Montr\u00e9al"
+},
+"abbrev": "MTL",
+"score": 4
+}
+},
+{
+"id": 2025021278,
+"gameType": 2,
+"gameState": "OFF",
+"startTimeUTC": "2026-04-12T22:00:00Z",
+"homeTeam": {
+"id": 29,
+"commonName": {
+"default": "Blue Jackets"
+},
+"placeName": {
+"default": "Columbus"
+},
+"abbrev": "CBJ",
+"score": 2
+},
+"awayTeam": {
+"id": 6,
+"commonName": {
+"default": "Bruins"
+},
+"placeName": {
+"default": "Boston"
+},
+"abbrev": "BOS",
+"score": 3
+}
+}
+]
+},
+{
+"date": "2026-04-13",
+"games": [
+{
+"id": 2025021282,
+"gameType": 2,
+"gameState": "OFF",
+"startTimeUTC": "2026-04-13T23:00:00Z",
+"homeTeam": {
+"id": 14,
+"commonName": {
+"default": "Lightning"
+},
+"placeName": {
+"default": "Tampa Bay"
+},
+"abbrev": "TBL",
+"score": 4
+},
+"awayTeam": {
+"id": 17,
+"commonName": {
+"default": "Red Wings"
+},
+"placeName": {
+"default": "Detroit"
+},
+"abbrev": "DET",
+"score": 3
+}
+},
+{
+"id": 2025021283,
+"gameType": 2,
+"gameState": "OFF",
+"startTimeUTC": "2026-04-13T23:00:00Z",
+"homeTeam": {
+"id": 13,
+"commonName": {
+"default": "Panthers"
+},
+"placeName": {
+"default": "Florida",
+"fr": "Floride"
+},
+"abbrev": "FLA",
+"score": 3
+},
+"awayTeam": {
+"id": 3,
+"commonName": {
+"default": "Rangers"
+},
+"placeName": {
+"default": "New York"
+},
+"abbrev": "NYR",
+"score": 2
+}
+},
+{
+"id": 2025021284,
+"gameType": 2,
+"gameState": "OFF",
+"startTimeUTC": "2026-04-13T23:00:00Z",
+"homeTeam": {
+"id": 4,
+"commonName": {
+"default": "Flyers"
+},
+"placeName": {
+"default": "Philadelphia",
+"fr": "Philadelphie"
+},
+"abbrev": "PHI",
+"score": 3
+},
+"awayTeam": {
+"id": 12,
+"commonName": {
+"default": "Hurricanes"
+},
+"placeName": {
+"default": "Carolina",
+"fr": "Caroline"
+},
+"abbrev": "CAR",
+"score": 2
+}
+}
+]
+},
+{
+"date": "2026-04-14",
+"games": [
+{
+"id": 2025021292,
+"gameType": 2,
+"gameState": "OFF",
+"startTimeUTC": "2026-04-14T23:00:00Z",
+"homeTeam": {
+"id": 6,
+"commonName": {
+"default": "Bruins"
+},
+"placeName": {
+"default": "Boston"
+},
+"abbrev": "BOS",
+"score": 4
+},
+"awayTeam": {
+"id": 1,
+"commonName": {
+"default": "Devils"
+},
+"placeName": {
+"default": "New Jersey"
+},
+"abbrev": "NJD",
+"score": 0
+}
+},
+{
+"id": 2025021293,
+"gameType": 2,
+"gameState": "OFF",
+"startTimeUTC": "2026-04-14T23:00:00Z",
+"homeTeam": {
+"id": 2,
+"commonName": {
+"default": "Islanders"
+},
+"placeName": {
+"default": "New York"
+},
+"abbrev": "NYI",
+"score": 1
+},
+"awayTeam": {
+"id": 12,
+"commonName": {
+"default": "Hurricanes"
+},
+"placeName": {
+"default": "Carolina",
+"fr": "Caroline"
+},
+"abbrev": "CAR",
+"score": 2
+}
+},
+{
+"id": 2025021294,
+"gameType": 2,
+"gameState": "OFF",
+"startTimeUTC": "2026-04-14T23:00:00Z",
+"homeTeam": {
+"id": 4,
+"commonName": {
+"default": "Flyers"
+},
+"placeName": {
+"default": "Philadelphia",
+"fr": "Philadelphie"
+},
+"abbrev": "PHI",
+"score": 4
+},
+"awayTeam": {
+"id": 8,
+"commonName": {
+"default": "Canadiens"
+},
+"placeName": {
+"default": "Montr\u00e9al"
+},
+"abbrev": "MTL",
+"score": 2
+}
+}
+]
+},
+{
+"date": "2026-04-15",
+"games": [
+{
+"id": 2025021301,
+"gameType": 2,
+"gameState": "OFF",
+"startTimeUTC": "2026-04-15T23:00:00Z",
+"homeTeam": {
+"id": 7,
+"commonName": {
+"default": "Sabres"
+},
+"placeName": {
+"default": "Buffalo"
+},
+"abbrev": "BUF",
+"score": 3
+},
+"awayTeam": {
+"id": 25,
+"commonName": {
+"default": "Stars"
+},
+"placeName": {
+"default": "Dallas"
+},
+"abbrev": "DAL",
+"score": 4
+}
+},
+{
+"id": 2025021302,
+"gameType": 2,
+"gameState": "OFF",
+"startTimeUTC": "2026-04-15T23:00:00Z",
+"homeTeam": {
+"id": 14,
+"commonName": {
+"default": "Lightning"
+},
+"placeName": {
+"default": "Tampa Bay"
+},
+"abbrev": "TBL",
+"score": 2
+},
+"awayTeam": {
+"id": 3,
+"commonName": {
+"default": "Rangers"
+},
+"placeName": {
+"default": "New York"
+},
+"abbrev": "NYR",
+"score": 4
+}
+},
+{
+"id": 2025021303,
+"gameType": 2,
+"gameState": "OFF",
+"startTimeUTC": "2026-04-15T23:00:00Z",
+"homeTeam": {
+"id": 13,
+"commonName": {
+"default": "Panthers"
+},
+"placeName": {
+"default": "Florida",
+"fr": "Floride"
+},
+"abbrev": "FLA",
+"score": 8
+},
+"awayTeam": {
+"id": 17,
+"commonName": {
+"default": "Red Wings"
+},
+"placeName": {
+"default": "Detroit"
+},
+"abbrev": "DET",
+"score": 1
+}
+}
+]
+},
+{
+"date": "2026-04-16",
+"games": [
+{
+"id": 2025021309,
+"gameType": 2,
+"gameState": "OFF",
+"startTimeUTC": "2026-04-16T23:30:00Z",
+"homeTeam": {
+"id": 68,
+"commonName": {
+"default": "Mammoth"
+},
+"placeName": {
+"default": "Utah"
+},
+"abbrev": "UTA",
+"score": 3
+},
+"awayTeam": {
+"id": 19,
+"commonName": {
+"default": "Blues"
+},
+"placeName": {
+"default": "St. Louis"
+},
+"abbrev": "STL",
+"score": 5
+}
+},
+{
+"id": 2025021307,
+"gameType": 2,
+"gameState": "OFF",
+"startTimeUTC": "2026-04-17T00:00:00Z",
+"homeTeam": {
+"id": 18,
+"commonName": {
+"default": "Predators"
+},
+"placeName": {
+"default": "Nashville"
+},
+"abbrev": "NSH",
+"score": 4
+},
+"awayTeam": {
+"id": 24,
+"commonName": {
+"default": "Ducks"
+},
+"placeName": {
+"default": "Anaheim"
+},
+"abbrev": "ANA",
+"score": 5
+}
+},
+{
+"id": 2025021308,
+"gameType": 2,
+"gameState": "OFF",
+"startTimeUTC": "2026-04-17T00:00:00Z",
+"homeTeam": {
+"id": 52,
+"commonName": {
+"default": "Jets"
+},
+"placeName": {
+"default": "Winnipeg"
+},
+"abbrev": "WPG",
+"score": 1
+},
+"awayTeam": {
+"id": 28,
+"commonName": {
+"default": "Sharks"
+},
+"placeName": {
+"default": "San Jose"
+},
+"abbrev": "SJS",
+"score": 6
+}
+}
+]
+}
+]
+}

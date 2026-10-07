@@ -1,0 +1,1558 @@
+{
+"teams": {
+"82": {
+"id": "82",
+"title": "Tottenham",
+"history": [
+{
+"h_a": "a",
+"xG": 0.756284,
+"xGA": 4.04155,
+"npxG": 0.756284,
+"npxGA": 3.28038,
+"ppda": {
+"att": 205,
+"def": 26
+},
+"ppda_allowed": {
+"att": 253,
+"def": 31
+},
+"deep": 7,
+"deep_allowed": 13,
+"scored": 0,
+"missed": 3,
+"xpts": 0.064,
+"result": "l",
+"date": "2026-08-22 16:30:00",
+"wins": 0,
+"draws": 0,
+"loses": 1,
+"pts": 0,
+"npxGD": -2.524096
+},
+{
+"h_a": "h",
+"xG": 1.12037,
+"xGA": 1.00952,
+"npxG": 1.12037,
+"npxGA": 1.00952,
+"ppda": {
+"att": 218,
+"def": 22
+},
+"ppda_allowed": {
+"att": 270,
+"def": 14
+},
+"deep": 7,
+"deep_allowed": 8,
+"scored": 0,
+"missed": 2,
+"xpts": 1.4016,
+"result": "l",
+"date": "2026-08-29 16:30:00",
+"wins": 0,
+"draws": 0,
+"loses": 1,
+"pts": 0,
+"npxGD": 0.11085000000000012
+},
+{
+"h_a": "a",
+"xG": 1.48446,
+"xGA": 0.831692,
+"npxG": 1.48446,
+"npxGA": 0.831692,
+"ppda": {
+"att": 172,
+"def": 19
+},
+"ppda_allowed": {
+"att": 273,
+"def": 36
+},
+"deep": 3,
+"deep_allowed": 6,
+"scored": 0,
+"missed": 0,
+"xpts": 1.9277000000000002,
+"result": "d",
+"date": "2026-09-05 14:00:00",
+"wins": 0,
+"draws": 1,
+"loses": 0,
+"pts": 1,
+"npxGD": 0.6527679999999999
+},
+{
+"h_a": "h",
+"xG": 0.736856,
+"xGA": 1.60056,
+"npxG": 0.736856,
+"npxGA": 1.60056,
+"ppda": {
+"att": 222,
+"def": 33
+},
+"ppda_allowed": {
+"att": 313,
+"def": 15
+},
+"deep": 7,
+"deep_allowed": 8,
+"scored": 0,
+"missed": 0,
+"xpts": 0.6973,
+"result": "d",
+"date": "2026-09-12 16:30:00",
+"wins": 0,
+"draws": 1,
+"loses": 0,
+"pts": 1,
+"npxGD": -0.863704
+},
+{
+"h_a": "h",
+"xG": 1.72177,
+"xGA": 1.7092,
+"npxG": 1.72177,
+"npxGA": 1.7092,
+"ppda": {
+"att": 214,
+"def": 37
+},
+"ppda_allowed": {
+"att": 276,
+"def": 18
+},
+"deep": 12,
+"deep_allowed": 4,
+"scored": 2,
+"missed": 3,
+"xpts": 1.361,
+"result": "l",
+"date": "2026-09-19 11:30:00",
+"wins": 0,
+"draws": 0,
+"loses": 1,
+"pts": 0,
+"npxGD": 0.01256999999999997
+}
+]
+},
+"83": {
+"id": "83",
+"title": "Arsenal",
+"history": [
+{
+"h_a": "h",
+"xG": 1.85424,
+"xGA": 0.558336,
+"npxG": 1.85424,
+"npxGA": 0.558336,
+"ppda": {
+"att": 164,
+"def": 17
+},
+"ppda_allowed": {
+"att": 327,
+"def": 12
+},
+"deep": 18,
+"deep_allowed": 2,
+"scored": 3,
+"missed": 0,
+"xpts": 2.3738,
+"result": "w",
+"date": "2026-08-21 19:00:00",
+"wins": 1,
+"draws": 0,
+"loses": 0,
+"pts": 3,
+"npxGD": 1.2959040000000002
+},
+{
+"h_a": "a",
+"xG": 1.52441,
+"xGA": 0.281925,
+"npxG": 1.52441,
+"npxGA": 0.281925,
+"ppda": {
+"att": 169,
+"def": 17
+},
+"ppda_allowed": {
+"att": 300,
+"def": 16
+},
+"deep": 8,
+"deep_allowed": 5,
+"scored": 1,
+"missed": 0,
+"xpts": 2.6457,
+"result": "w",
+"date": "2026-08-31 19:00:00",
+"wins": 1,
+"draws": 0,
+"loses": 0,
+"pts": 3,
+"npxGD": 1.242485
+},
+{
+"h_a": "h",
+"xG": 2.80555,
+"xGA": 0.430508,
+"npxG": 2.80555,
+"npxGA": 0.430508,
+"ppda": {
+"att": 187,
+"def": 21
+},
+"ppda_allowed": {
+"att": 177,
+"def": 18
+},
+"deep": 17,
+"deep_allowed": 5,
+"scored": 2,
+"missed": 1,
+"xpts": 2.7935,
+"result": "w",
+"date": "2026-09-06 15:30:00",
+"wins": 1,
+"draws": 0,
+"loses": 0,
+"pts": 3,
+"npxGD": 2.375042
+},
+{
+"h_a": "a",
+"xG": 1.98905,
+"xGA": 2.07033,
+"npxG": 1.22788,
+"npxGA": 1.30916,
+"ppda": {
+"att": 147,
+"def": 13
+},
+"ppda_allowed": {
+"att": 218,
+"def": 21
+},
+"deep": 5,
+"deep_allowed": 5,
+"scored": 2,
+"missed": 0,
+"xpts": 1.2985,
+"result": "w",
+"date": "2026-09-12 19:00:00",
+"wins": 1,
+"draws": 0,
+"loses": 0,
+"pts": 3,
+"npxGD": -0.08128000000000002
+},
+{
+"h_a": "a",
+"xG": 1.23979,
+"xGA": 2.11268,
+"npxG": 1.23979,
+"npxGA": 2.11268,
+"ppda": {
+"att": 177,
+"def": 14
+},
+"ppda_allowed": {
+"att": 291,
+"def": 36
+},
+"deep": 10,
+"deep_allowed": 6,
+"scored": 0,
+"missed": 3,
+"xpts": 0.6937,
+"result": "l",
+"date": "2026-09-19 14:00:00",
+"wins": 0,
+"draws": 0,
+"loses": 1,
+"pts": 0,
+"npxGD": -0.8728900000000002
+}
+]
+},
+"86": {
+"id": "86",
+"title": "Newcastle United",
+"history": [
+{
+"h_a": "h",
+"xG": 1.59465,
+"xGA": 3.13133,
+"npxG": 1.59465,
+"npxGA": 2.37016,
+"ppda": {
+"att": 193,
+"def": 22
+},
+"ppda_allowed": {
+"att": 165,
+"def": 29
+},
+"deep": 3,
+"deep_allowed": 4,
+"scored": 2,
+"missed": 2,
+"xpts": 0.4379,
+"result": "d",
+"date": "2026-08-23 15:30:00",
+"wins": 0,
+"draws": 1,
+"loses": 0,
+"pts": 1,
+"npxGD": -0.7755099999999999
+},
+{
+"h_a": "a",
+"xG": 1.00952,
+"xGA": 1.12037,
+"npxG": 1.00952,
+"npxGA": 1.12037,
+"ppda": {
+"att": 270,
+"def": 14
+},
+"ppda_allowed": {
+"att": 218,
+"def": 22
+},
+"deep": 8,
+"deep_allowed": 7,
+"scored": 2,
+"missed": 0,
+"xpts": 1.2813,
+"result": "w",
+"date": "2026-08-29 16:30:00",
+"wins": 1,
+"draws": 0,
+"loses": 0,
+"pts": 3,
+"npxGD": -0.11085000000000012
+},
+{
+"h_a": "h",
+"xG": 0.771636,
+"xGA": 1.63891,
+"npxG": 0.771636,
+"npxGA": 1.63891,
+"ppda": {
+"att": 157,
+"def": 23
+},
+"ppda_allowed": {
+"att": 270,
+"def": 27
+},
+"deep": 8,
+"deep_allowed": 3,
+"scored": 2,
+"missed": 2,
+"xpts": 0.6634,
+"result": "d",
+"date": "2026-09-05 11:30:00",
+"wins": 0,
+"draws": 1,
+"loses": 0,
+"pts": 1,
+"npxGD": -0.8672740000000001
+},
+{
+"h_a": "a",
+"xG": 0.793165,
+"xGA": 2.2902,
+"npxG": 0.793165,
+"npxGA": 2.2902,
+"ppda": {
+"att": 265,
+"def": 26
+},
+"ppda_allowed": {
+"att": 228,
+"def": 25
+},
+"deep": 5,
+"deep_allowed": 9,
+"scored": 1,
+"missed": 4,
+"xpts": 0.3383,
+"result": "l",
+"date": "2026-09-14 19:00:00",
+"wins": 0,
+"draws": 0,
+"loses": 1,
+"pts": 0,
+"npxGD": -1.497035
+},
+{
+"h_a": "h",
+"xG": 1.37521,
+"xGA": 1.15888,
+"npxG": 0.614043,
+"npxGA": 1.15888,
+"ppda": {
+"att": 197,
+"def": 18
+},
+"ppda_allowed": {
+"att": 318,
+"def": 24
+},
+"deep": 4,
+"deep_allowed": 7,
+"scored": 2,
+"missed": 1,
+"xpts": 1.5716,
+"result": "w",
+"date": "2026-09-19 14:00:00",
+"wins": 1,
+"draws": 0,
+"loses": 0,
+"pts": 3,
+"npxGD": -0.5448369999999999
+}
+]
+},
+"88": {
+"id": "88",
+"title": "Manchester City",
+"history": [
+{
+"h_a": "h",
+"xG": 2.47444,
+"xGA": 0.707541,
+"npxG": 2.47444,
+"npxGA": 0.707541,
+"ppda": {
+"att": 190,
+"def": 25
+},
+"ppda_allowed": {
+"att": 340,
+"def": 19
+},
+"deep": 14,
+"deep_allowed": 1,
+"scored": 2,
+"missed": 1,
+"xpts": 2.575,
+"result": "w",
+"date": "2026-08-23 13:00:00",
+"wins": 1,
+"draws": 0,
+"loses": 0,
+"pts": 3,
+"npxGD": 1.766899
+},
+{
+"h_a": "a",
+"xG": 2.56662,
+"xGA": 0.926624,
+"npxG": 2.56662,
+"npxGA": 0.926624,
+"ppda": {
+"att": 191,
+"def": 26
+},
+"ppda_allowed": {
+"att": 470,
+"def": 21
+},
+"deep": 11,
+"deep_allowed": 3,
+"scored": 4,
+"missed": 1,
+"xpts": 2.4576000000000002,
+"result": "w",
+"date": "2026-08-28 19:00:00",
+"wins": 1,
+"draws": 0,
+"loses": 0,
+"pts": 3,
+"npxGD": 1.639996
+},
+{
+"h_a": "h",
+"xG": 2.19038,
+"xGA": 1.49306,
+"npxG": 2.19038,
+"npxGA": 1.49306,
+"ppda": {
+"att": 102,
+"def": 17
+},
+"ppda_allowed": {
+"att": 487,
+"def": 30
+},
+"deep": 6,
+"deep_allowed": 2,
+"scored": 1,
+"missed": 0,
+"xpts": 1.8813,
+"result": "w",
+"date": "2026-09-05 14:00:00",
+"wins": 1,
+"draws": 0,
+"loses": 0,
+"pts": 3,
+"npxGD": 0.6973200000000002
+},
+{
+"h_a": "a",
+"xG": 1.14073,
+"xGA": 0.943406,
+"npxG": 1.14073,
+"npxGA": 0.943406,
+"ppda": {
+"att": 220,
+"def": 18
+},
+"ppda_allowed": {
+"att": 239,
+"def": 37
+},
+"deep": 2,
+"deep_allowed": 12,
+"scored": 1,
+"missed": 0,
+"xpts": 1.5482999999999998,
+"result": "w",
+"date": "2026-09-13 15:30:00",
+"wins": 1,
+"draws": 0,
+"loses": 0,
+"pts": 3,
+"npxGD": 0.19732400000000005
+},
+{
+"h_a": "h",
+"xG": 2.66856,
+"xGA": 3.10661,
+"npxG": 2.66856,
+"npxGA": 3.10661,
+"ppda": {
+"att": 219,
+"def": 22
+},
+"ppda_allowed": {
+"att": 245,
+"def": 24
+},
+"deep": 12,
+"deep_allowed": 9,
+"scored": 5,
+"missed": 3,
+"xpts": 1.131,
+"result": "w",
+"date": "2026-09-20 13:00:00",
+"wins": 1,
+"draws": 0,
+"loses": 0,
+"pts": 3,
+"npxGD": -0.43805000000000005
+}
+]
+},
+"89": {
+"id": "89",
+"title": "Manchester United",
+"history": [
+{
+"h_a": "a",
+"xG": 1.77874,
+"xGA": 1.49627,
+"npxG": 1.77874,
+"npxGA": 1.49627,
+"ppda": {
+"att": 145,
+"def": 14
+},
+"ppda_allowed": {
+"att": 288,
+"def": 14
+},
+"deep": 11,
+"deep_allowed": 1,
+"scored": 0,
+"missed": 2,
+"xpts": 1.5478,
+"result": "l",
+"date": "2026-08-22 11:30:00",
+"wins": 0,
+"draws": 0,
+"loses": 1,
+"pts": 0,
+"npxGD": 0.28247
+},
+{
+"h_a": "h",
+"xG": 4.86612,
+"xGA": 1.80548,
+"npxG": 4.10495,
+"npxGA": 1.80548,
+"ppda": {
+"att": 226,
+"def": 22
+},
+"ppda_allowed": {
+"att": 301,
+"def": 22
+},
+"deep": 11,
+"deep_allowed": 3,
+"scored": 5,
+"missed": 2,
+"xpts": 2.8193,
+"result": "w",
+"date": "2026-08-30 15:30:00",
+"wins": 1,
+"draws": 0,
+"loses": 0,
+"pts": 3,
+"npxGD": 2.2994699999999995
+},
+{
+"h_a": "a",
+"xG": 0.872225,
+"xGA": 1.05629,
+"npxG": 0.872225,
+"npxGA": 1.05629,
+"ppda": {
+"att": 222,
+"def": 14
+},
+"ppda_allowed": {
+"att": 305,
+"def": 23
+},
+"deep": 7,
+"deep_allowed": 7,
+"scored": 2,
+"missed": 2,
+"xpts": 1.1888999999999998,
+"result": "d",
+"date": "2026-09-06 13:00:00",
+"wins": 0,
+"draws": 1,
+"loses": 0,
+"pts": 1,
+"npxGD": -0.18406499999999992
+},
+{
+"h_a": "h",
+"xG": 0.943406,
+"xGA": 1.14073,
+"npxG": 0.943406,
+"npxGA": 1.14073,
+"ppda": {
+"att": 239,
+"def": 37
+},
+"ppda_allowed": {
+"att": 220,
+"def": 18
+},
+"deep": 12,
+"deep_allowed": 2,
+"scored": 0,
+"missed": 1,
+"xpts": 1.1243999999999998,
+"result": "l",
+"date": "2026-09-13 15:30:00",
+"wins": 0,
+"draws": 0,
+"loses": 1,
+"pts": 0,
+"npxGD": -0.19732400000000005
+},
+{
+"h_a": "a",
+"xG": 2.12453,
+"xGA": 1.71719,
+"npxG": 2.12453,
+"npxGA": 1.71719,
+"ppda": {
+"att": 281,
+"def": 14
+},
+"ppda_allowed": {
+"att": 281,
+"def": 18
+},
+"deep": 15,
+"deep_allowed": 5,
+"scored": 1,
+"missed": 1,
+"xpts": 1.6679,
+"result": "d",
+"date": "2026-09-20 15:30:00",
+"wins": 0,
+"draws": 1,
+"loses": 0,
+"pts": 1,
+"npxGD": 0.40734000000000004
+}
+]
+},
+"245": {
+"id": "245",
+"title": "Leeds",
+"history": [
+{
+"h_a": "a",
+"xG": 0.466247,
+"xGA": 0.656681,
+"npxG": 0.466247,
+"npxGA": 0.656681,
+"ppda": {
+"att": 201,
+"def": 32
+},
+"ppda_allowed": {
+"att": 179,
+"def": 19
+},
+"deep": 2,
+"deep_allowed": 6,
+"scored": 1,
+"missed": 0,
+"xpts": 1.0787,
+"result": "w",
+"date": "2026-08-22 14:00:00",
+"wins": 1,
+"draws": 0,
+"loses": 0,
+"pts": 3,
+"npxGD": -0.19043399999999994
+},
+{
+"h_a": "h",
+"xG": 1.14993,
+"xGA": 1.61344,
+"npxG": 1.14993,
+"npxGA": 1.61344,
+"ppda": {
+"att": 201,
+"def": 16
+},
+"ppda_allowed": {
+"att": 207,
+"def": 30
+},
+"deep": 1,
+"deep_allowed": 5,
+"scored": 1,
+"missed": 1,
+"xpts": 0.9771,
+"result": "d",
+"date": "2026-08-30 13:00:00",
+"wins": 0,
+"draws": 1,
+"loses": 0,
+"pts": 1,
+"npxGD": -0.4635100000000001
+},
+{
+"h_a": "a",
+"xG": 2.23407,
+"xGA": 2.22026,
+"npxG": 2.23407,
+"npxGA": 2.22026,
+"ppda": {
+"att": 282,
+"def": 22
+},
+"ppda_allowed": {
+"att": 113,
+"def": 26
+},
+"deep": 8,
+"deep_allowed": 6,
+"scored": 1,
+"missed": 1,
+"xpts": 1.3884,
+"result": "d",
+"date": "2026-09-05 14:00:00",
+"wins": 0,
+"draws": 1,
+"loses": 0,
+"pts": 1,
+"npxGD": 0.013809999999999878
+},
+{
+"h_a": "h",
+"xG": 2.2902,
+"xGA": 0.793165,
+"npxG": 2.2902,
+"npxGA": 0.793165,
+"ppda": {
+"att": 228,
+"def": 25
+},
+"ppda_allowed": {
+"att": 265,
+"def": 26
+},
+"deep": 9,
+"deep_allowed": 5,
+"scored": 4,
+"missed": 1,
+"xpts": 2.4935,
+"result": "w",
+"date": "2026-09-14 19:00:00",
+"wins": 1,
+"draws": 0,
+"loses": 0,
+"pts": 3,
+"npxGD": 1.497035
+},
+{
+"h_a": "h",
+"xG": 1.08552,
+"xGA": 1.12905,
+"npxG": 1.08552,
+"npxGA": 1.12905,
+"ppda": {
+"att": 216,
+"def": 22
+},
+"ppda_allowed": {
+"att": 272,
+"def": 21
+},
+"deep": 0,
+"deep_allowed": 4,
+"scored": 0,
+"missed": 0,
+"xpts": 1.3169999999999997,
+"result": "d",
+"date": "2026-09-20 13:00:00",
+"wins": 0,
+"draws": 1,
+"loses": 0,
+"pts": 1,
+"npxGD": -0.04353000000000007
+}
+]
+}
+},
+"players": [],
+"dates": [
+{
+"id": "31194",
+"isResult": true,
+"h": {
+"id": "82",
+"title": "Tottenham",
+"short_title": "TOT"
+},
+"a": {
+"id": "86",
+"title": "Newcastle United",
+"short_title": "NEW"
+},
+"goals": {
+"h": "0",
+"a": "2"
+},
+"xG": {
+"h": "1.12037",
+"a": "1.00952"
+},
+"datetime": "2026-08-29 16:30:00",
+"forecast": {
+"w": "0.3615",
+"d": "0.3171",
+"l": "0.3214"
+}
+},
+{
+"id": "31218",
+"isResult": true,
+"h": {
+"id": "89",
+"title": "Manchester United",
+"short_title": "MUN"
+},
+"a": {
+"id": "88",
+"title": "Manchester City",
+"short_title": "MCI"
+},
+"goals": {
+"h": "0",
+"a": "1"
+},
+"xG": {
+"h": "0.943406",
+"a": "1.14073"
+},
+"datetime": "2026-09-13 15:30:00",
+"forecast": {
+"w": "0.2657",
+"d": "0.3273",
+"l": "0.407"
+}
+},
+{
+"id": "31219",
+"isResult": true,
+"h": {
+"id": "245",
+"title": "Leeds",
+"short_title": "LED"
+},
+"a": {
+"id": "86",
+"title": "Newcastle United",
+"short_title": "NEW"
+},
+"goals": {
+"h": "4",
+"a": "1"
+},
+"xG": {
+"h": "2.2902",
+"a": "0.793165"
+},
+"datetime": "2026-09-14 19:00:00",
+"forecast": {
+"w": "0.7751",
+"d": "0.1682",
+"l": "0.0567"
+}
+},
+{
+"id": "31230",
+"isResult": false,
+"h": {
+"id": "83",
+"title": "Arsenal",
+"short_title": "ARS"
+},
+"a": {
+"id": "245",
+"title": "Leeds",
+"short_title": "LED"
+},
+"goals": {
+"h": null,
+"a": null
+},
+"xG": {
+"h": null,
+"a": null
+},
+"datetime": "2026-10-10 11:30:00"
+},
+{
+"id": "31235",
+"isResult": false,
+"h": {
+"id": "89",
+"title": "Manchester United",
+"short_title": "MUN"
+},
+"a": {
+"id": "82",
+"title": "Tottenham",
+"short_title": "TOT"
+},
+"goals": {
+"h": null,
+"a": null
+},
+"xG": {
+"h": null,
+"a": null
+},
+"datetime": "2026-10-10 16:30:00"
+},
+{
+"id": "31247",
+"isResult": false,
+"h": {
+"id": "245",
+"title": "Leeds",
+"short_title": "LED"
+},
+"a": {
+"id": "89",
+"title": "Manchester United",
+"short_title": "MUN"
+},
+"goals": {
+"h": null,
+"a": null
+},
+"xG": {
+"h": null,
+"a": null
+},
+"datetime": "2026-10-18 13:00:00"
+},
+{
+"id": "31276",
+"isResult": false,
+"h": {
+"id": "245",
+"title": "Leeds",
+"short_title": "LED"
+},
+"a": {
+"id": "82",
+"title": "Tottenham",
+"short_title": "TOT"
+},
+"goals": {
+"h": null,
+"a": null
+},
+"xG": {
+"h": null,
+"a": null
+},
+"datetime": "2026-11-07 15:00:00"
+},
+{
+"id": "31288",
+"isResult": false,
+"h": {
+"id": "86",
+"title": "Newcastle United",
+"short_title": "NEW"
+},
+"a": {
+"id": "83",
+"title": "Arsenal",
+"short_title": "ARS"
+},
+"goals": {
+"h": null,
+"a": null
+},
+"xG": {
+"h": null,
+"a": null
+},
+"datetime": "2026-11-21 15:00:00"
+},
+{
+"id": "31290",
+"isResult": false,
+"h": {
+"id": "83",
+"title": "Arsenal",
+"short_title": "ARS"
+},
+"a": {
+"id": "88",
+"title": "Manchester City",
+"short_title": "MCI"
+},
+"goals": {
+"h": null,
+"a": null
+},
+"xG": {
+"h": null,
+"a": null
+},
+"datetime": "2026-11-28 15:00:00"
+},
+{
+"id": "31307",
+"isResult": false,
+"h": {
+"id": "88",
+"title": "Manchester City",
+"short_title": "MCI"
+},
+"a": {
+"id": "245",
+"title": "Leeds",
+"short_title": "LED"
+},
+"goals": {
+"h": null,
+"a": null
+},
+"xG": {
+"h": null,
+"a": null
+},
+"datetime": "2026-12-02 20:00:00"
+},
+{
+"id": "31308",
+"isResult": false,
+"h": {
+"id": "86",
+"title": "Newcastle United",
+"short_title": "NEW"
+},
+"a": {
+"id": "89",
+"title": "Manchester United",
+"short_title": "MUN"
+},
+"goals": {
+"h": null,
+"a": null
+},
+"xG": {
+"h": null,
+"a": null
+},
+"datetime": "2026-12-02 20:00:00"
+},
+{
+"id": "31313",
+"isResult": false,
+"h": {
+"id": "82",
+"title": "Tottenham",
+"short_title": "TOT"
+},
+"a": {
+"id": "83",
+"title": "Arsenal",
+"short_title": "ARS"
+},
+"goals": {
+"h": null,
+"a": null
+},
+"xG": {
+"h": null,
+"a": null
+},
+"datetime": "2026-12-05 15:00:00"
+},
+{
+"id": "31331",
+"isResult": false,
+"h": {
+"id": "83",
+"title": "Arsenal",
+"short_title": "ARS"
+},
+"a": {
+"id": "89",
+"title": "Manchester United",
+"short_title": "MUN"
+},
+"goals": {
+"h": null,
+"a": null
+},
+"xG": {
+"h": null,
+"a": null
+},
+"datetime": "2026-12-19 15:00:00"
+},
+{
+"id": "31347",
+"isResult": false,
+"h": {
+"id": "86",
+"title": "Newcastle United",
+"short_title": "NEW"
+},
+"a": {
+"id": "88",
+"title": "Manchester City",
+"short_title": "MCI"
+},
+"goals": {
+"h": null,
+"a": null
+},
+"xG": {
+"h": null,
+"a": null
+},
+"datetime": "2026-12-26 15:00:00"
+},
+{
+"id": "31367",
+"isResult": false,
+"h": {
+"id": "88",
+"title": "Manchester City",
+"short_title": "MCI"
+},
+"a": {
+"id": "82",
+"title": "Tottenham",
+"short_title": "TOT"
+},
+"goals": {
+"h": null,
+"a": null
+},
+"xG": {
+"h": null,
+"a": null
+},
+"datetime": "2027-01-02 15:00:00"
+},
+{
+"id": "31376",
+"isResult": false,
+"h": {
+"id": "245",
+"title": "Leeds",
+"short_title": "LED"
+},
+"a": {
+"id": "88",
+"title": "Manchester City",
+"short_title": "MCI"
+},
+"goals": {
+"h": null,
+"a": null
+},
+"xG": {
+"h": null,
+"a": null
+},
+"datetime": "2027-01-06 20:00:00"
+},
+{
+"id": "31377",
+"isResult": false,
+"h": {
+"id": "89",
+"title": "Manchester United",
+"short_title": "MUN"
+},
+"a": {
+"id": "86",
+"title": "Newcastle United",
+"short_title": "NEW"
+},
+"goals": {
+"h": null,
+"a": null
+},
+"xG": {
+"h": null,
+"a": null
+},
+"datetime": "2027-01-06 20:00:00"
+},
+{
+"id": "31389",
+"isResult": false,
+"h": {
+"id": "82",
+"title": "Tottenham",
+"short_title": "TOT"
+},
+"a": {
+"id": "245",
+"title": "Leeds",
+"short_title": "LED"
+},
+"goals": {
+"h": null,
+"a": null
+},
+"xG": {
+"h": null,
+"a": null
+},
+"datetime": "2027-01-16 15:00:00"
+},
+{
+"id": "31390",
+"isResult": false,
+"h": {
+"id": "83",
+"title": "Arsenal",
+"short_title": "ARS"
+},
+"a": {
+"id": "86",
+"title": "Newcastle United",
+"short_title": "NEW"
+},
+"goals": {
+"h": null,
+"a": null
+},
+"xG": {
+"h": null,
+"a": null
+},
+"datetime": "2027-01-23 15:00:00"
+},
+{
+"id": "31402",
+"isResult": false,
+"h": {
+"id": "88",
+"title": "Manchester City",
+"short_title": "MCI"
+},
+"a": {
+"id": "83",
+"title": "Arsenal",
+"short_title": "ARS"
+},
+"goals": {
+"h": null,
+"a": null
+},
+"xG": {
+"h": null,
+"a": null
+},
+"datetime": "2027-01-30 15:00:00"
+},
+{
+"id": "31429",
+"isResult": false,
+"h": {
+"id": "82",
+"title": "Tottenham",
+"short_title": "TOT"
+},
+"a": {
+"id": "88",
+"title": "Manchester City",
+"short_title": "MCI"
+},
+"goals": {
+"h": null,
+"a": null
+},
+"xG": {
+"h": null,
+"a": null
+},
+"datetime": "2027-02-10 20:00:00"
+},
+{
+"id": "31437",
+"isResult": false,
+"h": {
+"id": "88",
+"title": "Manchester City",
+"short_title": "MCI"
+},
+"a": {
+"id": "86",
+"title": "Newcastle United",
+"short_title": "NEW"
+},
+"goals": {
+"h": null,
+"a": null
+},
+"xG": {
+"h": null,
+"a": null
+},
+"datetime": "2027-02-20 15:00:00"
+},
+{
+"id": "31447",
+"isResult": false,
+"h": {
+"id": "89",
+"title": "Manchester United",
+"short_title": "MUN"
+},
+"a": {
+"id": "83",
+"title": "Arsenal",
+"short_title": "ARS"
+},
+"goals": {
+"h": null,
+"a": null
+},
+"xG": {
+"h": null,
+"a": null
+},
+"datetime": "2027-02-27 15:00:00"
+},
+{
+"id": "31477",
+"isResult": false,
+"h": {
+"id": "88",
+"title": "Manchester City",
+"short_title": "MCI"
+},
+"a": {
+"id": "89",
+"title": "Manchester United",
+"short_title": "MUN"
+},
+"goals": {
+"h": null,
+"a": null
+},
+"xG": {
+"h": null,
+"a": null
+},
+"datetime": "2027-03-20 15:00:00"
+},
+{
+"id": "31478",
+"isResult": false,
+"h": {
+"id": "86",
+"title": "Newcastle United",
+"short_title": "NEW"
+},
+"a": {
+"id": "245",
+"title": "Leeds",
+"short_title": "LED"
+},
+"goals": {
+"h": null,
+"a": null
+},
+"xG": {
+"h": null,
+"a": null
+},
+"datetime": "2027-03-20 15:00:00"
+},
+{
+"id": "31498",
+"isResult": false,
+"h": {
+"id": "86",
+"title": "Newcastle United",
+"short_title": "NEW"
+},
+"a": {
+"id": "82",
+"title": "Tottenham",
+"short_title": "TOT"
+},
+"goals": {
+"h": null,
+"a": null
+},
+"xG": {
+"h": null,
+"a": null
+},
+"datetime": "2027-04-17 14:00:00"
+},
+{
+"id": "31510",
+"isResult": false,
+"h": {
+"id": "83",
+"title": "Arsenal",
+"short_title": "ARS"
+},
+"a": {
+"id": "82",
+"title": "Tottenham",
+"short_title": "TOT"
+},
+"goals": {
+"h": null,
+"a": null
+},
+"xG": {
+"h": null,
+"a": null
+},
+"datetime": "2027-05-01 14:00:00"
+},
+{
+"id": "31525",
+"isResult": false,
+"h": {
+"id": "245",
+"title": "Leeds",
+"short_title": "LED"
+},
+"a": {
+"id": "83",
+"title": "Arsenal",
+"short_title": "ARS"
+},
+"goals": {
+"h": null,
+"a": null
+},
+"xG": {
+"h": null,
+"a": null
+},
+"datetime": "2027-05-08 14:00:00"
+},
+{
+"id": "31538",
+"isResult": false,
+"h": {
+"id": "89",
+"title": "Manchester United",
+"short_title": "MUN"
+},
+"a": {
+"id": "245",
+"title": "Leeds",
+"short_title": "LED"
+},
+"goals": {
+"h": null,
+"a": null
+},
+"xG": {
+"h": null,
+"a": null
+},
+"datetime": "2027-05-15 14:00:00"
+},
+{
+"id": "31549",
+"isResult": false,
+"h": {
+"id": "82",
+"title": "Tottenham",
+"short_title": "TOT"
+},
+"a": {
+"id": "89",
+"title": "Manchester United",
+"short_title": "MUN"
+},
+"goals": {
+"h": null,
+"a": null
+},
+"xG": {
+"h": null,
+"a": null
+},
+"datetime": "2027-05-23 14:00:00"
+}
+]
+}

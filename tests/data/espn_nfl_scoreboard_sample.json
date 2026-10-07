@@ -1,0 +1,305 @@
+{
+ "season": {
+  "year": 2026,
+  "type": 2
+ },
+ "week": {
+  "number": 3
+ },
+ "events": [
+  {
+   "id": "401872953",
+   "date": "2026-09-27T17:00Z",
+   "name": "Los Angeles Chargers at Buffalo Bills",
+   "season": {
+    "year": 2026,
+    "type": 2,
+    "slug": "regular-season"
+   },
+   "status": {
+    "type": {
+     "id": "3",
+     "name": "STATUS_FINAL",
+     "state": "post",
+     "completed": true,
+     "description": "Final",
+     "detail": "Final",
+     "shortDetail": "Final"
+    }
+   },
+   "competitions": [
+    {
+     "venue": {
+      "id": "11938",
+      "fullName": "Highmark Stadium",
+      "address": {
+       "city": "Orchard Park",
+       "state": "NY",
+       "country": "USA"
+      },
+      "indoor": false
+     },
+     "neutralSite": false,
+     "competitors": [
+      {
+       "homeAway": "home",
+       "score": "24",
+       "linescores": [
+        {
+         "value": 0.0,
+         "displayValue": "0",
+         "period": 1
+        },
+        {
+         "value": 10.0,
+         "displayValue": "10",
+         "period": 2
+        },
+        {
+         "value": 0.0,
+         "displayValue": "0",
+         "period": 3
+        },
+        {
+         "value": 14.0,
+         "displayValue": "14",
+         "period": 4
+        }
+       ],
+       "team": {
+        "id": "2",
+        "displayName": "Buffalo Bills"
+       }
+      },
+      {
+       "homeAway": "away",
+       "score": "16",
+       "linescores": [
+        {
+         "value": 10.0,
+         "displayValue": "10",
+         "period": 1
+        },
+        {
+         "value": 0.0,
+         "displayValue": "0",
+         "period": 2
+        },
+        {
+         "value": 3.0,
+         "displayValue": "3",
+         "period": 3
+        },
+        {
+         "value": 3.0,
+         "displayValue": "3",
+         "period": 4
+        }
+       ],
+       "team": {
+        "id": "24",
+        "displayName": "Los Angeles Chargers"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "401872949",
+   "date": "2026-09-27T17:00Z",
+   "name": "Carolina Panthers at Cleveland Browns",
+   "season": {
+    "year": 2026,
+    "type": 2,
+    "slug": "regular-season"
+   },
+   "status": {
+    "type": {
+     "id": "3",
+     "name": "STATUS_FINAL",
+     "state": "post",
+     "completed": true,
+     "description": "Final",
+     "detail": "Final",
+     "shortDetail": "Final"
+    }
+   },
+   "competitions": [
+    {
+     "venue": {
+      "id": "3679",
+      "fullName": "Huntington Bank Field",
+      "address": {
+       "city": "Cleveland",
+       "state": "OH",
+       "country": "USA"
+      },
+      "indoor": false
+     },
+     "neutralSite": false,
+     "competitors": [
+      {
+       "homeAway": "home",
+       "score": "21",
+       "linescores": [
+        {
+         "value": 0.0,
+         "displayValue": "0",
+         "period": 1
+        },
+        {
+         "value": 10.0,
+         "displayValue": "10",
+         "period": 2
+        },
+        {
+         "value": 0.0,
+         "displayValue": "0",
+         "period": 3
+        },
+        {
+         "value": 11.0,
+         "displayValue": "11",
+         "period": 4
+        }
+       ],
+       "team": {
+        "id": "5",
+        "displayName": "Cleveland Browns"
+       }
+      },
+      {
+       "homeAway": "away",
+       "score": "18",
+       "linescores": [
+        {
+         "value": 0.0,
+         "displayValue": "0",
+         "period": 1
+        },
+        {
+         "value": 3.0,
+         "displayValue": "3",
+         "period": 2
+        },
+        {
+         "value": 6.0,
+         "displayValue": "6",
+         "period": 3
+        },
+        {
+         "value": 9.0,
+         "displayValue": "9",
+         "period": 4
+        }
+       ],
+       "team": {
+        "id": "29",
+        "displayName": "Carolina Panthers"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "401872954",
+   "date": "2026-09-27T17:00Z",
+   "name": "New York Jets at Detroit Lions",
+   "season": {
+    "year": 2026,
+    "type": 2,
+    "slug": "regular-season"
+   },
+   "status": {
+    "type": {
+     "id": "3",
+     "name": "STATUS_FINAL",
+     "state": "post",
+     "completed": true,
+     "description": "Final",
+     "detail": "Final",
+     "shortDetail": "Final"
+    }
+   },
+   "competitions": [
+    {
+     "venue": {
+      "id": "3727",
+      "fullName": "Ford Field",
+      "address": {
+       "city": "Detroit",
+       "state": "MI",
+       "country": "USA"
+      },
+      "indoor": true
+     },
+     "neutralSite": false,
+     "competitors": [
+      {
+       "homeAway": "home",
+       "score": "31",
+       "linescores": [
+        {
+         "value": 0.0,
+         "displayValue": "0",
+         "period": 1
+        },
+        {
+         "value": 10.0,
+         "displayValue": "10",
+         "period": 2
+        },
+        {
+         "value": 7.0,
+         "displayValue": "7",
+         "period": 3
+        },
+        {
+         "value": 14.0,
+         "displayValue": "14",
+         "period": 4
+        }
+       ],
+       "team": {
+        "id": "8",
+        "displayName": "Detroit Lions"
+       }
+      },
+      {
+       "homeAway": "away",
+       "score": "24",
+       "linescores": [
+        {
+         "value": 0.0,
+         "displayValue": "0",
+         "period": 1
+        },
+        {
+         "value": 7.0,
+         "displayValue": "7",
+         "period": 2
+        },
+        {
+         "value": 3.0,
+         "displayValue": "3",
+         "period": 3
+        },
+        {
+         "value": 14.0,
+         "displayValue": "14",
+         "period": 4
+        }
+       ],
+       "team": {
+        "id": "20",
+        "displayName": "New York Jets"
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

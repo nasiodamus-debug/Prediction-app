@@ -1,0 +1,305 @@
+{
+ "season": {
+  "type": 2,
+  "year": 2026
+ },
+ "week": {
+  "number": 4
+ },
+ "events": [
+  {
+   "id": "401869941",
+   "date": "2026-09-24T23:30Z",
+   "name": "Liberty Flames at Coastal Carolina Chanticleers",
+   "season": {
+    "year": 2026,
+    "type": 2,
+    "slug": "regular-season"
+   },
+   "status": {
+    "type": {
+     "id": "3",
+     "name": "STATUS_FINAL",
+     "state": "post",
+     "completed": true,
+     "description": "Final",
+     "detail": "Final",
+     "shortDetail": "Final"
+    }
+   },
+   "competitions": [
+    {
+     "venue": {
+      "id": "3654",
+      "fullName": "Brooks Stadium (SC)",
+      "address": {
+       "city": "Conway",
+       "state": "SC",
+       "country": "USA"
+      },
+      "indoor": false
+     },
+     "neutralSite": false,
+     "competitors": [
+      {
+       "homeAway": "home",
+       "score": "17",
+       "linescores": [
+        {
+         "value": 3.0,
+         "displayValue": "3",
+         "period": 1
+        },
+        {
+         "value": 14.0,
+         "displayValue": "14",
+         "period": 2
+        },
+        {
+         "value": 0.0,
+         "displayValue": "0",
+         "period": 3
+        },
+        {
+         "value": 0.0,
+         "displayValue": "0",
+         "period": 4
+        }
+       ],
+       "team": {
+        "id": "324",
+        "displayName": "Coastal Carolina Chanticleers"
+       }
+      },
+      {
+       "homeAway": "away",
+       "score": "34",
+       "linescores": [
+        {
+         "value": 10.0,
+         "displayValue": "10",
+         "period": 1
+        },
+        {
+         "value": 0.0,
+         "displayValue": "0",
+         "period": 2
+        },
+        {
+         "value": 10.0,
+         "displayValue": "10",
+         "period": 3
+        },
+        {
+         "value": 14.0,
+         "displayValue": "14",
+         "period": 4
+        }
+       ],
+       "team": {
+        "id": "2335",
+        "displayName": "Liberty Flames"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "401858461",
+   "date": "2026-09-26T00:00Z",
+   "name": "Northwestern Wildcats at Indiana Hoosiers",
+   "season": {
+    "year": 2026,
+    "type": 2,
+    "slug": "regular-season"
+   },
+   "status": {
+    "type": {
+     "id": "3",
+     "name": "STATUS_FINAL",
+     "state": "post",
+     "completed": true,
+     "description": "Final",
+     "detail": "Final",
+     "shortDetail": "Final"
+    }
+   },
+   "competitions": [
+    {
+     "venue": {
+      "id": "3830",
+      "fullName": "Memorial Stadium (Bloomington, IN)",
+      "address": {
+       "city": "Bloomington",
+       "state": "IN",
+       "country": "USA"
+      },
+      "indoor": false
+     },
+     "neutralSite": false,
+     "competitors": [
+      {
+       "homeAway": "home",
+       "score": "29",
+       "linescores": [
+        {
+         "value": 2.0,
+         "displayValue": "2",
+         "period": 1
+        },
+        {
+         "value": 10.0,
+         "displayValue": "10",
+         "period": 2
+        },
+        {
+         "value": 3.0,
+         "displayValue": "3",
+         "period": 3
+        },
+        {
+         "value": 14.0,
+         "displayValue": "14",
+         "period": 4
+        }
+       ],
+       "team": {
+        "id": "84",
+        "displayName": "Indiana Hoosiers"
+       }
+      },
+      {
+       "homeAway": "away",
+       "score": "23",
+       "linescores": [
+        {
+         "value": 0.0,
+         "displayValue": "0",
+         "period": 1
+        },
+        {
+         "value": 0.0,
+         "displayValue": "0",
+         "period": 2
+        },
+        {
+         "value": 7.0,
+         "displayValue": "7",
+         "period": 3
+        },
+        {
+         "value": 16.0,
+         "displayValue": "16",
+         "period": 4
+        }
+       ],
+       "team": {
+        "id": "77",
+        "displayName": "Northwestern Wildcats"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "401862779",
+   "date": "2026-09-25T20:00Z",
+   "name": "Army Black Knights at Temple Owls",
+   "season": {
+    "year": 2026,
+    "type": 2,
+    "slug": "regular-season"
+   },
+   "status": {
+    "type": {
+     "id": "3",
+     "name": "STATUS_FINAL",
+     "state": "post",
+     "completed": true,
+     "description": "Final",
+     "detail": "Final",
+     "shortDetail": "Final"
+    }
+   },
+   "competitions": [
+    {
+     "venue": {
+      "id": "3806",
+      "fullName": "Lincoln Financial Field",
+      "address": {
+       "city": "Philadelphia",
+       "state": "PA",
+       "country": "USA"
+      },
+      "indoor": false
+     },
+     "neutralSite": false,
+     "competitors": [
+      {
+       "homeAway": "home",
+       "score": "17",
+       "linescores": [
+        {
+         "value": 7.0,
+         "displayValue": "7",
+         "period": 1
+        },
+        {
+         "value": 0.0,
+         "displayValue": "0",
+         "period": 2
+        },
+        {
+         "value": 7.0,
+         "displayValue": "7",
+         "period": 3
+        },
+        {
+         "value": 3.0,
+         "displayValue": "3",
+         "period": 4
+        }
+       ],
+       "team": {
+        "id": "218",
+        "displayName": "Temple Owls"
+       }
+      },
+      {
+       "homeAway": "away",
+       "score": "21",
+       "linescores": [
+        {
+         "value": 7.0,
+         "displayValue": "7",
+         "period": 1
+        },
+        {
+         "value": 0.0,
+         "displayValue": "0",
+         "period": 2
+        },
+        {
+         "value": 7.0,
+         "displayValue": "7",
+         "period": 3
+        },
+        {
+         "value": 7.0,
+         "displayValue": "7",
+         "period": 4
+        }
+       ],
+       "team": {
+        "id": "349",
+        "displayName": "Army Black Knights"
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

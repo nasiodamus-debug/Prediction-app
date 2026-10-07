@@ -1,0 +1,768 @@
+{
+ "requestedSeason": {
+  "year": 2026,
+  "type": 14105,
+  "name": "League Phase",
+  "displayName": "2026-27 UEFA Nations League"
+ },
+ "events": [
+  {
+   "id": "401861067",
+   "date": "2026-09-27T13:00Z",
+   "name": "Azerbaijan at Lithuania",
+   "season": {
+    "year": 2026,
+    "displayName": "2026-27 UEFA Nations League"
+   },
+   "competitions": [
+    {
+     "id": "401861067",
+     "date": "2026-09-27T13:00Z",
+     "status": {
+      "type": {
+       "name": "STATUS_FULL_TIME",
+       "state": "post",
+       "completed": true
+      }
+     },
+     "competitors": [
+      {
+       "id": "460",
+       "homeAway": "home",
+       "team": {
+        "id": "460",
+        "displayName": "Lithuania"
+       },
+       "score": {
+        "$ref": "http://sports.core.api.espn.pvt/v2/sports/soccer/leagues/uefa.nations/events/401861067/competitions/401861067/competitors/460/scores/38?lang=en&region=us",
+        "value": 1.0,
+        "displayValue": "1",
+        "winner": false,
+        "source": {
+         "id": "38",
+         "description": "SA.ENVOY"
+        }
+       }
+      },
+      {
+       "id": "581",
+       "homeAway": "away",
+       "team": {
+        "id": "581",
+        "displayName": "Azerbaijan"
+       },
+       "score": {
+        "$ref": "http://sports.core.api.espn.pvt/v2/sports/soccer/leagues/uefa.nations/events/401861067/competitions/401861067/competitors/581/scores/38?lang=en&region=us",
+        "value": 1.0,
+        "displayValue": "1",
+        "winner": false,
+        "source": {
+         "id": "38",
+         "description": "SA.ENVOY"
+        }
+       }
+      }
+     ]
+    }
+   ],
+   "league": {
+    "slug": "uefa.nations"
+   }
+  },
+  {
+   "id": "401898013",
+   "date": "2026-09-23T16:00Z",
+   "name": "Tajikistan at Azerbaijan",
+   "season": {
+    "year": 2026,
+    "displayName": "2026 International Friendly"
+   },
+   "competitions": [
+    {
+     "id": "401898013",
+     "date": "2026-09-23T16:00Z",
+     "status": {
+      "type": {
+       "name": "STATUS_FULL_TIME",
+       "state": "post",
+       "completed": true
+      }
+     },
+     "competitors": [
+      {
+       "id": "581",
+       "homeAway": "home",
+       "team": {
+        "id": "581",
+        "displayName": "Azerbaijan"
+       },
+       "score": {
+        "$ref": "http://sports.core.api.espn.pvt/v2/sports/soccer/leagues/fifa.friendly/events/401898013/competitions/401898013/competitors/581/scores/38?lang=en&region=us",
+        "value": 1.0,
+        "displayValue": "1",
+        "winner": true,
+        "source": {
+         "id": "38",
+         "description": "SA.ENVOY"
+        }
+       }
+      },
+      {
+       "id": "6723",
+       "homeAway": "away",
+       "team": {
+        "id": "6723",
+        "displayName": "Tajikistan"
+       },
+       "score": {
+        "$ref": "http://sports.core.api.espn.pvt/v2/sports/soccer/leagues/fifa.friendly/events/401898013/competitions/401898013/competitors/6723/scores/38?lang=en&region=us",
+        "value": 0.0,
+        "displayValue": "0",
+        "winner": false,
+        "source": {
+         "id": "38",
+         "description": "SA.ENVOY"
+        }
+       }
+      }
+     ]
+    }
+   ],
+   "league": {
+    "slug": "fifa.friendly"
+   }
+  },
+  {
+   "id": "401871580",
+   "date": "2026-06-09T18:00Z",
+   "name": "San Marino at Azerbaijan",
+   "season": {
+    "year": 2026,
+    "displayName": "2026 International Friendly"
+   },
+   "competitions": [
+    {
+     "id": "401871580",
+     "date": "2026-06-09T18:00Z",
+     "status": {
+      "type": {
+       "name": "STATUS_FULL_TIME",
+       "state": "post",
+       "completed": true
+      }
+     },
+     "competitors": [
+      {
+       "id": "581",
+       "homeAway": "home",
+       "team": {
+        "id": "581",
+        "displayName": "Azerbaijan"
+       },
+       "score": {
+        "$ref": "http://sports.core.api.espn.pvt/v2/sports/soccer/leagues/fifa.friendly/events/401871580/competitions/401871580/competitors/581/scores/38?lang=en&region=us",
+        "value": 2.0,
+        "displayValue": "2",
+        "winner": true,
+        "source": {
+         "id": "38",
+         "description": "SA.ENVOY"
+        }
+       }
+      },
+      {
+       "id": "588",
+       "homeAway": "away",
+       "team": {
+        "id": "588",
+        "displayName": "San Marino"
+       },
+       "score": {
+        "$ref": "http://sports.core.api.espn.pvt/v2/sports/soccer/leagues/fifa.friendly/events/401871580/competitions/401871580/competitors/588/scores/38?lang=en&region=us",
+        "value": 1.0,
+        "displayValue": "1",
+        "winner": false,
+        "source": {
+         "id": "38",
+         "description": "SA.ENVOY"
+        }
+       }
+      }
+     ]
+    }
+   ],
+   "league": {
+    "slug": "fifa.friendly"
+   }
+  },
+  {
+   "id": "401871785",
+   "date": "2026-06-05T18:00Z",
+   "name": "Malta at Azerbaijan",
+   "season": {
+    "year": 2026,
+    "displayName": "2026 International Friendly"
+   },
+   "competitions": [
+    {
+     "id": "401871785",
+     "date": "2026-06-05T18:00Z",
+     "status": {
+      "type": {
+       "name": "STATUS_FULL_TIME",
+       "state": "post",
+       "completed": true
+      }
+     },
+     "competitors": [
+      {
+       "id": "581",
+       "homeAway": "home",
+       "team": {
+        "id": "581",
+        "displayName": "Azerbaijan"
+       },
+       "score": {
+        "$ref": "http://sports.core.api.espn.pvt/v2/sports/soccer/leagues/fifa.friendly/events/401871785/competitions/401871785/competitors/581/scores/38?lang=en&region=us",
+        "value": 0.0,
+        "displayValue": "0",
+        "winner": false,
+        "source": {
+         "id": "38",
+         "description": "SA.ENVOY"
+        }
+       }
+      },
+      {
+       "id": "453",
+       "homeAway": "away",
+       "team": {
+        "id": "453",
+        "displayName": "Malta"
+       },
+       "score": {
+        "$ref": "http://sports.core.api.espn.pvt/v2/sports/soccer/leagues/fifa.friendly/events/401871785/competitions/401871785/competitors/453/scores/38?lang=en&region=us",
+        "value": 2.0,
+        "displayValue": "2",
+        "winner": true,
+        "source": {
+         "id": "38",
+         "description": "SA.ENVOY"
+        }
+       }
+      }
+     ]
+    }
+   ],
+   "league": {
+    "slug": "fifa.friendly"
+   }
+  },
+  {
+   "id": "401866531",
+   "date": "2026-03-30T15:00Z",
+   "name": "Sierra Leone at Azerbaijan",
+   "season": {
+    "year": 2026,
+    "displayName": "2026 International Friendly"
+   },
+   "competitions": [
+    {
+     "id": "401866531",
+     "date": "2026-03-30T15:00Z",
+     "status": {
+      "type": {
+       "name": "STATUS_FINAL_PEN",
+       "state": "post",
+       "completed": true
+      }
+     },
+     "competitors": [
+      {
+       "id": "581",
+       "homeAway": "home",
+       "team": {
+        "id": "581",
+        "displayName": "Azerbaijan"
+       },
+       "score": {
+        "$ref": "http://sports.core.api.espn.pvt/v2/sports/soccer/leagues/fifa.friendly/events/401866531/competitions/401866531/competitors/581/scores/38?lang=en&region=us",
+        "value": 1.0,
+        "displayValue": "1",
+        "winner": true,
+        "source": {
+         "id": "38",
+         "description": "SA.ENVOY"
+        },
+        "shootoutScore": 2.0
+       }
+      },
+      {
+       "id": "8600",
+       "homeAway": "away",
+       "team": {
+        "id": "8600",
+        "displayName": "Sierra Leone"
+       },
+       "score": {
+        "$ref": "http://sports.core.api.espn.pvt/v2/sports/soccer/leagues/fifa.friendly/events/401866531/competitions/401866531/competitors/8600/scores/38?lang=en&region=us",
+        "value": 1.0,
+        "displayValue": "1",
+        "winner": false,
+        "source": {
+         "id": "38",
+         "description": "SA.ENVOY"
+        },
+        "shootoutScore": 1.0
+       }
+      }
+     ]
+    }
+   ],
+   "league": {
+    "slug": "fifa.friendly"
+   }
+  },
+  {
+   "id": "401861921",
+   "date": "2026-03-27T15:00Z",
+   "name": "St. Lucia at Azerbaijan",
+   "season": {
+    "year": 2026,
+    "displayName": "2026 International Friendly"
+   },
+   "competitions": [
+    {
+     "id": "401861921",
+     "date": "2026-03-27T15:00Z",
+     "status": {
+      "type": {
+       "name": "STATUS_FULL_TIME",
+       "state": "post",
+       "completed": true
+      }
+     },
+     "competitors": [
+      {
+       "id": "581",
+       "homeAway": "home",
+       "team": {
+        "id": "581",
+        "displayName": "Azerbaijan"
+       },
+       "score": {
+        "$ref": "http://sports.core.api.espn.pvt/v2/sports/soccer/leagues/fifa.friendly/events/401861921/competitions/401861921/competitors/581/scores/38?lang=en&region=us",
+        "value": 6.0,
+        "displayValue": "6",
+        "winner": true,
+        "source": {
+         "id": "38",
+         "description": "SA.ENVOY"
+        }
+       }
+      },
+      {
+       "id": "2661",
+       "homeAway": "away",
+       "team": {
+        "id": "2661",
+        "displayName": "St. Lucia"
+       },
+       "score": {
+        "$ref": "http://sports.core.api.espn.pvt/v2/sports/soccer/leagues/fifa.friendly/events/401861921/competitions/401861921/competitors/2661/scores/38?lang=en&region=us",
+        "value": 1.0,
+        "displayValue": "1",
+        "winner": false,
+        "source": {
+         "id": "38",
+         "description": "SA.ENVOY"
+        }
+       }
+      }
+     ]
+    }
+   ],
+   "league": {
+    "slug": "fifa.friendly"
+   }
+  },
+  {
+   "id": "724901",
+   "date": "2025-11-16T17:00Z",
+   "name": "France at Azerbaijan",
+   "season": {
+    "year": 2025,
+    "displayName": "2026 World Cup Qualifying - UEFA"
+   },
+   "competitions": [
+    {
+     "id": "724901",
+     "date": "2025-11-16T17:00Z",
+     "status": {
+      "type": {
+       "name": "STATUS_FULL_TIME",
+       "state": "post",
+       "completed": true
+      }
+     },
+     "competitors": [
+      {
+       "id": "581",
+       "homeAway": "home",
+       "team": {
+        "id": "581",
+        "displayName": "Azerbaijan"
+       },
+       "score": {
+        "$ref": "http://sports.core.api.espn.pvt/v2/sports/soccer/leagues/fifa.worldq.uefa/events/724901/competitions/724901/competitors/581/scores/38?lang=en&region=us",
+        "value": 1.0,
+        "displayValue": "1",
+        "winner": false,
+        "source": {
+         "id": "38",
+         "description": "SA.ENVOY"
+        }
+       }
+      },
+      {
+       "id": "478",
+       "homeAway": "away",
+       "team": {
+        "id": "478",
+        "displayName": "France"
+       },
+       "score": {
+        "$ref": "http://sports.core.api.espn.pvt/v2/sports/soccer/leagues/fifa.worldq.uefa/events/724901/competitions/724901/competitors/478/scores/38?lang=en&region=us",
+        "value": 3.0,
+        "displayValue": "3",
+        "winner": true,
+        "source": {
+         "id": "38",
+         "description": "SA.ENVOY"
+        }
+       }
+      }
+     ]
+    }
+   ],
+   "league": {
+    "slug": "fifa.worldq.uefa"
+   }
+  },
+  {
+   "id": "724877",
+   "date": "2025-11-13T17:00Z",
+   "name": "Iceland at Azerbaijan",
+   "season": {
+    "year": 2025,
+    "displayName": "2026 World Cup Qualifying - UEFA"
+   },
+   "competitions": [
+    {
+     "id": "724877",
+     "date": "2025-11-13T17:00Z",
+     "status": {
+      "type": {
+       "name": "STATUS_FULL_TIME",
+       "state": "post",
+       "completed": true
+      }
+     },
+     "competitors": [
+      {
+       "id": "581",
+       "homeAway": "home",
+       "team": {
+        "id": "581",
+        "displayName": "Azerbaijan"
+       },
+       "score": {
+        "$ref": "http://sports.core.api.espn.pvt/v2/sports/soccer/leagues/fifa.worldq.uefa/events/724877/competitions/724877/competitors/581/scores/38?lang=en&region=us",
+        "value": 0.0,
+        "displayValue": "0",
+        "winner": false,
+        "source": {
+         "id": "38",
+         "description": "SA.ENVOY"
+        }
+       }
+      },
+      {
+       "id": "470",
+       "homeAway": "away",
+       "team": {
+        "id": "470",
+        "displayName": "Iceland"
+       },
+       "score": {
+        "$ref": "http://sports.core.api.espn.pvt/v2/sports/soccer/leagues/fifa.worldq.uefa/events/724877/competitions/724877/competitors/470/scores/38?lang=en&region=us",
+        "value": 2.0,
+        "displayValue": "2",
+        "winner": true,
+        "source": {
+         "id": "38",
+         "description": "SA.ENVOY"
+        }
+       }
+      }
+     ]
+    }
+   ],
+   "league": {
+    "slug": "fifa.worldq.uefa"
+   }
+  },
+  {
+   "id": "724865",
+   "date": "2025-10-13T18:45Z",
+   "name": "Azerbaijan at Ukraine",
+   "season": {
+    "year": 2025,
+    "displayName": "2026 World Cup Qualifying - UEFA"
+   },
+   "competitions": [
+    {
+     "id": "724865",
+     "date": "2025-10-13T18:45Z",
+     "status": {
+      "type": {
+       "name": "STATUS_FULL_TIME",
+       "state": "post",
+       "completed": true
+      }
+     },
+     "competitors": [
+      {
+       "id": "457",
+       "homeAway": "home",
+       "team": {
+        "id": "457",
+        "displayName": "Ukraine"
+       },
+       "score": {
+        "$ref": "http://sports.core.api.espn.pvt/v2/sports/soccer/leagues/fifa.worldq.uefa/events/724865/competitions/724865/competitors/457/scores/38?lang=en&region=us",
+        "value": 2.0,
+        "displayValue": "2",
+        "winner": true,
+        "source": {
+         "id": "38",
+         "description": "SA.ENVOY"
+        }
+       }
+      },
+      {
+       "id": "581",
+       "homeAway": "away",
+       "team": {
+        "id": "581",
+        "displayName": "Azerbaijan"
+       },
+       "score": {
+        "$ref": "http://sports.core.api.espn.pvt/v2/sports/soccer/leagues/fifa.worldq.uefa/events/724865/competitions/724865/competitors/581/scores/38?lang=en&region=us",
+        "value": 1.0,
+        "displayValue": "1",
+        "winner": false,
+        "source": {
+         "id": "38",
+         "description": "SA.ENVOY"
+        }
+       }
+      }
+     ]
+    }
+   ],
+   "league": {
+    "slug": "fifa.worldq.uefa"
+   }
+  },
+  {
+   "id": "724842",
+   "date": "2025-10-10T18:45Z",
+   "name": "Azerbaijan at France",
+   "season": {
+    "year": 2025,
+    "displayName": "2026 World Cup Qualifying - UEFA"
+   },
+   "competitions": [
+    {
+     "id": "724842",
+     "date": "2025-10-10T18:45Z",
+     "status": {
+      "type": {
+       "name": "STATUS_FULL_TIME",
+       "state": "post",
+       "completed": true
+      }
+     },
+     "competitors": [
+      {
+       "id": "478",
+       "homeAway": "home",
+       "team": {
+        "id": "478",
+        "displayName": "France"
+       },
+       "score": {
+        "$ref": "http://sports.core.api.espn.pvt/v2/sports/soccer/leagues/fifa.worldq.uefa/events/724842/competitions/724842/competitors/478/scores/38?lang=en&region=us",
+        "value": 3.0,
+        "displayValue": "3",
+        "winner": true,
+        "source": {
+         "id": "38",
+         "description": "SA.ENVOY"
+        }
+       }
+      },
+      {
+       "id": "581",
+       "homeAway": "away",
+       "team": {
+        "id": "581",
+        "displayName": "Azerbaijan"
+       },
+       "score": {
+        "$ref": "http://sports.core.api.espn.pvt/v2/sports/soccer/leagues/fifa.worldq.uefa/events/724842/competitions/724842/competitors/581/scores/38?lang=en&region=us",
+        "value": 0.0,
+        "displayValue": "0",
+        "winner": false,
+        "source": {
+         "id": "38",
+         "description": "SA.ENVOY"
+        }
+       }
+      }
+     ]
+    }
+   ],
+   "league": {
+    "slug": "fifa.worldq.uefa"
+   }
+  },
+  {
+   "id": "725012",
+   "date": "2025-09-09T16:00Z",
+   "name": "Ukraine at Azerbaijan",
+   "season": {
+    "year": 2025,
+    "displayName": "2026 World Cup Qualifying - UEFA"
+   },
+   "competitions": [
+    {
+     "id": "725012",
+     "date": "2025-09-09T16:00Z",
+     "status": {
+      "type": {
+       "name": "STATUS_FULL_TIME",
+       "state": "post",
+       "completed": true
+      }
+     },
+     "competitors": [
+      {
+       "id": "581",
+       "homeAway": "home",
+       "team": {
+        "id": "581",
+        "displayName": "Azerbaijan"
+       },
+       "score": {
+        "$ref": "http://sports.core.api.espn.pvt/v2/sports/soccer/leagues/fifa.worldq.uefa/events/725012/competitions/725012/competitors/581/scores/38?lang=en&region=us",
+        "value": 1.0,
+        "displayValue": "1",
+        "winner": false,
+        "source": {
+         "id": "38",
+         "description": "SA.ENVOY"
+        }
+       }
+      },
+      {
+       "id": "457",
+       "homeAway": "away",
+       "team": {
+        "id": "457",
+        "displayName": "Ukraine"
+       },
+       "score": {
+        "$ref": "http://sports.core.api.espn.pvt/v2/sports/soccer/leagues/fifa.worldq.uefa/events/725012/competitions/725012/competitors/457/scores/38?lang=en&region=us",
+        "value": 1.0,
+        "displayValue": "1",
+        "winner": false,
+        "source": {
+         "id": "38",
+         "description": "SA.ENVOY"
+        }
+       }
+      }
+     ]
+    }
+   ],
+   "league": {
+    "slug": "fifa.worldq.uefa"
+   }
+  },
+  {
+   "id": "724981",
+   "date": "2025-09-05T18:45Z",
+   "name": "Azerbaijan at Iceland",
+   "season": {
+    "year": 2025,
+    "displayName": "2026 World Cup Qualifying - UEFA"
+   },
+   "competitions": [
+    {
+     "id": "724981",
+     "date": "2025-09-05T18:45Z",
+     "status": {
+      "type": {
+       "name": "STATUS_FULL_TIME",
+       "state": "post",
+       "completed": true
+      }
+     },
+     "competitors": [
+      {
+       "id": "470",
+       "homeAway": "home",
+       "team": {
+        "id": "470",
+        "displayName": "Iceland"
+       },
+       "score": {
+        "$ref": "http://sports.core.api.espn.pvt/v2/sports/soccer/leagues/fifa.worldq.uefa/events/724981/competitions/724981/competitors/470/scores/38?lang=en&region=us",
+        "value": 5.0,
+        "displayValue": "5",
+        "winner": true,
+        "source": {
+         "id": "38",
+         "description": "SA.ENVOY"
+        }
+       }
+      },
+      {
+       "id": "581",
+       "homeAway": "away",
+       "team": {
+        "id": "581",
+        "displayName": "Azerbaijan"
+       },
+       "score": {
+        "$ref": "http://sports.core.api.espn.pvt/v2/sports/soccer/leagues/fifa.worldq.uefa/events/724981/competitions/724981/competitors/581/scores/38?lang=en&region=us",
+        "value": 0.0,
+        "displayValue": "0",
+        "winner": false,
+        "source": {
+         "id": "38",
+         "description": "SA.ENVOY"
+        }
+       }
+      }
+     ]
+    }
+   ],
+   "league": {
+    "slug": "fifa.worldq.uefa"
+   }
+  }
+ ]
+}

@@ -1,0 +1,133 @@
+{
+ "events": [
+  {
+   "id": "401861093",
+   "date": "2026-10-01T16:00Z",
+   "name": "Liechtenstein at Azerbaijan",
+   "season": {
+    "year": 2026,
+    "type": 14105,
+    "slug": "league-phase"
+   },
+   "competitions": [
+    {
+     "id": "401861093",
+     "date": "2026-10-01T16:00Z",
+     "status": {
+      "type": {
+       "name": "STATUS_SCHEDULED",
+       "state": "pre",
+       "completed": false
+      }
+     },
+     "competitors": [
+      {
+       "id": "581",
+       "homeAway": "home",
+       "team": {
+        "id": "581",
+        "displayName": "Azerbaijan"
+       },
+       "score": "0"
+      },
+      {
+       "id": "589",
+       "homeAway": "away",
+       "team": {
+        "id": "589",
+        "displayName": "Liechtenstein"
+       },
+       "score": "0"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "401861096",
+   "date": "2026-10-01T18:45Z",
+   "name": "Portugal at Denmark",
+   "season": {
+    "year": 2026,
+    "type": 14105,
+    "slug": "league-phase"
+   },
+   "competitions": [
+    {
+     "id": "401861096",
+     "date": "2026-10-01T18:45Z",
+     "status": {
+      "type": {
+       "name": "STATUS_SCHEDULED",
+       "state": "pre",
+       "completed": false
+      }
+     },
+     "competitors": [
+      {
+       "id": "479",
+       "homeAway": "home",
+       "team": {
+        "id": "479",
+        "displayName": "Denmark"
+       },
+       "score": "0"
+      },
+      {
+       "id": "482",
+       "homeAway": "away",
+       "team": {
+        "id": "482",
+        "displayName": "Portugal"
+       },
+       "score": "0"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "401861097",
+   "date": "2026-10-01T18:45Z",
+   "name": "Serbia at Germany",
+   "season": {
+    "year": 2026,
+    "type": 14105,
+    "slug": "league-phase"
+   },
+   "competitions": [
+    {
+     "id": "401861097",
+     "date": "2026-10-01T18:45Z",
+     "status": {
+      "type": {
+       "name": "STATUS_SCHEDULED",
+       "state": "pre",
+       "completed": false
+      }
+     },
+     "competitors": [
+      {
+       "id": "481",
+       "homeAway": "home",
+       "team": {
+        "id": "481",
+        "displayName": "Germany"
+       },
+       "score": "0"
+      },
+      {
+       "id": "6757",
+       "homeAway": "away",
+       "team": {
+        "id": "6757",
+        "displayName": "Serbia"
+       },
+       "score": "0"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

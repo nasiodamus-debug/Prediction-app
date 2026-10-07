@@ -1,0 +1,29 @@
+# --- secrets and everything private: NEVER commit these ---
+config.env
+secrets/
+local_data/
+
+# --- Python and test caches ---
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# --- AI-tool copies of the same installed skills (about 1,350 identical files in each folder, installed by a tool, easy to reinstall) ---
+.adal/
+.agent/
+.agents/
+.bob/
+.claude/
+.cline/
+.codebuddy/
+.codewhale/
+.iflow/
+.junie/
+.kiro/
+.neovate/
+.ona/
+.qoder/
+.qwen/
+
+# --- planning notes and memory logs from the BMAD tool (they contain a personal chat id); add back only after reviewing them ---
+_bmad-output/

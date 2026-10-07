@@ -1,0 +1,4237 @@
+{
+ "bizCode": 10000,
+ "message": "0#0",
+ "data": {
+  "totalNum": 7,
+  "tournaments": [
+   {
+    "id": "sr:tournament:31",
+    "name": "NFL",
+    "events": [
+     {
+      "eventId": "sr:match:71515842",
+      "gameId": "41163",
+      "productStatus": "0#0",
+      "estimateStartTime": 1790900100000,
+      "status": 0,
+      "matchStatus": "Not start",
+      "homeTeamId": "sr:competitor:4417",
+      "homeTeamName": "Cleveland Browns",
+      "awayTeamName": "Pittsburgh Steelers",
+      "awayTeamId": "sr:competitor:4345",
+      "sport": {
+       "id": "sr:sport:16",
+       "name": "American Football",
+       "category": {
+        "id": "sr:category:43",
+        "name": "USA",
+        "tournament": {
+         "id": "sr:tournament:31",
+         "name": "NFL"
+        }
+       }
+      },
+      "totalMarketSize": 150,
+      "markets": [
+       {
+        "id": "219",
+        "product": 3,
+        "desc": "Winner (incl. overtime)",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Which team will win the match. Overtime included.",
+        "title": "",
+        "name": "Winner (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "4",
+          "odds": "2.15",
+          "probability": "0.4265720000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home"
+         },
+         {
+          "id": "5",
+          "odds": "1.64",
+          "probability": "0.5734210000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790732900000,
+        "banned": false
+       },
+       {
+        "id": "225",
+        "specifier": "total=36.5",
+        "product": 3,
+        "desc": "Over/Under (incl. overtime) 36.5",
+        "status": 2,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict whether the total number of points scored in the match is over/under a given line. Overtime included.",
+        "title": "",
+        "name": "Over/Under (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.71",
+          "probability": "0.5562210000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 36.5"
+         },
+         {
+          "id": "13",
+          "odds": "2.10",
+          "probability": "0.4437790000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 36.5"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790613398000,
+        "banned": false
+       },
+       {
+        "id": "225",
+        "specifier": "total=37.5",
+        "product": 3,
+        "desc": "Over/Under (incl. overtime) 37.5",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict whether the total number of points scored in the match is over/under a given line. Overtime included.",
+        "title": "",
+        "name": "Over/Under (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.82",
+          "probability": "0.5186580000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 37.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.96",
+          "probability": "0.4813420000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 37.5"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790732900000,
+        "banned": false
+       },
+       {
+        "id": "225",
+        "specifier": "total=38.5",
+        "product": 3,
+        "desc": "Over/Under (incl. overtime) 38.5",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict whether the total number of points scored in the match is over/under a given line. Overtime included.",
+        "title": "",
+        "name": "Over/Under (incl. overtime)",
+        "favourite": 1,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.90",
+          "probability": "0.4961160000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 38.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.87",
+          "probability": "0.5038840000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 38.5"
+         }
+        ],
+        "farNearOdds": 1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790732900000,
+        "banned": false
+       },
+       {
+        "id": "225",
+        "specifier": "total=39.5",
+        "product": 3,
+        "desc": "Over/Under (incl. overtime) 39.5",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict whether the total number of points scored in the match is over/under a given line. Overtime included.",
+        "title": "",
+        "name": "Over/Under (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "2.00",
+          "probability": "0.4724860000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 39.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.80",
+          "probability": "0.5275140000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 39.5"
+         }
+        ],
+        "farNearOdds": -1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790732900000,
+        "banned": false
+       },
+       {
+        "id": "68",
+        "specifier": "total=18.5",
+        "product": 3,
+        "desc": "1st Half - Over/Under",
+        "status": 2,
+        "group": "Half",
+        "groupId": "200819092841MGI78162678",
+        "marketGuide": "Predict whether the total number of points scored in the 1st Half is over/under a given line.",
+        "title": "",
+        "name": "1st half - total",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.82",
+          "probability": "0.5137240000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 18.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.92",
+          "probability": "0.4862760000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 18.5"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790570470000,
+        "banned": false
+       },
+       {
+        "id": "68",
+        "specifier": "total=19.5",
+        "product": 3,
+        "desc": "1st Half - Over/Under",
+        "status": 0,
+        "group": "Half",
+        "groupId": "200819092841MGI78162678",
+        "marketGuide": "Predict whether the total number of points scored in the 1st Half is over/under a given line.",
+        "title": "",
+        "name": "1st half - total",
+        "favourite": 1,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.87",
+          "probability": "0.4983170000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 19.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.86",
+          "probability": "0.5016830000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 19.5"
+         }
+        ],
+        "farNearOdds": 1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790732900000,
+        "banned": false
+       },
+       {
+        "id": "227",
+        "specifier": "total=17.5",
+        "product": 3,
+        "desc": "Cleveland Browns Over/Under (incl. overtime) 17.5",
+        "status": 0,
+        "group": "Points",
+        "groupId": "200819092832MGI78160268",
+        "marketGuide": "Predict whether the total number of points scored by Home team is over/under a given line. Overtime included.",
+        "title": "",
+        "name": "Home Over/Under (incl. overtime)",
+        "favourite": 1,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.93",
+          "probability": "0.4842250000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 17.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.82",
+          "probability": "0.5157750000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 17.5"
+         }
+        ],
+        "farNearOdds": 1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790732900000,
+        "banned": false
+       },
+       {
+        "id": "228",
+        "specifier": "total=19.5",
+        "product": 3,
+        "desc": "Pittsburgh Steelers Over/Under (incl. overtime) 19.5",
+        "status": 2,
+        "group": "Points",
+        "groupId": "200819092832MGI78160268",
+        "marketGuide": "Predict whether the total number of points scored by Away team is over/under a given line. Overtime included.",
+        "title": "",
+        "name": "Away Over/Under (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.74",
+          "probability": "0.5391517560",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 19.5"
+         },
+         {
+          "id": "13",
+          "odds": "2.00",
+          "probability": "0.4608482442",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 19.5"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790725787000,
+        "banned": false
+       },
+       {
+        "id": "228",
+        "specifier": "total=20.5",
+        "product": 3,
+        "desc": "Pittsburgh Steelers Over/Under (incl. overtime) 20.5",
+        "status": 0,
+        "group": "Points",
+        "groupId": "200819092832MGI78160268",
+        "marketGuide": "Predict whether the total number of points scored by Away team is over/under a given line. Overtime included.",
+        "title": "",
+        "name": "Away Over/Under (incl. overtime)",
+        "favourite": 1,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "2.00",
+          "probability": "0.4608482442",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 20.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.74",
+          "probability": "0.5391517560",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 20.5"
+         }
+        ],
+        "farNearOdds": 1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790732900000,
+        "banned": false
+       },
+       {
+        "id": "1",
+        "product": 3,
+        "desc": "1X2",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Which team will win the match. Overtime not included.",
+        "title": "",
+        "name": "1X2",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "1",
+          "odds": "2.35",
+          "probability": "0.3950160000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home"
+         },
+         {
+          "id": "2",
+          "odds": "13.00",
+          "probability": "0.0683730000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Draw"
+         },
+         {
+          "id": "3",
+          "odds": "1.76",
+          "probability": "0.5366110000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away"
+         }
+        ],
+        "farNearOdds": 0,
+        "marketExtendVOS": [
+         {
+          "name": "2UP",
+          "notSupport": true
+         },
+         {
+          "name": "1UP",
+          "notSupport": true
+         }
+        ],
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790732899894,
+        "banned": false
+       },
+       {
+        "id": "223",
+        "specifier": "hcp=1.5",
+        "product": 3,
+        "desc": "Handicap (incl. overtime) 1.5",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict the winner taking into consideration the handicap in brackets. Overtime included.",
+        "title": "",
+        "name": "Handicap (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "2.05",
+          "probability": "0.4524600000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (+1.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "1.73",
+          "probability": "0.5475400000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (-1.5)"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790732900000,
+        "banned": false
+       },
+       {
+        "id": "223",
+        "specifier": "hcp=2.5",
+        "product": 3,
+        "desc": "Handicap (incl. overtime) 2.5",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict the winner taking into consideration the handicap in brackets. Overtime included.",
+        "title": "",
+        "name": "Handicap (incl. overtime)",
+        "favourite": 1,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "2.00",
+          "probability": "0.4699400000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (+2.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "1.78",
+          "probability": "0.5300600000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (-2.5)"
+         }
+        ],
+        "farNearOdds": 1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790732900000,
+        "banned": false
+       },
+       {
+        "id": "223",
+        "specifier": "hcp=3.5",
+        "product": 3,
+        "desc": "Handicap (incl. overtime) 3.5",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict the winner taking into consideration the handicap in brackets. Overtime included.",
+        "title": "",
+        "name": "Handicap (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "1.68",
+          "probability": "0.5628570000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (+3.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "2.15",
+          "probability": "0.4371430000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (-3.5)"
+         }
+        ],
+        "farNearOdds": -1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790732900000,
+        "banned": false
+       },
+       {
+        "id": "66",
+        "specifier": "hcp=0.5",
+        "product": 3,
+        "desc": "1st Half - Asian Handicap",
+        "status": 0,
+        "group": "Half",
+        "groupId": "200819092841MGI78162678",
+        "marketGuide": "Predict the winner in the 1st Half taking into consideration the handicap in brackets. ",
+        "title": "",
+        "name": "1st half - handicap (2 way)",
+        "favourite": 1,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "1.87",
+          "probability": "0.4956570000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (+0.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "1.85",
+          "probability": "0.5043430000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (-0.5)"
+         }
+        ],
+        "farNearOdds": 1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790732900000,
+        "banned": false
+       }
+      ],
+      "bookingStatus": "Booked",
+      "topTeam": false,
+      "fixtureVenue": {
+       "name": "Huntington Bank Field"
+      },
+      "giftGrabActivityResultVO": {
+       "activityEnabled": false,
+       "enabled": false
+      },
+      "ai": false,
+      "bgEvent": false,
+      "matchTrackerNotAllowed": false,
+      "eventSource": {
+       "preMatchSource": {
+        "sourceType": "BET_RADAR",
+        "sourceId": "71515842"
+       }
+      },
+      "containsPcbb": false,
+      "banned": false
+     },
+     {
+      "eventId": "sr:match:71488622",
+      "gameId": "16871",
+      "productStatus": "0#0",
+      "estimateStartTime": 1791120600000,
+      "status": 0,
+      "matchStatus": "Not start",
+      "homeTeamId": "sr:competitor:4432",
+      "homeTeamName": "Washington Commanders",
+      "awayTeamName": "Indianapolis Colts",
+      "awayTeamId": "sr:competitor:4421",
+      "sport": {
+       "id": "sr:sport:16",
+       "name": "American Football",
+       "category": {
+        "id": "sr:category:43",
+        "name": "USA",
+        "tournament": {
+         "id": "sr:tournament:31",
+         "name": "NFL"
+        }
+       }
+      },
+      "totalMarketSize": 123,
+      "markets": [
+       {
+        "id": "219",
+        "product": 3,
+        "desc": "Winner (incl. overtime)",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Which team will win the match. Overtime included.",
+        "title": "",
+        "name": "Winner (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "4",
+          "odds": "2.50",
+          "probability": "0.3626940000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home"
+         },
+         {
+          "id": "5",
+          "odds": "1.49",
+          "probability": "0.6373080000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790739618000,
+        "banned": false
+       },
+       {
+        "id": "225",
+        "specifier": "total=45.5",
+        "product": 3,
+        "desc": "Over/Under (incl. overtime) 45.5",
+        "status": 2,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict whether the total number of points scored in the match is over/under a given line. Overtime included.",
+        "title": "",
+        "name": "Over/Under (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.76",
+          "probability": "0.5377760000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 45.5"
+         },
+         {
+          "id": "13",
+          "odds": "2.05",
+          "probability": "0.4622240000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 45.5"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790612068000,
+        "banned": false
+       },
+       {
+        "id": "225",
+        "specifier": "total=46.5",
+        "product": 3,
+        "desc": "Over/Under (incl. overtime) 46.5",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict whether the total number of points scored in the match is over/under a given line. Overtime included.",
+        "title": "",
+        "name": "Over/Under (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.82",
+          "probability": "0.5202530000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 46.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.96",
+          "probability": "0.4797470000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 46.5"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790739618000,
+        "banned": false
+       },
+       {
+        "id": "225",
+        "specifier": "total=47.5",
+        "product": 3,
+        "desc": "Over/Under (incl. overtime) 47.5",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict whether the total number of points scored in the match is over/under a given line. Overtime included.",
+        "title": "",
+        "name": "Over/Under (incl. overtime)",
+        "favourite": 1,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.94",
+          "probability": "0.4851430000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 47.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.84",
+          "probability": "0.5148570000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 47.5"
+         }
+        ],
+        "farNearOdds": 1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790739618000,
+        "banned": false
+       },
+       {
+        "id": "225",
+        "specifier": "total=48.5",
+        "product": 3,
+        "desc": "Over/Under (incl. overtime) 48.5",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict whether the total number of points scored in the match is over/under a given line. Overtime included.",
+        "title": "",
+        "name": "Over/Under (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "2.05",
+          "probability": "0.4612420000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 48.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.76",
+          "probability": "0.5387580000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 48.5"
+         }
+        ],
+        "farNearOdds": -1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790739618000,
+        "banned": false
+       },
+       {
+        "id": "225",
+        "specifier": "total=49.5",
+        "product": 3,
+        "desc": "Over/Under (incl. overtime) 49.5",
+        "status": 2,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict whether the total number of points scored in the match is over/under a given line. Overtime included.",
+        "title": "",
+        "name": "Over/Under (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.82",
+          "probability": "0.5136080000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 49.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.92",
+          "probability": "0.4863920000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 49.5"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1788895335000,
+        "banned": false
+       },
+       {
+        "id": "225",
+        "specifier": "total=50.5",
+        "product": 3,
+        "desc": "Over/Under (incl. overtime) 50.5",
+        "status": 2,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict whether the total number of points scored in the match is over/under a given line. Overtime included.",
+        "title": "",
+        "name": "Over/Under (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.90",
+          "probability": "0.4951270000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 50.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.85",
+          "probability": "0.5048730000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 50.5"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1788898892000,
+        "banned": false
+       },
+       {
+        "id": "68",
+        "specifier": "total=23.5",
+        "product": 3,
+        "desc": "1st Half - Over/Under",
+        "status": 0,
+        "group": "Half",
+        "groupId": "200819092841MGI78162678",
+        "marketGuide": "Predict whether the total number of points scored in the 1st Half is over/under a given line.",
+        "title": "",
+        "name": "1st half - total",
+        "favourite": 1,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.86",
+          "probability": "0.5028740000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 23.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.87",
+          "probability": "0.4971260000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 23.5"
+         }
+        ],
+        "farNearOdds": 1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790739618000,
+        "banned": false
+       },
+       {
+        "id": "1",
+        "product": 3,
+        "desc": "1X2",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Which team will win the match. Overtime not included.",
+        "title": "",
+        "name": "1X2",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "1",
+          "odds": "2.70",
+          "probability": "0.3388030000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home"
+         },
+         {
+          "id": "2",
+          "odds": "15.00",
+          "probability": "0.0584293000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Draw"
+         },
+         {
+          "id": "3",
+          "odds": "1.58",
+          "probability": "0.6027680000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away"
+         }
+        ],
+        "farNearOdds": 0,
+        "marketExtendVOS": [
+         {
+          "name": "2UP",
+          "notSupport": true
+         },
+         {
+          "name": "1UP",
+          "notSupport": true
+         }
+        ],
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790739618022,
+        "banned": false
+       },
+       {
+        "id": "223",
+        "specifier": "hcp=-1.5",
+        "product": 3,
+        "desc": "Handicap (incl. overtime) -1.5",
+        "status": 2,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict the winner taking into consideration the handicap in brackets. Overtime included.",
+        "title": "",
+        "name": "Handicap (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "1.90",
+          "probability": "0.4910560000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (-1.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "1.84",
+          "probability": "0.5089440000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (+1.5)"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1788898892000,
+        "banned": false
+       },
+       {
+        "id": "223",
+        "specifier": "hcp=-0.5",
+        "product": 3,
+        "desc": "Handicap (incl. overtime) -0.5",
+        "status": 2,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict the winner taking into consideration the handicap in brackets. Overtime included.",
+        "title": "",
+        "name": "Handicap (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "1.86",
+          "probability": "0.5034830000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (-0.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "1.87",
+          "probability": "0.4965170000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (+0.5)"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1788898879000,
+        "banned": false
+       },
+       {
+        "id": "223",
+        "specifier": "hcp=0.5",
+        "product": 3,
+        "desc": "Handicap (incl. overtime) 0.5",
+        "status": 2,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict the winner taking into consideration the handicap in brackets. Overtime included.",
+        "title": "",
+        "name": "Handicap (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "1.87",
+          "probability": "0.4993670000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (+0.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "1.87",
+          "probability": "0.5006330000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (-0.5)"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1788475605000,
+        "banned": false
+       },
+       {
+        "id": "223",
+        "specifier": "hcp=1.5",
+        "product": 3,
+        "desc": "Handicap (incl. overtime) 1.5",
+        "status": 2,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict the winner taking into consideration the handicap in brackets. Overtime included.",
+        "title": "",
+        "name": "Handicap (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "1.84",
+          "probability": "0.5090370000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (+1.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "1.90",
+          "probability": "0.4909630000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (-1.5)"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1787653489000,
+        "banned": false
+       },
+       {
+        "id": "223",
+        "specifier": "hcp=2.5",
+        "product": 3,
+        "desc": "Handicap (incl. overtime) 2.5",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict the winner taking into consideration the handicap in brackets. Overtime included.",
+        "title": "",
+        "name": "Handicap (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "2.25",
+          "probability": "0.4092720000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (+2.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "1.61",
+          "probability": "0.5907280000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (-2.5)"
+         }
+        ],
+        "farNearOdds": -1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790739618000,
+        "banned": false
+       },
+       {
+        "id": "223",
+        "specifier": "hcp=3.5",
+        "product": 3,
+        "desc": "Handicap (incl. overtime) 3.5",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict the winner taking into consideration the handicap in brackets. Overtime included.",
+        "title": "",
+        "name": "Handicap (incl. overtime)",
+        "favourite": 1,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "1.90",
+          "probability": "0.4949910000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (+3.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "1.87",
+          "probability": "0.5050090000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (-3.5)"
+         }
+        ],
+        "farNearOdds": 1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790739618000,
+        "banned": false
+       },
+       {
+        "id": "223",
+        "specifier": "hcp=4.5",
+        "product": 3,
+        "desc": "Handicap (incl. overtime) 4.5",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict the winner taking into consideration the handicap in brackets. Overtime included.",
+        "title": "",
+        "name": "Handicap (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "1.81",
+          "probability": "0.5227210000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (+4.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "1.97",
+          "probability": "0.4772790000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (-4.5)"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790739618000,
+        "banned": false
+       },
+       {
+        "id": "223",
+        "specifier": "hcp=5.5",
+        "product": 3,
+        "desc": "Handicap (incl. overtime) 5.5",
+        "status": 2,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict the winner taking into consideration the handicap in brackets. Overtime included.",
+        "title": "",
+        "name": "Handicap (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "1.83",
+          "probability": "0.5176190000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (+5.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "1.95",
+          "probability": "0.4823810000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (-5.5)"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790515913000,
+        "banned": false
+       },
+       {
+        "id": "66",
+        "specifier": "hcp=2.5",
+        "product": 3,
+        "desc": "1st Half - Asian Handicap",
+        "status": 0,
+        "group": "Half",
+        "groupId": "200819092841MGI78162678",
+        "marketGuide": "Predict the winner in the 1st Half taking into consideration the handicap in brackets. ",
+        "title": "",
+        "name": "1st half - handicap (2 way)",
+        "favourite": 1,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "1.95",
+          "probability": "0.4768380000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (+2.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "1.80",
+          "probability": "0.5231620000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (-2.5)"
+         }
+        ],
+        "farNearOdds": 1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790739618000,
+        "banned": false
+       }
+      ],
+      "bookingStatus": "Booked",
+      "topTeam": false,
+      "fixtureVenue": {
+       "name": "Tottenham Hotspur Stadium"
+      },
+      "giftGrabActivityResultVO": {
+       "activityEnabled": false,
+       "enabled": false
+      },
+      "ai": false,
+      "bgEvent": false,
+      "matchTrackerNotAllowed": false,
+      "eventSource": {
+       "preMatchSource": {
+        "sourceType": "BET_RADAR",
+        "sourceId": "71488622"
+       },
+       "liveSource": {
+        "sourceType": "BET_RADAR",
+        "sourceId": "71488622"
+       }
+      },
+      "containsPcbb": false,
+      "banned": false
+     },
+     {
+      "eventId": "sr:match:71515844",
+      "gameId": "41191",
+      "productStatus": "0#0",
+      "estimateStartTime": 1791133200000,
+      "status": 0,
+      "matchStatus": "Not start",
+      "homeTeamId": "sr:competitor:4413",
+      "homeTeamName": "Baltimore Ravens",
+      "awayTeamName": "Tennessee Titans",
+      "awayTeamId": "sr:competitor:367364",
+      "sport": {
+       "id": "sr:sport:16",
+       "name": "American Football",
+       "category": {
+        "id": "sr:category:43",
+        "name": "USA",
+        "tournament": {
+         "id": "sr:tournament:31",
+         "name": "NFL"
+        }
+       }
+      },
+      "totalMarketSize": 47,
+      "markets": [
+       {
+        "id": "219",
+        "product": 3,
+        "desc": "Winner (incl. overtime)",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Which team will win the match. Overtime included.",
+        "title": "",
+        "name": "Winner (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "4",
+          "odds": "1.11",
+          "probability": "0.8673150000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home"
+         },
+         {
+          "id": "5",
+          "odds": "5.80",
+          "probability": "0.1326780000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790685345000,
+        "banned": false
+       },
+       {
+        "id": "225",
+        "specifier": "total=42.5",
+        "product": 3,
+        "desc": "Over/Under (incl. overtime) 42.5",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict whether the total number of points scored in the match is over/under a given line. Overtime included.",
+        "title": "",
+        "name": "Over/Under (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.78",
+          "probability": "0.5308020000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 42.5"
+         },
+         {
+          "id": "13",
+          "odds": "2.00",
+          "probability": "0.4691980000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 42.5"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790685345000,
+        "banned": false
+       },
+       {
+        "id": "225",
+        "specifier": "total=43.5",
+        "product": 3,
+        "desc": "Over/Under (incl. overtime) 43.5",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict whether the total number of points scored in the match is over/under a given line. Overtime included.",
+        "title": "",
+        "name": "Over/Under (incl. overtime)",
+        "favourite": 1,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.90",
+          "probability": "0.4988340000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 43.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.87",
+          "probability": "0.5011660000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 43.5"
+         }
+        ],
+        "farNearOdds": 1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790685345000,
+        "banned": false
+       },
+       {
+        "id": "225",
+        "specifier": "total=44.5",
+        "product": 3,
+        "desc": "Over/Under (incl. overtime) 44.5",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict whether the total number of points scored in the match is over/under a given line. Overtime included.",
+        "title": "",
+        "name": "Over/Under (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "2.00",
+          "probability": "0.4643120000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 44.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.77",
+          "probability": "0.5356880000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 44.5"
+         }
+        ],
+        "farNearOdds": -1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790685345000,
+        "banned": false
+       },
+       {
+        "id": "225",
+        "specifier": "total=45.5",
+        "product": 3,
+        "desc": "Over/Under (incl. overtime) 45.5",
+        "status": 2,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict whether the total number of points scored in the match is over/under a given line. Overtime included.",
+        "title": "",
+        "name": "Over/Under (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.90",
+          "probability": "0.4919000000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 45.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.84",
+          "probability": "0.5081000000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 45.5"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790106413000,
+        "banned": false
+       },
+       {
+        "id": "68",
+        "specifier": "total=22.5",
+        "product": 3,
+        "desc": "1st Half - Over/Under",
+        "status": 0,
+        "group": "Half",
+        "groupId": "200819092841MGI78162678",
+        "marketGuide": "Predict whether the total number of points scored in the 1st Half is over/under a given line.",
+        "title": "",
+        "name": "1st half - total",
+        "favourite": 1,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.86",
+          "probability": "0.5033980000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 22.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.87",
+          "probability": "0.4966020000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 22.5"
+         }
+        ],
+        "farNearOdds": 1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790701124000,
+        "banned": false
+       },
+       {
+        "id": "1",
+        "product": 3,
+        "desc": "1X2",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Which team will win the match. Overtime not included.",
+        "title": "",
+        "name": "1X2",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "1",
+          "odds": "1.15",
+          "probability": "0.8352540000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home"
+         },
+         {
+          "id": "2",
+          "odds": "18.00",
+          "probability": "0.0439526000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Draw"
+         },
+         {
+          "id": "3",
+          "odds": "6.70",
+          "probability": "0.1207930000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away"
+         }
+        ],
+        "farNearOdds": 0,
+        "marketExtendVOS": [
+         {
+          "name": "2UP",
+          "notSupport": true
+         },
+         {
+          "name": "1UP",
+          "notSupport": true
+         }
+        ],
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790685345095,
+        "banned": false
+       },
+       {
+        "id": "223",
+        "specifier": "hcp=-12.5",
+        "product": 3,
+        "desc": "Handicap (incl. overtime) -12.5",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict the winner taking into consideration the handicap in brackets. Overtime included.",
+        "title": "",
+        "name": "Handicap (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "1.92",
+          "probability": "0.4903950000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (-12.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "1.85",
+          "probability": "0.5096050000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (+12.5)"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790685345000,
+        "banned": false
+       },
+       {
+        "id": "223",
+        "specifier": "hcp=-11.5",
+        "product": 3,
+        "desc": "Handicap (incl. overtime) -11.5",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict the winner taking into consideration the handicap in brackets. Overtime included.",
+        "title": "",
+        "name": "Handicap (incl. overtime)",
+        "favourite": 1,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "1.86",
+          "probability": "0.5080270000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (-11.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "1.92",
+          "probability": "0.4919730000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (+11.5)"
+         }
+        ],
+        "farNearOdds": 1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790685345000,
+        "banned": false
+       },
+       {
+        "id": "223",
+        "specifier": "hcp=-10.5",
+        "product": 3,
+        "desc": "Handicap (incl. overtime) -10.5",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict the winner taking into consideration the handicap in brackets. Overtime included.",
+        "title": "",
+        "name": "Handicap (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "1.78",
+          "probability": "0.5294480000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (-10.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "2.00",
+          "probability": "0.4705520000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (+10.5)"
+         }
+        ],
+        "farNearOdds": -1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790685345000,
+        "banned": false
+       },
+       {
+        "id": "66",
+        "specifier": "hcp=-7.5",
+        "product": 3,
+        "desc": "1st Half - Asian Handicap",
+        "status": 0,
+        "group": "Half",
+        "groupId": "200819092841MGI78162678",
+        "marketGuide": "Predict the winner in the 1st Half taking into consideration the handicap in brackets. ",
+        "title": "",
+        "name": "1st half - handicap (2 way)",
+        "favourite": 1,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "2.00",
+          "probability": "0.4683390000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (-7.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "1.77",
+          "probability": "0.5316610000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (+7.5)"
+         }
+        ],
+        "farNearOdds": 1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790701130000,
+        "banned": false
+       }
+      ],
+      "bookingStatus": "Booked",
+      "topTeam": false,
+      "fixtureVenue": {
+       "name": "M&T Bank Stadium"
+      },
+      "giftGrabActivityResultVO": {
+       "activityEnabled": false,
+       "enabled": false
+      },
+      "ai": false,
+      "bgEvent": false,
+      "matchTrackerNotAllowed": false,
+      "eventSource": {
+       "preMatchSource": {
+        "sourceType": "BET_RADAR",
+        "sourceId": "71515844"
+       }
+      },
+      "containsPcbb": false,
+      "banned": false
+     }
+    ],
+    "categoryName": "USA",
+    "categoryId": "sr:category:43"
+   },
+   {
+    "id": "sr:tournament:790",
+    "name": "CFL",
+    "events": [
+     {
+      "eventId": "sr:match:68385858",
+      "gameId": "41799",
+      "productStatus": "0#0",
+      "estimateStartTime": 1790982000000,
+      "status": 0,
+      "matchStatus": "Not start",
+      "homeTeamId": "sr:competitor:4437",
+      "homeTeamName": "Ottawa Redblacks",
+      "awayTeamName": "Hamilton Tiger-Cats",
+      "awayTeamId": "sr:competitor:4441",
+      "sport": {
+       "id": "sr:sport:16",
+       "name": "American Football",
+       "category": {
+        "id": "sr:category:93",
+        "name": "Canada",
+        "tournament": {
+         "id": "sr:tournament:790",
+         "name": "CFL"
+        }
+       }
+      },
+      "totalMarketSize": 2,
+      "markets": [
+       {
+        "id": "219",
+        "product": 3,
+        "desc": "Winner (incl. overtime)",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Which team will win the match. Overtime included.",
+        "title": "",
+        "name": "Winner (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "4",
+          "odds": "1.90",
+          "probability": "0.4806270000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home"
+         },
+         {
+          "id": "5",
+          "odds": "1.77",
+          "probability": "0.5193750000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away"
+         }
+        ],
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790722827000,
+        "banned": false
+       },
+       {
+        "id": "1",
+        "product": 3,
+        "desc": "1X2",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Which team will win the match. Overtime not included.",
+        "title": "",
+        "name": "1X2",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "1",
+          "odds": "1.99",
+          "probability": "0.4572690000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home"
+         },
+         {
+          "id": "2",
+          "odds": "18.39",
+          "probability": "0.0456993000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Draw"
+         },
+         {
+          "id": "3",
+          "odds": "1.84",
+          "probability": "0.4970320000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away"
+         }
+        ],
+        "marketExtendVOS": [
+         {
+          "name": "2UP",
+          "notSupport": true
+         },
+         {
+          "name": "1UP",
+          "notSupport": true
+         }
+        ],
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790722827377,
+        "banned": false
+       }
+      ],
+      "bookingStatus": "Unavailable",
+      "topTeam": false,
+      "fixtureVenue": {
+       "name": "TD Place Stadium"
+      },
+      "giftGrabActivityResultVO": {
+       "activityEnabled": false,
+       "enabled": false
+      },
+      "ai": false,
+      "bgEvent": false,
+      "matchTrackerNotAllowed": false,
+      "eventSource": {
+       "preMatchSource": {
+        "sourceType": "BET_RADAR",
+        "sourceId": "68385858"
+       },
+       "liveSource": {
+        "sourceType": "BET_RADAR",
+        "sourceId": "68385858"
+       }
+      },
+      "containsPcbb": false,
+      "banned": false
+     }
+    ],
+    "categoryName": "Canada",
+    "categoryId": "sr:category:93"
+   },
+   {
+    "id": "sr:tournament:27653",
+    "name": "NCAA, Regular Season",
+    "events": [
+     {
+      "eventId": "sr:match:70898786",
+      "gameId": "14395",
+      "productStatus": "0#0",
+      "estimateStartTime": 1790899200000,
+      "status": 0,
+      "matchStatus": "Not start",
+      "homeTeamId": "sr:competitor:4333",
+      "homeTeamName": "New Mexico State Aggies",
+      "awayTeamName": "Western Kentucky Hilltoppers",
+      "awayTeamId": "sr:competitor:86009",
+      "sport": {
+       "id": "sr:sport:16",
+       "name": "American Football",
+       "category": {
+        "id": "sr:category:43",
+        "name": "USA",
+        "tournament": {
+         "id": "sr:tournament:27653",
+         "name": "NCAA, Regular Season"
+        }
+       }
+      },
+      "totalMarketSize": 19,
+      "markets": [
+       {
+        "id": "219",
+        "product": 3,
+        "desc": "Winner (incl. overtime)",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Which team will win the match. Overtime included.",
+        "title": "",
+        "name": "Winner (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "4",
+          "odds": "1.70",
+          "probability": "0.5520300000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home"
+         },
+         {
+          "id": "5",
+          "odds": "2.05",
+          "probability": "0.4479670000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790686246000,
+        "banned": false
+       },
+       {
+        "id": "225",
+        "specifier": "total=50.5",
+        "product": 3,
+        "desc": "Over/Under (incl. overtime) 50.5",
+        "status": 2,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict whether the total number of points scored in the match is over/under a given line. Overtime included.",
+        "title": "",
+        "name": "Over/Under (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.71",
+          "probability": "0.5459252630",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 50.5"
+         },
+         {
+          "id": "13",
+          "odds": "2.00",
+          "probability": "0.4540747372",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 50.5"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790522492000,
+        "banned": false
+       },
+       {
+        "id": "225",
+        "specifier": "total=51.5",
+        "product": 3,
+        "desc": "Over/Under (incl. overtime) 51.5",
+        "status": 2,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict whether the total number of points scored in the match is over/under a given line. Overtime included.",
+        "title": "",
+        "name": "Over/Under (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.76",
+          "probability": "0.5296960000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 51.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.96",
+          "probability": "0.4703040000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 51.5"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790551704000,
+        "banned": false
+       },
+       {
+        "id": "225",
+        "specifier": "total=52.5",
+        "product": 3,
+        "desc": "Over/Under (incl. overtime) 52.5",
+        "status": 2,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict whether the total number of points scored in the match is over/under a given line. Overtime included.",
+        "title": "",
+        "name": "Over/Under (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.78",
+          "probability": "0.5221190000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 52.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.93",
+          "probability": "0.4778810000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 52.5"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790590546000,
+        "banned": false
+       },
+       {
+        "id": "225",
+        "specifier": "total=53.5",
+        "product": 3,
+        "desc": "Over/Under (incl. overtime) 53.5",
+        "status": 2,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict whether the total number of points scored in the match is over/under a given line. Overtime included.",
+        "title": "",
+        "name": "Over/Under (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.73",
+          "probability": "0.5397420000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 53.5"
+         },
+         {
+          "id": "13",
+          "odds": "2.00",
+          "probability": "0.4602580000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 53.5"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790616489000,
+        "banned": false
+       },
+       {
+        "id": "225",
+        "specifier": "total=54.5",
+        "product": 3,
+        "desc": "Over/Under (incl. overtime) 54.5",
+        "status": 2,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict whether the total number of points scored in the match is over/under a given line. Overtime included.",
+        "title": "",
+        "name": "Over/Under (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.72",
+          "probability": "0.5428700000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 54.5"
+         },
+         {
+          "id": "13",
+          "odds": "2.00",
+          "probability": "0.4571300000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 54.5"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790628922000,
+        "banned": false
+       },
+       {
+        "id": "225",
+        "specifier": "total=55.5",
+        "product": 3,
+        "desc": "Over/Under (incl. overtime) 55.5",
+        "status": 2,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict whether the total number of points scored in the match is over/under a given line. Overtime included.",
+        "title": "",
+        "name": "Over/Under (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.78",
+          "probability": "0.5235080000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 55.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.94",
+          "probability": "0.4764920000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 55.5"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790686679000,
+        "banned": false
+       },
+       {
+        "id": "225",
+        "specifier": "total=56.5",
+        "product": 3,
+        "desc": "Over/Under (incl. overtime) 56.5",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict whether the total number of points scored in the match is over/under a given line. Overtime included.",
+        "title": "",
+        "name": "Over/Under (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.80",
+          "probability": "0.5148210000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 56.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.90",
+          "probability": "0.4851790000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 56.5"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790712981000,
+        "banned": false
+       },
+       {
+        "id": "225",
+        "specifier": "total=57.5",
+        "product": 3,
+        "desc": "Over/Under (incl. overtime) 57.5",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict whether the total number of points scored in the match is over/under a given line. Overtime included.",
+        "title": "",
+        "name": "Over/Under (incl. overtime)",
+        "favourite": 1,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.87",
+          "probability": "0.4925930000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 57.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.83",
+          "probability": "0.5074070000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 57.5"
+         }
+        ],
+        "farNearOdds": 1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790712981000,
+        "banned": false
+       },
+       {
+        "id": "225",
+        "specifier": "total=58.5",
+        "product": 3,
+        "desc": "Over/Under (incl. overtime) 58.5",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict whether the total number of points scored in the match is over/under a given line. Overtime included.",
+        "title": "",
+        "name": "Over/Under (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "2.00",
+          "probability": "0.4631580000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 58.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.73",
+          "probability": "0.5368420000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 58.5"
+         }
+        ],
+        "farNearOdds": -1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790712981000,
+        "banned": false
+       },
+       {
+        "id": "68",
+        "specifier": "total=26.5",
+        "product": 3,
+        "desc": "1st Half - Over/Under",
+        "status": 2,
+        "group": "Half",
+        "groupId": "200819092841MGI78162678",
+        "marketGuide": "Predict whether the total number of points scored in the 1st Half is over/under a given line.",
+        "title": "",
+        "name": "1st half - total",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.78",
+          "probability": "0.5223890000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 26.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.93",
+          "probability": "0.4776110000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 26.5"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790607155000,
+        "banned": false
+       },
+       {
+        "id": "68",
+        "specifier": "total=27.5",
+        "product": 3,
+        "desc": "1st Half - Over/Under",
+        "status": 2,
+        "group": "Half",
+        "groupId": "200819092841MGI78162678",
+        "marketGuide": "Predict whether the total number of points scored in the 1st Half is over/under a given line.",
+        "title": "",
+        "name": "1st half - total",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.78",
+          "probability": "0.5214020000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 27.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.93",
+          "probability": "0.4785980000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 27.5"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790652101000,
+        "banned": false
+       },
+       {
+        "id": "68",
+        "specifier": "total=28.5",
+        "product": 3,
+        "desc": "1st Half - Over/Under",
+        "status": 0,
+        "group": "Half",
+        "groupId": "200819092841MGI78162678",
+        "marketGuide": "Predict whether the total number of points scored in the 1st Half is over/under a given line.",
+        "title": "",
+        "name": "1st half - total",
+        "favourite": 1,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.90",
+          "probability": "0.4902620000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 28.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.82",
+          "probability": "0.5097380000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 28.5"
+         }
+        ],
+        "farNearOdds": 1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790749507000,
+        "banned": false
+       },
+       {
+        "id": "227",
+        "specifier": "total=28.5",
+        "product": 3,
+        "desc": "New Mexico State Aggies Over/Under (incl. overtime) 28.5",
+        "status": 2,
+        "group": "Points",
+        "groupId": "200819092832MGI78160268",
+        "marketGuide": "Predict whether the total number of points scored by Home team is over/under a given line. Overtime included.",
+        "title": "",
+        "name": "Home Over/Under (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.82",
+          "probability": "0.5048850000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 28.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.85",
+          "probability": "0.4951150000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 28.5"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790712981000,
+        "banned": false
+       },
+       {
+        "id": "227",
+        "specifier": "total=29.5",
+        "product": 3,
+        "desc": "New Mexico State Aggies Over/Under (incl. overtime) 29.5",
+        "status": 0,
+        "group": "Points",
+        "groupId": "200819092832MGI78160268",
+        "marketGuide": "Predict whether the total number of points scored by Home team is over/under a given line. Overtime included.",
+        "title": "",
+        "name": "Home Over/Under (incl. overtime)",
+        "favourite": 1,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.85",
+          "probability": "0.4965490000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 29.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.82",
+          "probability": "0.5034510000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 29.5"
+         }
+        ],
+        "farNearOdds": 1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790712981000,
+        "banned": false
+       },
+       {
+        "id": "228",
+        "specifier": "total=27.5",
+        "product": 3,
+        "desc": "Western Kentucky Hilltoppers Over/Under (incl. overtime) 27.5",
+        "status": 0,
+        "group": "Points",
+        "groupId": "200819092832MGI78160268",
+        "marketGuide": "Predict whether the total number of points scored by Away team is over/under a given line. Overtime included.",
+        "title": "",
+        "name": "Away Over/Under (incl. overtime)",
+        "favourite": 1,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.86",
+          "probability": "0.4912100000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 27.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.81",
+          "probability": "0.5087900000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 27.5"
+         }
+        ],
+        "farNearOdds": 1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790712981000,
+        "banned": false
+       },
+       {
+        "id": "1",
+        "product": 3,
+        "desc": "1X2",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Which team will win the match. Overtime not included.",
+        "title": "",
+        "name": "1X2",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "1",
+          "odds": "1.75",
+          "probability": "0.5288640000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home"
+         },
+         {
+          "id": "2",
+          "odds": "18.50",
+          "probability": "0.0455537000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Draw"
+         },
+         {
+          "id": "3",
+          "odds": "2.15",
+          "probability": "0.4255820000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away"
+         }
+        ],
+        "farNearOdds": 0,
+        "marketExtendVOS": [
+         {
+          "name": "2UP",
+          "notSupport": true
+         },
+         {
+          "name": "1UP",
+          "notSupport": true
+         }
+        ],
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790712981202,
+        "banned": false
+       },
+       {
+        "id": "223",
+        "specifier": "hcp=-4.5",
+        "product": 3,
+        "desc": "Handicap (incl. overtime) -4.5",
+        "status": 2,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict the winner taking into consideration the handicap in brackets. Overtime included.",
+        "title": "",
+        "name": "Handicap (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "2.45",
+          "probability": "0.3681370000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (-4.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "1.49",
+          "probability": "0.6318630000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (+4.5)"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790521630000,
+        "banned": false
+       },
+       {
+        "id": "223",
+        "specifier": "hcp=-3.5",
+        "product": 3,
+        "desc": "Handicap (incl. overtime) -3.5",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict the winner taking into consideration the handicap in brackets. Overtime included.",
+        "title": "",
+        "name": "Handicap (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "2.10",
+          "probability": "0.4349170000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (-3.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "1.65",
+          "probability": "0.5650830000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (+3.5)"
+         }
+        ],
+        "farNearOdds": -1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790712981000,
+        "banned": false
+       },
+       {
+        "id": "223",
+        "specifier": "hcp=-2.5",
+        "product": 3,
+        "desc": "Handicap (incl. overtime) -2.5",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict the winner taking into consideration the handicap in brackets. Overtime included.",
+        "title": "",
+        "name": "Handicap (incl. overtime)",
+        "favourite": 1,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "1.85",
+          "probability": "0.5018190000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (-2.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "1.86",
+          "probability": "0.4981810000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (+2.5)"
+         }
+        ],
+        "farNearOdds": 1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790712981000,
+        "banned": false
+       },
+       {
+        "id": "223",
+        "specifier": "hcp=-1.5",
+        "product": 3,
+        "desc": "Handicap (incl. overtime) -1.5",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict the winner taking into consideration the handicap in brackets. Overtime included.",
+        "title": "",
+        "name": "Handicap (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "1.77",
+          "probability": "0.5261050000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (-1.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "1.95",
+          "probability": "0.4738950000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (+1.5)"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790712981000,
+        "banned": false
+       },
+       {
+        "id": "223",
+        "specifier": "hcp=-0.5",
+        "product": 3,
+        "desc": "Handicap (incl. overtime) -0.5",
+        "status": 2,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict the winner taking into consideration the handicap in brackets. Overtime included.",
+        "title": "",
+        "name": "Handicap (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "1.82",
+          "probability": "0.5099820000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (-0.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "1.90",
+          "probability": "0.4900180000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (+0.5)"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790522853000,
+        "banned": false
+       },
+       {
+        "id": "223",
+        "specifier": "hcp=1.5",
+        "product": 3,
+        "desc": "Handicap (incl. overtime) 1.5",
+        "status": 2,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict the winner taking into consideration the handicap in brackets. Overtime included.",
+        "title": "",
+        "name": "Handicap (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "1.74",
+          "probability": "0.5351960000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (+1.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "1.97",
+          "probability": "0.4648040000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (-1.5)"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790522853000,
+        "banned": false
+       },
+       {
+        "id": "66",
+        "specifier": "hcp=-0.5",
+        "product": 3,
+        "desc": "1st Half - Asian Handicap",
+        "status": 0,
+        "group": "Half",
+        "groupId": "200819092841MGI78162678",
+        "marketGuide": "Predict the winner in the 1st Half taking into consideration the handicap in brackets. ",
+        "title": "",
+        "name": "1st half - handicap (2 way)",
+        "favourite": 1,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "1.85",
+          "probability": "0.5004960000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (-0.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "1.85",
+          "probability": "0.4995040000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (+0.5)"
+         }
+        ],
+        "farNearOdds": 1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790749507000,
+        "banned": false
+       }
+      ],
+      "bookingStatus": "Booked",
+      "topTeam": false,
+      "fixtureVenue": {
+       "name": "Aggie Memorial Stadium"
+      },
+      "giftGrabActivityResultVO": {
+       "activityEnabled": false,
+       "enabled": false
+      },
+      "ai": false,
+      "bgEvent": false,
+      "matchTrackerNotAllowed": false,
+      "eventSource": {
+       "preMatchSource": {
+        "sourceType": "BET_RADAR",
+        "sourceId": "70898786"
+       },
+       "liveSource": {
+        "sourceType": "BET_RADAR",
+        "sourceId": "70898786"
+       }
+      },
+      "containsPcbb": false,
+      "banned": false
+     },
+     {
+      "eventId": "sr:match:70898710",
+      "gameId": "18582",
+      "productStatus": "0#0",
+      "estimateStartTime": 1790902800000,
+      "status": 0,
+      "matchStatus": "Not start",
+      "homeTeamId": "sr:competitor:4373",
+      "homeTeamName": "Tulsa Golden Hurricane",
+      "awayTeamName": "North Texas Mean Green",
+      "awayTeamId": "sr:competitor:4302",
+      "sport": {
+       "id": "sr:sport:16",
+       "name": "American Football",
+       "category": {
+        "id": "sr:category:43",
+        "name": "USA",
+        "tournament": {
+         "id": "sr:tournament:27653",
+         "name": "NCAA, Regular Season"
+        }
+       }
+      },
+      "totalMarketSize": 19,
+      "markets": [
+       {
+        "id": "219",
+        "product": 3,
+        "desc": "Winner (incl. overtime)",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Which team will win the match. Overtime included.",
+        "title": "",
+        "name": "Winner (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "4",
+          "odds": "1.81",
+          "probability": "0.5128410000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home"
+         },
+         {
+          "id": "5",
+          "odds": "1.90",
+          "probability": "0.4871620000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790685205000,
+        "banned": false
+       },
+       {
+        "id": "225",
+        "specifier": "total=55.5",
+        "product": 3,
+        "desc": "Over/Under (incl. overtime) 55.5",
+        "status": 2,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict whether the total number of points scored in the match is over/under a given line. Overtime included.",
+        "title": "",
+        "name": "Over/Under (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.78",
+          "probability": "0.5211580000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 55.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.93",
+          "probability": "0.4788420000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 55.5"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790518034000,
+        "banned": false
+       },
+       {
+        "id": "225",
+        "specifier": "total=56.5",
+        "product": 3,
+        "desc": "Over/Under (incl. overtime) 56.5",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict whether the total number of points scored in the match is over/under a given line. Overtime included.",
+        "title": "",
+        "name": "Over/Under (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.78",
+          "probability": "0.5197276324",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 56.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.92",
+          "probability": "0.4802723678",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 56.5"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790685205000,
+        "banned": false
+       },
+       {
+        "id": "225",
+        "specifier": "total=57.5",
+        "product": 3,
+        "desc": "Over/Under (incl. overtime) 57.5",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict whether the total number of points scored in the match is over/under a given line. Overtime included.",
+        "title": "",
+        "name": "Over/Under (incl. overtime)",
+        "favourite": 1,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.86",
+          "probability": "0.4973770000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 57.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.84",
+          "probability": "0.5026230000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 57.5"
+         }
+        ],
+        "farNearOdds": 1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790685205000,
+        "banned": false
+       },
+       {
+        "id": "225",
+        "specifier": "total=58.5",
+        "product": 3,
+        "desc": "Over/Under (incl. overtime) 58.5",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict whether the total number of points scored in the match is over/under a given line. Overtime included.",
+        "title": "",
+        "name": "Over/Under (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.97",
+          "probability": "0.4679210000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 58.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.75",
+          "probability": "0.5320790000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 58.5"
+         }
+        ],
+        "farNearOdds": -1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790685205000,
+        "banned": false
+       },
+       {
+        "id": "68",
+        "specifier": "total=28.5",
+        "product": 3,
+        "desc": "1st Half - Over/Under",
+        "status": 0,
+        "group": "Half",
+        "groupId": "200819092841MGI78162678",
+        "marketGuide": "Predict whether the total number of points scored in the 1st Half is over/under a given line.",
+        "title": "",
+        "name": "1st half - total",
+        "favourite": 1,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.87",
+          "probability": "0.4912420000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 28.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.82",
+          "probability": "0.5087580000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 28.5"
+         }
+        ],
+        "farNearOdds": 1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790698107000,
+        "banned": false
+       },
+       {
+        "id": "227",
+        "specifier": "total=28.5",
+        "product": 3,
+        "desc": "Tulsa Golden Hurricane Over/Under (incl. overtime) 28.5",
+        "status": 0,
+        "group": "Points",
+        "groupId": "200819092832MGI78160268",
+        "marketGuide": "Predict whether the total number of points scored by Home team is over/under a given line. Overtime included.",
+        "title": "",
+        "name": "Home Over/Under (incl. overtime)",
+        "favourite": 1,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.90",
+          "probability": "0.4841420000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 28.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.78",
+          "probability": "0.5158580000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 28.5"
+         }
+        ],
+        "farNearOdds": 1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790685205000,
+        "banned": false
+       },
+       {
+        "id": "228",
+        "specifier": "total=27.5",
+        "product": 3,
+        "desc": "North Texas Mean Green Over/Under (incl. overtime) 27.5",
+        "status": 0,
+        "group": "Points",
+        "groupId": "200819092832MGI78160268",
+        "marketGuide": "Predict whether the total number of points scored by Away team is over/under a given line. Overtime included.",
+        "title": "",
+        "name": "Away Over/Under (incl. overtime)",
+        "favourite": 1,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.77",
+          "probability": "0.5207380000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 27.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.91",
+          "probability": "0.4792620000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 27.5"
+         }
+        ],
+        "farNearOdds": 1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790685205000,
+        "banned": false
+       },
+       {
+        "id": "1",
+        "product": 3,
+        "desc": "1X2",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Which team will win the match. Overtime not included.",
+        "title": "",
+        "name": "1X2",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "1",
+          "odds": "1.90",
+          "probability": "0.4887280000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home"
+         },
+         {
+          "id": "2",
+          "odds": "18.50",
+          "probability": "0.0462796000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Draw"
+         },
+         {
+          "id": "3",
+          "odds": "1.97",
+          "probability": "0.4649920000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away"
+         }
+        ],
+        "farNearOdds": 0,
+        "marketExtendVOS": [
+         {
+          "name": "2UP",
+          "notSupport": true
+         },
+         {
+          "name": "1UP",
+          "notSupport": true
+         }
+        ],
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790685204598,
+        "banned": false
+       },
+       {
+        "id": "223",
+        "specifier": "hcp=-9.5",
+        "product": 3,
+        "desc": "Handicap (incl. overtime) -9.5",
+        "status": 2,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict the winner taking into consideration the handicap in brackets. Overtime included.",
+        "title": "",
+        "name": "Handicap (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "2.75",
+          "probability": "0.3210470000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (-9.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "1.39",
+          "probability": "0.6789530000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (+9.5)"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790502444000,
+        "banned": false
+       },
+       {
+        "id": "223",
+        "specifier": "hcp=-6.5",
+        "product": 3,
+        "desc": "Handicap (incl. overtime) -6.5",
+        "status": 2,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict the winner taking into consideration the handicap in brackets. Overtime included.",
+        "title": "",
+        "name": "Handicap (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "2.25",
+          "probability": "0.4004883562",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (-6.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "1.57",
+          "probability": "0.5995116446",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (+6.5)"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790502444000,
+        "banned": false
+       },
+       {
+        "id": "223",
+        "specifier": "hcp=-4.5",
+        "product": 3,
+        "desc": "Handicap (incl. overtime) -4.5",
+        "status": 2,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict the winner taking into consideration the handicap in brackets. Overtime included.",
+        "title": "",
+        "name": "Handicap (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "2.05",
+          "probability": "0.4452660000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (-4.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "1.68",
+          "probability": "0.5547340000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (+4.5)"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790512530000,
+        "banned": false
+       },
+       {
+        "id": "223",
+        "specifier": "hcp=-3.5",
+        "product": 3,
+        "desc": "Handicap (incl. overtime) -3.5",
+        "status": 2,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict the winner taking into consideration the handicap in brackets. Overtime included.",
+        "title": "",
+        "name": "Handicap (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "2.25",
+          "probability": "0.4032880000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (-3.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "1.57",
+          "probability": "0.5967120000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (+3.5)"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790685205000,
+        "banned": false
+       },
+       {
+        "id": "223",
+        "specifier": "hcp=-2.5",
+        "product": 3,
+        "desc": "Handicap (incl. overtime) -2.5",
+        "status": 2,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict the winner taking into consideration the handicap in brackets. Overtime included.",
+        "title": "",
+        "name": "Handicap (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "1.97",
+          "probability": "0.4684250000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (-2.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "1.75",
+          "probability": "0.5315750000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (+2.5)"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790685205000,
+        "banned": false
+       },
+       {
+        "id": "223",
+        "specifier": "hcp=-1.5",
+        "product": 3,
+        "desc": "Handicap (incl. overtime) -1.5",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict the winner taking into consideration the handicap in brackets. Overtime included.",
+        "title": "",
+        "name": "Handicap (incl. overtime)",
+        "favourite": 1,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "1.90",
+          "probability": "0.4867490000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (-1.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "1.81",
+          "probability": "0.5132510000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (+1.5)"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790685205000,
+        "banned": false
+       },
+       {
+        "id": "223",
+        "specifier": "hcp=-0.5",
+        "product": 3,
+        "desc": "Handicap (incl. overtime) -0.5",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict the winner taking into consideration the handicap in brackets. Overtime included.",
+        "title": "",
+        "name": "Handicap (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "1.81",
+          "probability": "0.5120550000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (-0.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "1.90",
+          "probability": "0.4879450000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (+0.5)"
+         }
+        ],
+        "farNearOdds": 1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790685205000,
+        "banned": false
+       },
+       {
+        "id": "223",
+        "specifier": "hcp=1.5",
+        "product": 3,
+        "desc": "Handicap (incl. overtime) 1.5",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict the winner taking into consideration the handicap in brackets. Overtime included.",
+        "title": "",
+        "name": "Handicap (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "1.73",
+          "probability": "0.5366320000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (+1.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "2.00",
+          "probability": "0.4633680000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (-1.5)"
+         }
+        ],
+        "farNearOdds": -1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790685205000,
+        "banned": false
+       },
+       {
+        "id": "66",
+        "specifier": "hcp=-0.5",
+        "product": 3,
+        "desc": "1st Half - Asian Handicap",
+        "status": 0,
+        "group": "Half",
+        "groupId": "200819092841MGI78162678",
+        "marketGuide": "Predict the winner in the 1st Half taking into consideration the handicap in brackets. ",
+        "title": "",
+        "name": "1st half - handicap (2 way)",
+        "favourite": 1,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "1.93",
+          "probability": "0.4792000000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (-0.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "1.78",
+          "probability": "0.5208000000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (+0.5)"
+         }
+        ],
+        "farNearOdds": 1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790698107000,
+        "banned": false
+       }
+      ],
+      "bookingStatus": "Booked",
+      "topTeam": false,
+      "fixtureVenue": {
+       "name": "Skelly Field at H.A. Chapman Stadium"
+      },
+      "giftGrabActivityResultVO": {
+       "activityEnabled": false,
+       "enabled": false
+      },
+      "ai": false,
+      "bgEvent": false,
+      "matchTrackerNotAllowed": false,
+      "eventSource": {
+       "preMatchSource": {
+        "sourceType": "BET_RADAR",
+        "sourceId": "70898710"
+       },
+       "liveSource": {
+        "sourceType": "BET_RADAR",
+        "sourceId": "70898710"
+       }
+      },
+      "containsPcbb": false,
+      "banned": false
+     },
+     {
+      "eventId": "sr:match:70898714",
+      "gameId": "26644",
+      "productStatus": "0#0",
+      "estimateStartTime": 1790982000000,
+      "status": 0,
+      "matchStatus": "Not start",
+      "homeTeamId": "sr:competitor:46643",
+      "homeTeamName": "Delaware FightinÂ´ Blue Hens",
+      "awayTeamName": "Liberty Flames",
+      "awayTeamId": "sr:competitor:281209",
+      "sport": {
+       "id": "sr:sport:16",
+       "name": "American Football",
+       "category": {
+        "id": "sr:category:43",
+        "name": "USA",
+        "tournament": {
+         "id": "sr:tournament:27653",
+         "name": "NCAA, Regular Season"
+        }
+       }
+      },
+      "totalMarketSize": 19,
+      "markets": [
+       {
+        "id": "219",
+        "product": 3,
+        "desc": "Winner (incl. overtime)",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Which team will win the match. Overtime included.",
+        "title": "",
+        "name": "Winner (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "4",
+          "odds": "3.20",
+          "probability": "0.2733310000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home"
+         },
+         {
+          "id": "5",
+          "odds": "1.31",
+          "probability": "0.7266690000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790722868000,
+        "banned": false
+       },
+       {
+        "id": "225",
+        "specifier": "total=48.5",
+        "product": 3,
+        "desc": "Over/Under (incl. overtime) 48.5",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict whether the total number of points scored in the match is over/under a given line. Overtime included.",
+        "title": "",
+        "name": "Over/Under (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.75",
+          "probability": "0.5304670000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 48.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.96",
+          "probability": "0.4695330000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 48.5"
+         }
+        ],
+        "farNearOdds": -1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790722868000,
+        "banned": false
+       },
+       {
+        "id": "225",
+        "specifier": "total=49.5",
+        "product": 3,
+        "desc": "Over/Under (incl. overtime) 49.5",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict whether the total number of points scored in the match is over/under a given line. Overtime included.",
+        "title": "",
+        "name": "Over/Under (incl. overtime)",
+        "favourite": 1,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.82",
+          "probability": "0.5085900000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 49.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.87",
+          "probability": "0.4914100000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 49.5"
+         }
+        ],
+        "farNearOdds": 1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790722868000,
+        "banned": false
+       },
+       {
+        "id": "225",
+        "specifier": "total=50.5",
+        "product": 3,
+        "desc": "Over/Under (incl. overtime) 50.5",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict whether the total number of points scored in the match is over/under a given line. Overtime included.",
+        "title": "",
+        "name": "Over/Under (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.87",
+          "probability": "0.4909010000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 50.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.82",
+          "probability": "0.5090980000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 50.5"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790722868000,
+        "banned": false
+       },
+       {
+        "id": "225",
+        "specifier": "total=51.5",
+        "product": 3,
+        "desc": "Over/Under (incl. overtime) 51.5",
+        "status": 2,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict whether the total number of points scored in the match is over/under a given line. Overtime included.",
+        "title": "",
+        "name": "Over/Under (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "2.00",
+          "probability": "0.4563696365",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 51.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.71",
+          "probability": "0.5436303637",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 51.5"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790556679000,
+        "banned": false
+       },
+       {
+        "id": "68",
+        "specifier": "total=24.5",
+        "product": 3,
+        "desc": "1st Half - Over/Under",
+        "status": 0,
+        "group": "Half",
+        "groupId": "200819092841MGI78162678",
+        "marketGuide": "Predict whether the total number of points scored in the 1st Half is over/under a given line.",
+        "title": "",
+        "name": "1st half - total",
+        "favourite": 1,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.84",
+          "probability": "0.5028710000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 24.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.86",
+          "probability": "0.4971290000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 24.5"
+         }
+        ],
+        "farNearOdds": 1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790722868000,
+        "banned": false
+       },
+       {
+        "id": "68",
+        "specifier": "total=25.5",
+        "product": 3,
+        "desc": "1st Half - Over/Under",
+        "status": 2,
+        "group": "Half",
+        "groupId": "200819092841MGI78162678",
+        "marketGuide": "Predict whether the total number of points scored in the 1st Half is over/under a given line.",
+        "title": "",
+        "name": "1st half - total",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.86",
+          "probability": "0.4982500000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 25.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.85",
+          "probability": "0.5017500000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 25.5"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790694069000,
+        "banned": false
+       },
+       {
+        "id": "227",
+        "specifier": "total=20.5",
+        "product": 3,
+        "desc": "Delaware Blue Hens Over/Under (incl. overtime) 20.5",
+        "status": 0,
+        "group": "Points",
+        "groupId": "200819092832MGI78160268",
+        "marketGuide": "Predict whether the total number of points scored by Home team is over/under a given line. Overtime included.",
+        "title": "",
+        "name": "Home Over/Under (incl. overtime)",
+        "favourite": 1,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.85",
+          "probability": "0.4961690000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 20.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.82",
+          "probability": "0.5038310000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 20.5"
+         }
+        ],
+        "farNearOdds": 1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790722868000,
+        "banned": false
+       },
+       {
+        "id": "228",
+        "specifier": "total=28.5",
+        "product": 3,
+        "desc": "Liberty Flames Over/Under (incl. overtime) 28.5",
+        "status": 0,
+        "group": "Points",
+        "groupId": "200819092832MGI78160268",
+        "marketGuide": "Predict whether the total number of points scored by Away team is over/under a given line. Overtime included.",
+        "title": "",
+        "name": "Away Over/Under (incl. overtime)",
+        "favourite": 1,
+        "outcomes": [
+         {
+          "id": "12",
+          "odds": "1.84",
+          "probability": "0.4971450000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Over 28.5"
+         },
+         {
+          "id": "13",
+          "odds": "1.83",
+          "probability": "0.5028550000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Under 28.5"
+         }
+        ],
+        "farNearOdds": 1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790722868000,
+        "banned": false
+       },
+       {
+        "id": "1",
+        "product": 3,
+        "desc": "1X2",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Which team will win the match. Overtime not included.",
+        "title": "",
+        "name": "1X2",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "1",
+          "odds": "3.40",
+          "probability": "0.2557630000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home"
+         },
+         {
+          "id": "2",
+          "odds": "20.00",
+          "probability": "0.0414303000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Draw"
+         },
+         {
+          "id": "3",
+          "odds": "1.35",
+          "probability": "0.7028070000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away"
+         }
+        ],
+        "farNearOdds": 0,
+        "marketExtendVOS": [
+         {
+          "name": "2UP",
+          "notSupport": true
+         },
+         {
+          "name": "1UP",
+          "notSupport": true
+         }
+        ],
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790722867837,
+        "banned": false
+       },
+       {
+        "id": "223",
+        "specifier": "hcp=3.5",
+        "product": 3,
+        "desc": "Handicap (incl. overtime) 3.5",
+        "status": 2,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict the winner taking into consideration the handicap in brackets. Overtime included.",
+        "title": "",
+        "name": "Handicap (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "2.20",
+          "probability": "0.4129180000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (+3.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "1.60",
+          "probability": "0.5870820000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (-3.5)"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790523582000,
+        "banned": false
+       },
+       {
+        "id": "223",
+        "specifier": "hcp=4.5",
+        "product": 3,
+        "desc": "Handicap (incl. overtime) 4.5",
+        "status": 2,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict the winner taking into consideration the handicap in brackets. Overtime included.",
+        "title": "",
+        "name": "Handicap (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "2.15",
+          "probability": "0.4207960000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (+4.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "1.62",
+          "probability": "0.5792040000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (-4.5)"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790522974000,
+        "banned": false
+       },
+       {
+        "id": "223",
+        "specifier": "hcp=5.5",
+        "product": 3,
+        "desc": "Handicap (incl. overtime) 5.5",
+        "status": 2,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict the winner taking into consideration the handicap in brackets. Overtime included.",
+        "title": "",
+        "name": "Handicap (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "2.00",
+          "probability": "0.4548030000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (+5.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "1.71",
+          "probability": "0.5451970000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (-5.5)"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790536319000,
+        "banned": false
+       },
+       {
+        "id": "223",
+        "specifier": "hcp=6.5",
+        "product": 3,
+        "desc": "Handicap (incl. overtime) 6.5",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict the winner taking into consideration the handicap in brackets. Overtime included.",
+        "title": "",
+        "name": "Handicap (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "2.00",
+          "probability": "0.4608870000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (+6.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "1.73",
+          "probability": "0.5391130000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (-6.5)"
+         }
+        ],
+        "farNearOdds": -1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790722868000,
+        "banned": false
+       },
+       {
+        "id": "223",
+        "specifier": "hcp=7.5",
+        "product": 3,
+        "desc": "Handicap (incl. overtime) 7.5",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict the winner taking into consideration the handicap in brackets. Overtime included.",
+        "title": "",
+        "name": "Handicap (incl. overtime)",
+        "favourite": 1,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "1.80",
+          "probability": "0.5176500000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (+7.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "1.91",
+          "probability": "0.4823500000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (-7.5)"
+         }
+        ],
+        "farNearOdds": 1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790722868000,
+        "banned": false
+       },
+       {
+        "id": "223",
+        "specifier": "hcp=8.5",
+        "product": 3,
+        "desc": "Handicap (incl. overtime) 8.5",
+        "status": 0,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict the winner taking into consideration the handicap in brackets. Overtime included.",
+        "title": "",
+        "name": "Handicap (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "1.75",
+          "probability": "0.5325230000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (+8.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "1.97",
+          "probability": "0.4674770000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (-8.5)"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790722868000,
+        "banned": false
+       },
+       {
+        "id": "223",
+        "specifier": "hcp=9.5",
+        "product": 3,
+        "desc": "Handicap (incl. overtime) 9.5",
+        "status": 2,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict the winner taking into consideration the handicap in brackets. Overtime included.",
+        "title": "",
+        "name": "Handicap (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "1.67",
+          "probability": "0.5603900000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (+9.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "2.10",
+          "probability": "0.4396100000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (-9.5)"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790523582000,
+        "banned": false
+       },
+       {
+        "id": "223",
+        "specifier": "hcp=10.5",
+        "product": 3,
+        "desc": "Handicap (incl. overtime) 10.5",
+        "status": 2,
+        "group": "Main",
+        "groupId": "200819092817MGI78156578",
+        "marketGuide": "Predict the winner taking into consideration the handicap in brackets. Overtime included.",
+        "title": "",
+        "name": "Handicap (incl. overtime)",
+        "favourite": 0,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "1.61",
+          "probability": "0.5806450000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (+10.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "2.15",
+          "probability": "0.4193550000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (-10.5)"
+         }
+        ],
+        "farNearOdds": 0,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790522974000,
+        "banned": false
+       },
+       {
+        "id": "66",
+        "specifier": "hcp=4.5",
+        "product": 3,
+        "desc": "1st Half - Asian Handicap",
+        "status": 0,
+        "group": "Half",
+        "groupId": "200819092841MGI78162678",
+        "marketGuide": "Predict the winner in the 1st Half taking into consideration the handicap in brackets. ",
+        "title": "",
+        "name": "1st half - handicap (2 way)",
+        "favourite": 1,
+        "outcomes": [
+         {
+          "id": "1714",
+          "odds": "1.80",
+          "probability": "0.5164430000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Home (+4.5)"
+         },
+         {
+          "id": "1715",
+          "odds": "1.91",
+          "probability": "0.4835570000",
+          "voidProbability": "0E-10",
+          "isActive": 1,
+          "desc": "Away (-4.5)"
+         }
+        ],
+        "farNearOdds": 1,
+        "sourceType": "BET_RADAR",
+        "lastOddsChangeTime": 1790722868000,
+        "banned": false
+       }
+      ],
+      "bookingStatus": "Booked",
+      "topTeam": false,
+      "fixtureVenue": {
+       "name": "Tubby Raymond Field at Delaware Stadium"
+      },
+      "giftGrabActivityResultVO": {
+       "activityEnabled": false,
+       "enabled": false
+      },
+      "ai": false,
+      "bgEvent": false,
+      "matchTrackerNotAllowed": false,
+      "eventSource": {
+       "preMatchSource": {
+        "sourceType": "BET_RADAR",
+        "sourceId": "70898714"
+       },
+       "liveSource": {
+        "sourceType": "BET_RADAR",
+        "sourceId": "70898714"
+       }
+      },
+      "containsPcbb": false,
+      "banned": false
+     }
+    ],
+    "categoryName": "USA",
+    "categoryId": "sr:category:43"
+   }
+  ]
+ }
+}

@@ -1,0 +1,265 @@
+{
+ "bizCode": 10000,
+ "message": "Succeeded",
+ "data": {
+  "shareCode": "ABC123",
+  "outcomes": [
+   {
+    "eventId": "sr:match:1001",
+    "gameId": "1001",
+    "homeTeamName": "Arsenal",
+    "awayTeamName": "Leeds United",
+    "estimateStartTime": 1791640800000,
+    "matchStatus": "Not start",
+    "status": 0,
+    "sport": {
+     "id": "sr:sport:1",
+     "name": "Football",
+     "category": {
+      "id": "sr:category:1",
+      "name": "England",
+      "tournament": {
+       "id": "sr:tournament:1",
+       "name": "Premier League"
+      }
+     }
+    },
+    "markets": [
+     {
+      "id": "18",
+      "desc": "Over/Under",
+      "status": 0,
+      "outcomes": [
+       {
+        "id": "12",
+        "desc": "Over 2.5",
+        "odds": "1.85",
+        "isActive": 1
+       }
+      ],
+      "specifier": "total=2.5"
+     }
+    ]
+   },
+   {
+    "eventId": "sr:match:1002",
+    "gameId": "1002",
+    "homeTeamName": "Chelsea",
+    "awayTeamName": "Wolverhampton",
+    "estimateStartTime": 1791648000000,
+    "matchStatus": "Not start",
+    "status": 0,
+    "sport": {
+     "id": "sr:sport:1",
+     "name": "Football",
+     "category": {
+      "id": "sr:category:1",
+      "name": "England",
+      "tournament": {
+       "id": "sr:tournament:1",
+       "name": "Premier League"
+      }
+     }
+    },
+    "markets": [
+     {
+      "id": "1",
+      "desc": "1X2",
+      "status": 0,
+      "outcomes": [
+       {
+        "id": "1",
+        "desc": "Home",
+        "odds": "1.60",
+        "isActive": 1
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "eventId": "sr:match:1003",
+    "gameId": "1003",
+    "homeTeamName": "Sevilla",
+    "awayTeamName": "Getafe",
+    "estimateStartTime": 1791745200000,
+    "matchStatus": "Not start",
+    "status": 0,
+    "sport": {
+     "id": "sr:sport:1",
+     "name": "Football",
+     "category": {
+      "id": "sr:category:1",
+      "name": "Spain",
+      "tournament": {
+       "id": "sr:tournament:1",
+       "name": "LaLiga"
+      }
+     }
+    },
+    "markets": [
+     {
+      "id": "10",
+      "desc": "Double Chance",
+      "status": 0,
+      "outcomes": [
+       {
+        "id": "9",
+        "desc": "Home or Draw",
+        "odds": "1.30",
+        "isActive": 1
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "eventId": "sr:match:1004",
+    "gameId": "1004",
+    "homeTeamName": "Napoli",
+    "awayTeamName": "Roma",
+    "estimateStartTime": 1790791200000,
+    "matchStatus": "2nd half",
+    "status": 1,
+    "sport": {
+     "id": "sr:sport:1",
+     "name": "Football",
+     "category": {
+      "id": "sr:category:1",
+      "name": "Italy",
+      "tournament": {
+       "id": "sr:tournament:1",
+       "name": "Serie A"
+      }
+     }
+    },
+    "markets": [
+     {
+      "id": "18",
+      "desc": "Over/Under",
+      "status": 0,
+      "outcomes": [
+       {
+        "id": "12",
+        "desc": "Over 2.5",
+        "odds": "1.90",
+        "isActive": 1
+       }
+      ],
+      "specifier": "total=2.5"
+     }
+    ]
+   },
+   {
+    "eventId": "sr:match:1005",
+    "gameId": "1005",
+    "homeTeamName": "LA Lakers",
+    "awayTeamName": "Boston Celtics",
+    "estimateStartTime": 1791594000000,
+    "matchStatus": "Not start",
+    "status": 0,
+    "sport": {
+     "id": "sr:sport:2",
+     "name": "Basketball",
+     "category": {
+      "id": "sr:category:1",
+      "name": "USA",
+      "tournament": {
+       "id": "sr:tournament:1",
+       "name": "NBA"
+      }
+     }
+    },
+    "markets": [
+     {
+      "id": "225",
+      "desc": "Total",
+      "status": 0,
+      "outcomes": [
+       {
+        "id": "12",
+        "desc": "Over 220.5",
+        "odds": "1.90",
+        "isActive": 1
+       }
+      ],
+      "specifier": "total=220.5"
+     }
+    ]
+   },
+   {
+    "eventId": "sr:match:1006",
+    "gameId": "1006",
+    "homeTeamName": "Alcaraz C.",
+    "awayTeamName": "Sinner J.",
+    "estimateStartTime": 1791644400000,
+    "matchStatus": "Not start",
+    "status": 0,
+    "sport": {
+     "id": "sr:sport:5",
+     "name": "Tennis",
+     "category": {
+      "id": "sr:category:1",
+      "name": "ATP",
+      "tournament": {
+       "id": "sr:tournament:1",
+       "name": "US Open"
+      }
+     }
+    },
+    "markets": [
+     {
+      "id": "186",
+      "desc": "Winner",
+      "status": 0,
+      "outcomes": [
+       {
+        "id": "4",
+        "desc": "Alcaraz C.",
+        "odds": "1.70",
+        "isActive": 1
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "eventId": "sr:match:1007",
+    "gameId": "1007",
+    "homeTeamName": "Gor Mahia",
+    "awayTeamName": "AFC Leopards",
+    "estimateStartTime": 1791633600000,
+    "matchStatus": "Not start",
+    "status": 0,
+    "sport": {
+     "id": "sr:sport:1",
+     "name": "Football",
+     "category": {
+      "id": "sr:category:1",
+      "name": "Kenya",
+      "tournament": {
+       "id": "sr:tournament:1",
+       "name": "Premier League"
+      }
+     }
+    },
+    "markets": [
+     {
+      "id": "18",
+      "desc": "Over/Under",
+      "status": 0,
+      "outcomes": [
+       {
+        "id": "12",
+        "desc": "Over 1.5",
+        "odds": "1.40",
+        "isActive": 1
+       }
+      ],
+      "specifier": "total=1.5"
+     }
+    ]
+   }
+  ]
+ }
+}

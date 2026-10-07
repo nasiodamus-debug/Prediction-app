@@ -1,0 +1,1110 @@
+{
+"id": 2025021261,
+"gameType": 2,
+"gameState": "OFF",
+"homeTeam": {
+"id": 6,
+"abbrev": "BOS"
+},
+"awayTeam": {
+"id": 14,
+"abbrev": "TBL"
+},
+"plays": [
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 1,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "left",
+"details": {
+"xCoord": 54,
+"yCoord": 13,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "missed-shot",
+"periodDescriptor": {
+"number": 1,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "left",
+"details": {
+"xCoord": 83,
+"yCoord": 33,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 1,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "left",
+"details": {
+"xCoord": -83,
+"yCoord": -4,
+"zoneCode": "O",
+"eventOwnerTeamId": 14,
+"goalieInNetId": 8480280
+}
+},
+{
+"typeDescKey": "missed-shot",
+"periodDescriptor": {
+"number": 1,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "left",
+"details": {
+"xCoord": -77,
+"yCoord": -7,
+"zoneCode": "O",
+"eventOwnerTeamId": 14,
+"goalieInNetId": 8480280
+}
+},
+{
+"typeDescKey": "missed-shot",
+"periodDescriptor": {
+"number": 1,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "left",
+"details": {
+"xCoord": 37,
+"yCoord": 37,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "missed-shot",
+"periodDescriptor": {
+"number": 1,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "left",
+"details": {
+"xCoord": 73,
+"yCoord": -9,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "missed-shot",
+"periodDescriptor": {
+"number": 1,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "left",
+"details": {
+"xCoord": 61,
+"yCoord": 19,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 1,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "left",
+"details": {
+"xCoord": 81,
+"yCoord": -2,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 1,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "left",
+"details": {
+"xCoord": -59,
+"yCoord": 17,
+"zoneCode": "O",
+"eventOwnerTeamId": 14,
+"goalieInNetId": 8480280
+}
+},
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 1,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "left",
+"details": {
+"xCoord": 60,
+"yCoord": -9,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "missed-shot",
+"periodDescriptor": {
+"number": 1,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "left",
+"details": {
+"xCoord": 31,
+"yCoord": -40,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "missed-shot",
+"periodDescriptor": {
+"number": 1,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "left",
+"details": {
+"xCoord": 83,
+"yCoord": -19,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "missed-shot",
+"periodDescriptor": {
+"number": 1,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "left",
+"details": {
+"xCoord": 56,
+"yCoord": 41,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 1,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "left",
+"details": {
+"xCoord": 50,
+"yCoord": -13,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "missed-shot",
+"periodDescriptor": {
+"number": 1,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "left",
+"details": {
+"xCoord": -30,
+"yCoord": 28,
+"zoneCode": "O",
+"eventOwnerTeamId": 14,
+"goalieInNetId": 8480280
+}
+},
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 1,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "left",
+"details": {
+"xCoord": -88,
+"yCoord": -4,
+"zoneCode": "O",
+"eventOwnerTeamId": 14,
+"goalieInNetId": 8480280
+}
+},
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 1,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "left",
+"details": {
+"xCoord": -49,
+"yCoord": 8,
+"zoneCode": "O",
+"eventOwnerTeamId": 14,
+"goalieInNetId": 8480280
+}
+},
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 1,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "left",
+"details": {
+"xCoord": -83,
+"yCoord": -3,
+"zoneCode": "O",
+"eventOwnerTeamId": 14,
+"goalieInNetId": 8480280
+}
+},
+{
+"typeDescKey": "missed-shot",
+"periodDescriptor": {
+"number": 2,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "right",
+"details": {
+"xCoord": -47,
+"yCoord": 35,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 2,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "right",
+"details": {
+"xCoord": -55,
+"yCoord": 14,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "missed-shot",
+"periodDescriptor": {
+"number": 2,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "right",
+"details": {
+"xCoord": -78,
+"yCoord": -9,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "missed-shot",
+"periodDescriptor": {
+"number": 2,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "right",
+"details": {
+"xCoord": -81,
+"yCoord": -4,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 2,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "right",
+"details": {
+"xCoord": 50,
+"yCoord": 22,
+"zoneCode": "O",
+"eventOwnerTeamId": 14,
+"goalieInNetId": 8480280
+}
+},
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 2,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "right",
+"details": {
+"xCoord": 82,
+"yCoord": 1,
+"zoneCode": "O",
+"eventOwnerTeamId": 14,
+"goalieInNetId": 8480280
+}
+},
+{
+"typeDescKey": "missed-shot",
+"periodDescriptor": {
+"number": 2,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "right",
+"details": {
+"xCoord": -45,
+"yCoord": -35,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "missed-shot",
+"periodDescriptor": {
+"number": 2,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "right",
+"details": {
+"xCoord": -66,
+"yCoord": 25,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 2,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "right",
+"details": {
+"xCoord": -52,
+"yCoord": 22,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 2,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "right",
+"details": {
+"xCoord": 58,
+"yCoord": 1,
+"zoneCode": "O",
+"eventOwnerTeamId": 14,
+"goalieInNetId": 8480280
+}
+},
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 2,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "right",
+"details": {
+"xCoord": -86,
+"yCoord": 5,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 2,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "right",
+"details": {
+"xCoord": 81,
+"yCoord": -3,
+"zoneCode": "O",
+"eventOwnerTeamId": 14,
+"goalieInNetId": 8480280
+}
+},
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 2,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "right",
+"details": {
+"xCoord": 54,
+"yCoord": 22,
+"zoneCode": "O",
+"eventOwnerTeamId": 14,
+"goalieInNetId": 8480280
+}
+},
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 2,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "right",
+"details": {
+"xCoord": 51,
+"yCoord": -16,
+"zoneCode": "O",
+"eventOwnerTeamId": 14,
+"goalieInNetId": 8480280
+}
+},
+{
+"typeDescKey": "goal",
+"periodDescriptor": {
+"number": 2,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "right",
+"details": {
+"xCoord": -58,
+"yCoord": -2,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "missed-shot",
+"periodDescriptor": {
+"number": 2,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "right",
+"details": {
+"xCoord": -55,
+"yCoord": 35,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 2,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "right",
+"details": {
+"xCoord": 77,
+"yCoord": -16,
+"zoneCode": "O",
+"eventOwnerTeamId": 14,
+"goalieInNetId": 8480280
+}
+},
+{
+"typeDescKey": "missed-shot",
+"periodDescriptor": {
+"number": 2,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "right",
+"details": {
+"xCoord": -82,
+"yCoord": 11,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 2,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "right",
+"details": {
+"xCoord": -57,
+"yCoord": -28,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "missed-shot",
+"periodDescriptor": {
+"number": 2,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "right",
+"details": {
+"xCoord": -33,
+"yCoord": 17,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "missed-shot",
+"periodDescriptor": {
+"number": 2,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "right",
+"details": {
+"xCoord": 43,
+"yCoord": 14,
+"zoneCode": "O",
+"eventOwnerTeamId": 14,
+"goalieInNetId": 8480280
+}
+},
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 2,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "right",
+"details": {
+"xCoord": -77,
+"yCoord": 21,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "missed-shot",
+"periodDescriptor": {
+"number": 2,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "right",
+"details": {
+"xCoord": -87,
+"yCoord": 7,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "missed-shot",
+"periodDescriptor": {
+"number": 2,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "right",
+"details": {
+"xCoord": -38,
+"yCoord": -23,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "missed-shot",
+"periodDescriptor": {
+"number": 2,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "right",
+"details": {
+"xCoord": -72,
+"yCoord": -29,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "missed-shot",
+"periodDescriptor": {
+"number": 2,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "right",
+"details": {
+"xCoord": -35,
+"yCoord": 25,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 2,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "right",
+"details": {
+"xCoord": -60,
+"yCoord": -10,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 2,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "right",
+"details": {
+"xCoord": -64,
+"yCoord": 20,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "missed-shot",
+"periodDescriptor": {
+"number": 2,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "right",
+"details": {
+"xCoord": -65,
+"yCoord": 5,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 2,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "right",
+"details": {
+"xCoord": 69,
+"yCoord": -19,
+"zoneCode": "O",
+"eventOwnerTeamId": 14,
+"goalieInNetId": 8480280
+}
+},
+{
+"typeDescKey": "missed-shot",
+"periodDescriptor": {
+"number": 2,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "right",
+"details": {
+"xCoord": -49,
+"yCoord": -2,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "missed-shot",
+"periodDescriptor": {
+"number": 2,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "right",
+"details": {
+"xCoord": -84,
+"yCoord": -20,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 3,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "left",
+"details": {
+"xCoord": -60,
+"yCoord": -1,
+"zoneCode": "O",
+"eventOwnerTeamId": 14,
+"goalieInNetId": 8480280
+}
+},
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 3,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "left",
+"details": {
+"xCoord": -33,
+"yCoord": -16,
+"zoneCode": "O",
+"eventOwnerTeamId": 14,
+"goalieInNetId": 8480280
+}
+},
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 3,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "left",
+"details": {
+"xCoord": -48,
+"yCoord": 26,
+"zoneCode": "O",
+"eventOwnerTeamId": 14,
+"goalieInNetId": 8480280
+}
+},
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 3,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "left",
+"details": {
+"xCoord": 92,
+"yCoord": 8,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "goal",
+"periodDescriptor": {
+"number": 3,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "left",
+"details": {
+"xCoord": -66,
+"yCoord": 0,
+"zoneCode": "O",
+"eventOwnerTeamId": 14,
+"goalieInNetId": 8480280
+}
+},
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 3,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "left",
+"details": {
+"xCoord": -29,
+"yCoord": 9,
+"zoneCode": "O",
+"eventOwnerTeamId": 14,
+"goalieInNetId": 8480280
+}
+},
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 3,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "left",
+"details": {
+"xCoord": -46,
+"yCoord": 14,
+"zoneCode": "O",
+"eventOwnerTeamId": 14,
+"goalieInNetId": 8480280
+}
+},
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 3,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "left",
+"details": {
+"xCoord": -56,
+"yCoord": 39,
+"zoneCode": "O",
+"eventOwnerTeamId": 14,
+"goalieInNetId": 8480280
+}
+},
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 3,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "left",
+"details": {
+"xCoord": 67,
+"yCoord": 20,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 3,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "left",
+"details": {
+"xCoord": 82,
+"yCoord": 5,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 3,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "left",
+"details": {
+"xCoord": 82,
+"yCoord": 6,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 3,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "left",
+"details": {
+"xCoord": 70,
+"yCoord": 22,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 3,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "left",
+"details": {
+"xCoord": 56,
+"yCoord": 24,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "missed-shot",
+"periodDescriptor": {
+"number": 3,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "left",
+"details": {
+"xCoord": -65,
+"yCoord": 17,
+"zoneCode": "O",
+"eventOwnerTeamId": 14,
+"goalieInNetId": 8480280
+}
+},
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 3,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "left",
+"details": {
+"xCoord": -57,
+"yCoord": -10,
+"zoneCode": "O",
+"eventOwnerTeamId": 14,
+"goalieInNetId": 8480280
+}
+},
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 3,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "left",
+"details": {
+"xCoord": 78,
+"yCoord": 15,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 3,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "left",
+"details": {
+"xCoord": -38,
+"yCoord": 37,
+"zoneCode": "O",
+"eventOwnerTeamId": 14,
+"goalieInNetId": 8480280
+}
+},
+{
+"typeDescKey": "missed-shot",
+"periodDescriptor": {
+"number": 3,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "left",
+"details": {
+"xCoord": -83,
+"yCoord": 0,
+"zoneCode": "O",
+"eventOwnerTeamId": 14,
+"goalieInNetId": 8480280
+}
+},
+{
+"typeDescKey": "missed-shot",
+"periodDescriptor": {
+"number": 3,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "left",
+"details": {
+"xCoord": 49,
+"yCoord": -29,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 3,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "left",
+"details": {
+"xCoord": -82,
+"yCoord": 1,
+"zoneCode": "O",
+"eventOwnerTeamId": 14,
+"goalieInNetId": 8480280
+}
+},
+{
+"typeDescKey": "goal",
+"periodDescriptor": {
+"number": 3,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "left",
+"details": {
+"xCoord": -83,
+"yCoord": 3,
+"zoneCode": "O",
+"eventOwnerTeamId": 14,
+"goalieInNetId": 8480280
+}
+},
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 3,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "left",
+"details": {
+"xCoord": 49,
+"yCoord": -7,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+},
+{
+"typeDescKey": "shot-on-goal",
+"periodDescriptor": {
+"number": 3,
+"periodType": "REG"
+},
+"homeTeamDefendingSide": "left",
+"details": {
+"xCoord": 65,
+"yCoord": -23,
+"zoneCode": "O",
+"eventOwnerTeamId": 6,
+"goalieInNetId": 8476883
+}
+}
+]
+}

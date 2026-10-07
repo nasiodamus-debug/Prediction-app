@@ -1,0 +1,51 @@
+Div,Date,Time,HomeTeam,AwayTeam,Referee,HC,AC,HY,AY,HR,AR
+E0,21/08/2026,20:00,Arsenal,Coventry,T Bramall,8,2,1,1,0,0
+E0,22/08/2026,12:30,Hull,Man United,D England,1,6,2,1,0,0
+E0,22/08/2026,15:00,Everton,Crystal Palace,P Tierney,4,0,0,1,0,0
+E0,22/08/2026,15:00,Ipswich,Sunderland,F Hallam,3,5,0,3,0,0
+E0,22/08/2026,15:00,Nott'm Forest,Leeds,R Jones,3,2,2,1,0,0
+E0,22/08/2026,17:30,Brentford,Tottenham,M Oliver,7,3,1,1,0,0
+E0,23/08/2026,14:00,Brighton,Aston Villa,P Bankes,5,2,2,3,0,1
+E0,23/08/2026,14:00,Man City,Bournemouth,J Gillett,8,3,1,2,0,0
+E0,23/08/2026,16:30,Newcastle,Liverpool,S Attwell,2,6,5,3,0,0
+E0,24/08/2026,20:00,Fulham,Chelsea,J Brooks,6,4,2,3,0,0
+E0,28/08/2026,20:00,Crystal Palace,Man City,A Madley,2,6,1,2,0,0
+E0,29/08/2026,12:30,Liverpool,Nott'm Forest,S Barrott,3,5,4,2,0,0
+E0,29/08/2026,15:00,Bournemouth,Everton,C Kavanagh,10,7,3,2,0,0
+E0,29/08/2026,15:00,Coventry,Hull,J Smith,6,2,1,4,0,0
+E0,29/08/2026,17:30,Tottenham,Newcastle,P Bankes,9,7,1,2,0,0
+E0,30/08/2026,14:00,Chelsea,Brighton,M Oliver,4,7,1,3,0,0
+E0,30/08/2026,14:00,Leeds,Brentford,T Harrington,5,6,0,4,0,0
+E0,30/08/2026,14:00,Sunderland,Fulham,M Salisbury,3,4,0,2,0,0
+E0,30/08/2026,16:30,Man United,Ipswich,C Pawson,8,4,1,3,0,0
+E0,31/08/2026,20:00,Aston Villa,Arsenal,J Gillett,2,4,3,1,0,0
+E0,04/09/2026,20:00,Ipswich,Liverpool,D England,4,3,1,3,0,0
+E0,05/09/2026,12:30,Newcastle,Bournemouth,R Jones,4,3,2,3,0,0
+E0,05/09/2026,15:00,Brentford,Sunderland,T Bramall,4,3,3,2,0,0
+E0,05/09/2026,15:00,Brighton,Leeds,S Attwell,7,6,3,3,0,0
+E0,05/09/2026,15:00,Fulham,Crystal Palace,S Barrott,7,1,0,0,0,0
+E0,05/09/2026,15:00,Man City,Coventry,P Tierney,4,5,1,2,0,0
+E0,05/09/2026,15:00,Nott'm Forest,Tottenham,C Pawson,2,10,2,2,0,0
+E0,05/09/2026,17:30,Hull,Aston Villa,M Oliver,3,4,2,0,0,0
+E0,06/09/2026,14:00,Everton,Man United,J Brooks,4,3,3,3,0,0
+E0,06/09/2026,16:30,Arsenal,Chelsea,C Kavanagh,5,3,2,4,0,0
+E0,12/09/2026,15:00,Aston Villa,Nott'm Forest,A Madley,6,1,2,5,0,0
+E0,12/09/2026,15:00,Bournemouth,Brentford,J Gillett,2,1,5,1,0,0
+E0,12/09/2026,15:00,Chelsea,Hull,F Hallam,10,4,1,5,0,0
+E0,12/09/2026,15:00,Crystal Palace,Ipswich,C Kavanagh,6,3,1,3,1,0
+E0,12/09/2026,15:00,Liverpool,Fulham,T Bramall,5,8,0,1,0,0
+E0,12/09/2026,17:30,Tottenham,Everton,D England,5,6,0,2,0,0
+E0,12/09/2026,20:00,Sunderland,Arsenal,J Brooks,4,2,6,2,1,0
+E0,13/09/2026,14:00,Coventry,Brighton,T Harrington,5,3,0,0,1,0
+E0,13/09/2026,16:30,Man United,Man City,M Oliver,6,7,1,2,0,1
+E0,14/09/2026,20:00,Leeds,Newcastle,M Salisbury,5,5,1,2,0,0
+E0,18/09/2026,20:00,Brentford,Chelsea,A Madley,4,12,2,0,0,0
+E0,19/09/2026,12:30,Tottenham,Aston Villa,S Barrott,11,1,1,2,0,0
+E0,19/09/2026,15:00,Brighton,Arsenal,D England,5,6,4,1,0,0
+E0,19/09/2026,15:00,Everton,Ipswich,S Attwell,4,4,2,1,0,1
+E0,19/09/2026,15:00,Newcastle,Hull,T Harrington,4,7,1,4,0,0
+E0,19/09/2026,17:30,Nott'm Forest,Coventry,J Gillett,6,2,2,0,0,0
+E0,20/09/2026,14:00,Bournemouth,Liverpool,M Oliver,3,3,1,2,0,0
+E0,20/09/2026,14:00,Leeds,Crystal Palace,A Herczeg,4,3,2,3,0,0
+E0,20/09/2026,14:00,Man City,Sunderland,R Jones,6,5,0,1,0,0
+E0,20/09/2026,16:30,Fulham,Man United,P Bankes,3,13,3,0,0,0
