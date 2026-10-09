@@ -53,6 +53,7 @@ ALIASES: Mapping[str, str] = {
     "nottm forest": "nottingham forest",
     "leeds united": "leeds",
     "west ham united": "west ham",
+    "los chankas cyc": "los chankas",
 }
 
 # Words that carry no identity ("Arsenal FC" is "Arsenal"). Used only in the partial match.

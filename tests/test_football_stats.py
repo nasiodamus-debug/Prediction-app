@@ -439,14 +439,14 @@ def college_api():
     return api
 
 
-def test_college_teams_are_covered_through_the_fbs_scoreboard_with_a_spelling_alias_and_no_wind():
+def test_college_teams_are_covered_through_the_fbs_scoreboard_with_a_spelling_alias_and_a_home_stadium_wind():
     api = college_api()
     game = fixture("Delaware Fightin´ Blue Hens", "Liberty Flames", competition=COLLEGE)
     result = fetch(api, game)[game.match_id]
     assert result.status == READY
     got = values(result)
     assert got["home.points_for"].value == 31.0 and got["home.points_for"].source == "espn-football:college-football"
-    assert "match.wind_mph" not in got                       # no college stadium table: an Over will be insufficient data
+    assert got["match.wind_mph"].source.startswith("open-meteo: Delaware Stadium")      # college stadium table, by home team
     groups = {dict(r.url.params).get("groups") for r in api.espn_requests() if r.url.path.endswith("/scoreboard")}
     assert groups == {"80", "81"}                            # FBS and FCS are both read and merged
     assert "college-football" in str(api.requests[0].url)
@@ -464,3 +464,21 @@ def test_college_and_nfl_fixtures_in_one_slate_use_their_own_league_reads():
     result = fetch(nfl_api, game, fixture("Ottawa Redblacks", "Hamilton Tiger-Cats", competition="Canada - CFL"))
     assert result[game.match_id].status == READY and len(result) == 2
     assert all("/nfl/" in str(r.url) for r in nfl_api.espn_requests())
+
+
+# ================================================================ the college stadium table
+def test_college_stadiums_are_looked_up_by_home_team_and_skipped_when_the_game_is_elsewhere():
+    from predictions.adapters.weather.college_stadiums import COLLEGE_VENUES, college_stadium_for
+    for _city, stadium in COLLEGE_VENUES.values():
+        assert stadium.roof in ROOFS and -90 <= stadium.latitude <= 90 and -180 <= stadium.longitude <= 180
+    assert college_stadium_for("Western Kentucky Hilltoppers", "Bowling Green").name.endswith("L.T. Smith Stadium")
+    assert college_stadium_for("Arkansas State Red Wolves", None).roof == "open"       # no scheduled venue: the home stadium
+    assert college_stadium_for("UTSA Roadrunners", "San Antonio").roof == "dome"
+    assert college_stadium_for("Alabama State Hornets", "Montgomery") is not None
+    assert college_stadium_for("Arkansas State Red Wolves", "Arlington") is None        # neutral site: wrong weather place
+    assert college_stadium_for("Some Unlisted College", None) is None
+
+
+def test_the_los_chankas_spelling_resolves_to_the_stats_source_name():
+    from predictions.core.identity import resolve_team
+    assert resolve_team("Los Chankas CYC", ["Atletico Grau", "Los Chankas"]).method == "alias"

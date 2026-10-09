@@ -25,9 +25,10 @@ What is derived (source `espn-football:<league>`):
     the team's SEASON totals (possessionTimeSeconds, totalOffensivePlays, rushingAttempts). The 28.5 s/play line of the
     rule is used as an absolute threshold; the league's "bottom 20%" is not ranked (that would need every team's totals).
   * `match.league_ppg` / `match.league_fh_ppg`: league means over the sampled games.
-  * `match.wind_mph` (NFL only): the schedule's venue city -> stadium table -> Open-Meteo forecast, or 0 for a fixed-roof
-    stadium. A game with no scheduled venue, a city not in the table, an unreadable forecast, or a kickoff beyond the
-    forecast horizon has NO wind input. College games have none (no stadium table for college).
+  * `match.wind_mph`: NFL: the schedule's venue city -> stadium table -> Open-Meteo forecast, or 0 for a fixed-roof
+    stadium. College: the home team -> college stadium table (weather/college_stadiums.py), skipped when the schedule names
+    a different venue city. A game with no scheduled venue (NFL), a city/team not in the table, an unreadable forecast, or a
+    kickoff beyond the forecast horizon has NO wind input.
 Only "USA - NFL" and "USA - NCAA, ..." are covered (FBS and FCS teams); every other competition, such as the CFL, is
 "insufficient data" (the analyst may fill the required inputs).
 """
@@ -42,6 +43,7 @@ from typing import Callable
 import httpx
 
 from predictions.adapters.weather.openmeteo import fetch_wind
+from predictions.adapters.weather.college_stadiums import college_stadium_for
 from predictions.adapters.weather.stadiums import stadium_for_city
 from predictions.core.engines.american_football import COLLEGE, NFL, league_of
 from predictions.core.identity import resolve_team
@@ -428,13 +430,14 @@ class EspnFootballStats:
 
     async def _wind(self, client, league: str, fixture: Fixture, home: str, away: str, scheduled: list[Scheduled],
                     now: datetime) -> Input | None:
-        if league != NFL:
-            return None  # no college stadium table (see adapters/weather/stadiums.py)
         match = [s for s in scheduled if normalize_team(s.home) == normalize_team(home)
                  and normalize_team(s.away) == normalize_team(away) and abs(s.when - fixture.kickoff_utc) <= MATCH_WINDOW]
-        if len(match) < 1:
-            return None
-        stadium = stadium_for_city(match[0].city)
+        if league == NFL:
+            if len(match) < 1:
+                return None
+            stadium = stadium_for_city(match[0].city)
+        else:  # college: the home team's stadium, unless the schedule puts the game in another city
+            stadium = college_stadium_for(home, match[0].city if match else None)
         if stadium is None:
             return None
         if stadium.roof == "dome":

@@ -101,3 +101,50 @@ def test_unreadable_outcomes_are_skipped_not_priced():
     for name, outcome in (("2nd Half - Multigoals", "lots"), ("2nd Half - Double Chance", "Home or Nobody"), ("GG/NG", "Maybe")):
         offer = MarketOffer("0", name, "", (Outcome(outcome, D("1.5")),))
         assert SoccerEngine().evaluate_exact(fixture([], competition=TOP), HOME_FAVOURITE, offer) == []
+
+
+# ---- team corners and Team to Win Either Half (Review only)
+def _with_corners(home_for, home_against, away_for, away_against):
+    from predictions.core.inputs import Input
+    extra = [Input("home.corners_for", home_for, "corners per match", "t"), Input("home.corners_against", home_against, "corners per match", "t"),
+             Input("away.corners_for", away_for, "corners per match", "t"), Input("away.corners_against", away_against, "corners per match", "t")]
+    return tuple(HOME_FAVOURITE) + tuple(extra)
+
+
+def _price_with(inputs, name, specifier, outcomes, market_id="0"):
+    offer = MarketOffer(market_id, name, specifier, tuple(Outcome(o, D("1.80")) for o in outcomes))
+    return SoccerEngine().evaluate_exact(fixture([], competition=TOP), inputs, offer)
+
+
+def test_team_corners_are_understood_by_name_and_matchday_never_prices_them():
+    engine = SoccerEngine()
+    for name in ("Home Team Total Corners", "Away Team Total Corners", "Home Team to Win Either Half", "Away Team to Win Either Half"):
+        assert engine.understands(MarketOffer("900300", name, "", ())), name
+    assert not engine.understands(MarketOffer("0", "Home Team Total Cards", "", ()))
+
+
+def test_team_corners_use_the_teams_own_corners_and_over_is_priced_above_under_when_the_mean_is_high():
+    from predictions.core.engines.soccer import TEAM_CORNERS_DISPERSION, negbin_cdf
+    inputs = _with_corners(7.0, 4.0, 4.0, 5.0)               # home expects (7 + 5) / 2 = 6.0 corners
+    found = _price_with(inputs, "Home Team Total Corners", "total=4.5", ("Over 4.5", "Under 4.5"), "900300")
+    over = next(e for e in found if "Over" in e.selection)
+    assert over.estimate.probability == pytest.approx(1 - negbin_cdf(4, 6.0, TEAM_CORNERS_DISPERSION), abs=2e-3)
+    assert over.market == "Home team corners 4.5" and "expected home team corners 6.0" in over.notes[0]
+    away = _price_with(inputs, "Away Team Total Corners", "total=4.5", ("Over 4.5",), "900301")[0]
+    assert away.estimate.probability == pytest.approx(1 - negbin_cdf(4, (4.0 + 4.0) / 2, TEAM_CORNERS_DISPERSION), abs=2e-3)
+
+
+def test_team_corners_without_corner_data_are_insufficient_not_guessed():
+    found = _price_with(tuple(HOME_FAVOURITE), "Home Team Total Corners", "total=4.5", ("Over 4.5",), "900300")
+    assert len(found) == 1 and found[0].insufficient and "missing corner data" in found[0].reason
+
+
+def test_win_either_half_prices_yes_from_two_independent_halves_and_never_prices_no():
+    h1, h2 = (result_probabilities(RATES[0] * FIRST_HALF_SHARE, RATES[1] * FIRST_HALF_SHARE),
+              result_probabilities(RATES[0] * SECOND_HALF_SHARE, RATES[1] * SECOND_HALF_SHARE))
+    yes = _price_with(tuple(HOME_FAVOURITE), "Home Team to Win Either Half", "", ("Yes", "No"))
+    assert len(yes) == 1 and yes[0].selection == "Yes"
+    assert yes[0].estimate.probability == pytest.approx(1 - (1 - h1[0]) * (1 - h2[0]), abs=2e-3)
+    assert yes[0].estimate.probability > max(h1[0], h2[0])                 # at least each half alone
+    away = _price_with(tuple(HOME_FAVOURITE), "Away Team to Win Either Half", "", ("Yes",))[0]
+    assert away.estimate.probability == pytest.approx(1 - (1 - h1[2]) * (1 - h2[2]), abs=2e-3)

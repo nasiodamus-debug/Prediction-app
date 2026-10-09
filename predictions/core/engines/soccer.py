@@ -114,6 +114,9 @@ CORNERS_DISPERSION = 1.3             # variance / mean of total corners per game
 MIN_EXPECTED_CORNERS = 4.0
 MAX_EXPECTED_CORNERS = 20.0
 CORNERS_MODEL = "negbin-corners-v1"
+TEAM_CORNERS_DISPERSION = 1.15       # variance / mean of ONE team's corners per game (judgement, not fitted; below the match figure)
+MIN_EXPECTED_TEAM_CORNERS = 2.0
+MAX_EXPECTED_TEAM_CORNERS = 10.0
 
 # Corners and cards lines are recognised by market ID (166 and 139, spec 11-1: both only appear on SportyBet's per-event
 # endpoint, not in the listing) and, for a booking code that spells them differently, by market NAME. Names with these words are
@@ -237,6 +240,8 @@ def probability_over(inputs: Sequence[Input], line: Decimal) -> float:
 _RESULT_OR_OVER = re.compile(r"(home team|away team|draw) or over (\d+(?:\.\d+)?)")
 _THREE_WAY = re.compile(r"handicap (\d+):(\d+)")
 _BOTH_HALVES_UNDER = re.compile(r"both halves under (\d+(?:\.\d+)?)")
+_TEAM_CORNERS = re.compile(r"(home|away) team total corners")
+_WIN_EITHER_HALF = re.compile(r"(home|away) team to win either half")
 _THREE_WAY_OUTCOME = re.compile(r"^(home|draw|away)\s*\(\s*(\d+):(\d+)\s*\)$", re.IGNORECASE)
 _ASIAN_OUTCOME = re.compile(r"^(home|away)\s*\(\s*([+-]?\d+(?:\.\d+)?)\s*\)$", re.IGNORECASE)
 _MULTIGOALS_RANGE = re.compile(r"^(\d+)\s*-\s*(\d+)$")
@@ -352,6 +357,12 @@ def market_kind(offer: MarketOffer) -> str | None:
         return "double_chance_2h"
     if _BOTH_HALVES_UNDER.fullmatch(name_key):
         return "both_halves_under"
+    team_corners = _TEAM_CORNERS.fullmatch(name_key)
+    if team_corners:
+        return f"{team_corners.group(1)}_corners"
+    either_half = _WIN_EITHER_HALF.fullmatch(name_key)
+    if either_half:
+        return f"{either_half.group(1)}_win_either_half"
     name = f" {offer.name.lower()} "
     if any(word in name for word in PROP_EXCLUDED_WORDS):
         return None
@@ -463,7 +474,10 @@ class SoccerEngine:
         extra = {"btts": ctx.exact_btts, "dnb": ctx.exact_draw_no_bet, "result_or_over": ctx.exact_result_or_over,
                  "result_2up": ctx.exact_result_2up, "handicap3": ctx.exact_three_way_handicap,
                  "multigoals_2h": ctx.exact_multigoals_second_half, "double_chance_2h": ctx.exact_double_chance_second_half,
-                 "both_halves_under": ctx.exact_both_halves_under}.get(kind)
+                 "both_halves_under": ctx.exact_both_halves_under,
+                 "home_corners": lambda: ctx.exact_team_corners("home"), "away_corners": lambda: ctx.exact_team_corners("away"),
+                 "home_win_either_half": lambda: ctx.exact_win_either_half("home"),
+                 "away_win_either_half": lambda: ctx.exact_win_either_half("away")}.get(kind)
         return extra() if extra is not None else []
 
 
@@ -739,6 +753,55 @@ class _Context:
                                                     notes=(f"half goals assumed {FIRST_HALF_SHARE:.0%} / {SECOND_HALF_SHARE:.0%} of the game's",)))
                 elif side == "yes":
                     results.append(self._under_type(title, "Yes", outcome.odds, p_both, "'Yes' is an Under (fewer goals in both halves)"))
+        return results
+
+    def exact_team_corners(self, team: str) -> list[Evaluation]:
+        """One team's own corners (SportyBet "Home/Away Team Total Corners"): the team's corners for, averaged with what the
+        opponent concedes, through the same negative binomial as match corners but with a lower dispersion. Review only."""
+        offers = self._offers(f"{team}_corners")
+        names = (f"{team}.corners_for", f"{'away' if team == 'home' else 'home'}.corners_against")
+        missing = [n for n in names if n not in self.by_name]
+        results = []
+        if not missing:
+            mean = min(max((self.by_name[names[0]].value + self.by_name[names[1]].value) / 2, MIN_EXPECTED_TEAM_CORNERS),
+                       MAX_EXPECTED_TEAM_CORNERS)
+            notes = (_inputs_note(tuple(self.by_name[n] for n in names),
+                                  f"expected {team} team corners {mean:.1f}, negative binomial, "
+                                  f"dispersion {TEAM_CORNERS_DISPERSION}"),)
+        for offer in offers:
+            line = _parse_line(offer.specifier, PROP_LINE_MIN, PROP_LINE_MAX, True, True)
+            if line is None:
+                continue
+            for side in SIDES_PLAYED:
+                outcome = _outcome(offer, side)
+                if outcome is None:
+                    continue
+                market, selection = f"{team.title()} team corners {fmt_line(line)}", f"{team.title()} team corners {side.title()} {fmt_line(line)}"
+                if missing:
+                    results.append(self._insufficient(market, selection, outcome.odds,
+                                                      "missing corner data: " + ", ".join(missing), CORNERS_MODEL))
+                    continue
+                o, u, push = line_probabilities(lambda k: negbin_cdf(k, mean, TEAM_CORNERS_DISPERSION), line)
+                estimate = self._estimate(o, u, push, side, CORNERS_MODEL)
+                extra = (_push_note(estimate, line, "corner(s)"),) if push else ()
+                results.append(self._evaluation(market, selection, outcome.odds, estimate, "", "", notes + extra))
+        return results
+
+    def exact_win_either_half(self, team: str) -> list[Evaluation]:
+        """"Team to Win Either Half", Yes only ("No" is the opposite of a goals pick and is not priced). The team wins a half when
+        it outscores the opponent in it; the halves are treated as independent, with the assumed 45% / 55% split of goals."""
+        win_1 = result_probabilities(self.home * FIRST_HALF_SHARE, self.away * FIRST_HALF_SHARE)
+        win_2 = result_probabilities(self.home * SECOND_HALF_SHARE, self.away * SECOND_HALF_SHARE)
+        index = 0 if team == "home" else 2
+        p = 1.0 - (1.0 - win_1[index]) * (1.0 - win_2[index])
+        results = []
+        for offer in self._offers(f"{team}_win_either_half"):
+            for outcome in offer.outcomes:
+                if outcome.name.strip().lower() == "yes":
+                    results.append(self._evaluation(
+                        f"{team.title()} Team to Win Either Half", "Yes", outcome.odds,
+                        Estimate(min(max(p, 0.0), 1.0), self.used, self.model),
+                        notes=(f"half goals assumed {FIRST_HALF_SHARE:.0%} / {SECOND_HALF_SHARE:.0%} of the game's, halves independent",)))
         return results
 
     def exact_results(self) -> list[Evaluation]:

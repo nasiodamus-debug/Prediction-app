@@ -4,8 +4,8 @@ Why by city and not by team: a game can be played away from the home team's stad
 sites), and ESPN's schedule names the real venue and its city for every game. A game whose venue city is not in this
 table has NO wind figure, and an Over on it is "insufficient data" (never assumed calm). The table covers the NFL
 stadium cities (Inglewood and East Rutherford each host two teams) and the cities that host NFL international games.
-COLLEGE stadiums are NOT in the table (a college team's city can also hold an NFL stadium with a different roof), so
-college Overs are "insufficient data" unless a wind figure is supplied some other way.
+COLLEGE stadiums are NOT in this table (a college team's city can also hold an NFL stadium with a different roof);
+college stadiums live in college_stadiums.py (keyed by home team).
 
 Coordinates are approximate (two to four decimals; a wind forecast does not need more) and were entered by hand from
 public knowledge of the stadiums, not fetched: a wrong row would only move the forecast a few kilometres.
