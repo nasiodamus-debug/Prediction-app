@@ -138,6 +138,7 @@ def _answer_text(text: str) -> str:
 
 
 class ClaudeAnalyst:
+    name = "claude"
     paid = True   # its tokens and searches are billed (the free Gemini analyst's are not): see select.FallbackAnalyst
 
     def __init__(self, client=None, api_key: str | None = None, model: str = MODEL, last_resort: bool = False):

@@ -12,6 +12,7 @@ from predictions.core.analyst import (DEFAULT_DAILY_CALL_LIMIT, RUN_LIMIT, Analy
                                       query_for)
 from predictions.core.inputs import Input
 from predictions.core.dates import lagos_today
+from predictions.core.inputs import GOALS_ONLY_REGISTRY
 from predictions.core.ports import Analyst, AnalystUnavailable
 from predictions.core.stats import (CAT_HISTORY, INSUFFICIENT, FixtureStats, add_reason, assess_goals_only, merge_analyst, missing_for,
                                     skip_category)
@@ -185,7 +186,8 @@ class AnalystRun:
         u = self.usage
         return u.input_tokens * USD_PER_INPUT_TOKEN + u.output_tokens * USD_PER_OUTPUT_TOKEN + u.searches * USD_PER_SEARCH
 
-    async def ask(self, fixture: Fixture, wanted: tuple[str, ...]) -> AnalystReport | None:
+    async def ask(self, fixture: Fixture, wanted: tuple[str, ...],
+                  essential: tuple[str, ...] | None = None) -> AnalystReport | None:
         """None when no call was made (cap reached, outage) or the service failed; else the validated report.
 
         The checks and the counting below happen with NO await in between, so concurrent asks (flow/analyst.py runs a few
@@ -210,7 +212,7 @@ class AnalystRun:
             self.budget.record(1)  # counted before the call: a call that fails still cost a request
         self.asked.add(fixture.match_id)
         try:
-            report = await self.analyst.research(query_for(fixture, wanted))
+            report = await self.analyst.research(query_for(fixture, wanted, essential))
         except AnalystUnavailable as error:
             self.unavailable = str(error) or "the Claude service is unavailable"
             return None
@@ -227,11 +229,18 @@ class AnalystRun:
         return (f" Daily analyst limit of {self.budget.limit} calls reached: the analyst is skipped until tomorrow "
                 "(Lagos time).")
 
+    def _providers(self) -> str:
+        """Which analyst made the calls (Gemini is free, Claude is paid) and why Claude was held back, when the analyst can say."""
+        describe = getattr(self.analyst, "breakdown", None)
+        text = describe() if callable(describe) else ""
+        return f" Lookups: {text}." if text else ""
+
     def short_summary(self) -> str:
         """ONE short line for the end of a passing list: the calls made and the estimated cost ('' when none were made)."""
         if not self.calls and not self.cache_hits:
             return ""
         text = f"AI analyst: {self.calls} call(s) used, about ${self.cost:.2f} (estimate, not a bill)."
+        text += self._providers()
         if self.cache_hits:
             text += f" {self.cache_hits} answer(s) reused from today's cache at no cost."
         if self.daily_hit:
@@ -242,6 +251,7 @@ class AnalystRun:
         """The line telling the owner what the analyst cost this run (shown every run it is used)."""
         text = (f"AI analyst: used {self.calls} of {self.limit} calls, about ${self.cost:.2f} "
                 f"({self.usage.searches} web searches; estimate, not a bill).")
+        text += self._providers()
         if self.cache_hits:
             text += f" {self.cache_hits} answer(s) reused from today's cache at no cost (not counted in the limits)."
         if self.daily_hit:
@@ -260,6 +270,14 @@ def season_not_started(entry: FixtureStats) -> bool:
     """True when the free source found no completed games for a team in its window (a season that has not started or is over):
     the analyst cannot invent the history, so it is not paid to look (ANALYST_MODE=last_resort)."""
     return skip_category(entry) == CAT_HISTORY and any("has no completed" in r for r in entry.reasons)
+
+
+def paid_worthy(fixture: Fixture, wanted: tuple[str, ...], goals_only_fallback: bool) -> tuple[str, ...] | None:
+    """The part of `wanted` worth a PAID lookup. A Review prices a soccer game with no xG from goals alone (the goals-only model),
+    so Claude is asked only for matches and goals, never for the xG that lower leagues rarely have. None: everything is worth it."""
+    if goals_only_fallback and fixture.match_id.sport == "soccer":
+        return tuple(n for n in wanted if n.partition(".")[2] in GOALS_ONLY_REGISTRY)
+    return None
 
 
 async def fill_missing_inputs(fixtures: list[Fixture], stats: dict[MatchId, FixtureStats], run: AnalystRun,
@@ -281,7 +299,8 @@ async def fill_missing_inputs(fixtures: list[Fixture], stats: dict[MatchId, Fixt
         if run.last_resort and season_not_started(entry):
             continue   # nothing to find: the free source says the team has no recent games (preseason or offseason)
         work.append((fixture, entry, wanted))
-    reports = await gather_in_order([(lambda f=f, w=w: run.ask(f, w)) for f, _, w in work], concurrency)
+    reports = await gather_in_order([(lambda f=f, w=w: run.ask(f, w, paid_worthy(f, w, goals_only_fallback)))
+                                     for f, _, w in work], concurrency)
     for (fixture, entry, _), report in zip(work, reports):
         if report is None:
             if run.unavailable:

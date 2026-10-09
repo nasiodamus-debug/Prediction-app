@@ -188,4 +188,30 @@ def test_no_secret_reaches_the_analyst_only_identifiers_do():
             return await super().research(query)
 
     fill(games(3), Spy(reverse=False))
-    assert all(set(vars(q)) == {"home", "away", "league", "kickoff_date", "wanted", "sport"} for q in seen)
+    assert all(set(vars(q)) == {"home", "away", "league", "kickoff_date", "wanted", "sport", "essential"} for q in seen)
+
+
+# ---- paid-tier cost controls at the flow level
+def test_a_review_asks_claude_only_for_goals_stats_and_other_runs_for_everything():
+    from predictions.flow.analyst import paid_worthy
+    from test_ttl_cache import game
+    f = game("Alpha", "Beta", "Netherlands - Eredivisie")
+    wanted = ("home.matches", "home.xg_for", "home.goals_for", "away.xg_against", "away.goals_against")
+    assert paid_worthy(f, wanted, True) == ("home.matches", "home.goals_for", "away.goals_against")
+    assert paid_worthy(f, wanted, False) is None
+
+
+def test_the_cost_line_names_each_analyst_when_the_analyst_can_say():
+    from predictions.flow.analyst import AnalystRun
+
+    class Chain:
+        last_resort = False
+
+        def breakdown(self):
+            return "Gemini 4, Claude 1; Claude not used for 2 game(s) where Gemini found nothing"
+
+    run = AnalystRun(Chain())
+    run.calls = 5
+    assert "Lookups: Gemini 4, Claude 1; Claude not used for 2 game(s) where Gemini found nothing." in run.summary()
+    assert "Lookups: Gemini 4, Claude 1" in run.short_summary()
+    assert "Lookups" not in AnalystRun(object()).summary()

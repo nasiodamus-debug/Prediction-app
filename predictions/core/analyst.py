@@ -42,6 +42,47 @@ def parse_call_limit(raw) -> int:
     return int(text)
 
 
+# ---- the paid (Claude) tier of the hierarchy: free sources, then Gemini, then Claude only where it is worth it
+DEFAULT_PAID_CALL_LIMIT = 10
+MAX_PAID_CALL_LIMIT = 1000
+
+
+class PaidPolicy:
+    """The paid-tier rules in force, set once at startup by app.py: `call_limit` is the most Claude lookups ONE request may make
+    (CLAUDE_CALL_LIMIT; 0 = never), `after_empty` is whether Claude is still asked when Gemini answered but found nothing at all
+    for a game (CLAUDE_AFTER_EMPTY; off by default: a game the free searches know nothing about rarely pays off)."""
+    call_limit = DEFAULT_PAID_CALL_LIMIT
+    after_empty = False
+
+
+PAID_POLICY = PaidPolicy()
+
+
+def parse_paid_call_limit(raw) -> int:
+    """CLAUDE_CALL_LIMIT: Claude lookups allowed in ONE request. Unset or empty keeps 10; present but not a whole number from 0 to
+    1000 raises ValueError (the message never echoes the value)."""
+    if raw is None or not str(raw).strip():
+        return DEFAULT_PAID_CALL_LIMIT
+    text = str(raw).strip()
+    if not text.isascii() or not text.isdigit() or int(text) > MAX_PAID_CALL_LIMIT:
+        raise ValueError("CLAUDE_CALL_LIMIT in config.env is not a whole number from 0 to 1000 (0 = never use Claude). Fix it or "
+                         f"remove the line to use the default of {DEFAULT_PAID_CALL_LIMIT}, then start the bot again.")
+    return int(text)
+
+
+def parse_claude_after_empty(raw) -> bool:
+    """CLAUDE_AFTER_EMPTY: true/on/yes or false/off/no (any case). Unset or empty is off; anything else raises ValueError."""
+    if raw is None or not str(raw).strip():
+        return False
+    text = str(raw).strip().lower()
+    if text in ("true", "on", "yes"):
+        return True
+    if text in ("false", "off", "no"):
+        return False
+    raise ValueError("CLAUDE_AFTER_EMPTY in config.env must be true or false. Fix it or remove the line to leave it off, then "
+                     "start the bot again.")
+
+
 # (the daily limit follows)
 
 DEFAULT_DAILY_CALL_LIMIT = 40  # analyst calls per Lagos day across all requests (ANALYST_DAILY_CALL_LIMIT overrides it)
@@ -86,6 +127,7 @@ class AnalystQuery:
     kickoff_date: str  # ISO date, UTC
     wanted: tuple[str, ...] = ()  # "<side>.<stat>" names still missing; empty means flags only
     sport: str = "soccer"         # which sport's registry the names belong to
+    essential: tuple[str, ...] | None = None  # the part of `wanted` worth PAYING for (None: all of it). Never put in a prompt.
 
 
 @dataclass(frozen=True)
@@ -113,10 +155,10 @@ def clean_identifier(value: object) -> str:
     return " ".join(text.split())[:MAX_IDENTIFIER_LENGTH]
 
 
-def query_for(fixture: Fixture, wanted: tuple[str, ...] = ()) -> AnalystQuery:
+def query_for(fixture: Fixture, wanted: tuple[str, ...] = (), essential: tuple[str, ...] | None = None) -> AnalystQuery:
     return AnalystQuery(clean_identifier(fixture.home), clean_identifier(fixture.away),
                         clean_identifier(fixture.competition), fixture.kickoff_utc.date().isoformat(), wanted,
-                        fixture.match_id.sport)
+                        fixture.match_id.sport, essential)
 
 
 def _text(value: Any) -> str | None:

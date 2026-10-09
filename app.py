@@ -42,7 +42,8 @@ from predictions.adapters.mlb.stats import MlbStats
 from predictions.adapters.nhl.stats import NhlStats
 from predictions.adapters.espn.soccer import EspnSoccerStats
 from predictions.adapters.understat.stats import UnderstatStats
-from predictions.core.analyst import RUN_LIMIT, parse_analyst_mode, parse_call_limit, parse_daily_call_limit
+from predictions.core.analyst import (PAID_POLICY, RUN_LIMIT, parse_analyst_mode, parse_call_limit, parse_claude_after_empty,
+                                      parse_daily_call_limit, parse_paid_call_limit)
 from predictions.core.ports import StatsFetchError
 from predictions.core.staking import parse_max_stake
 from predictions.core.ttl_cache import STATS_CACHE, parse_cache_ttl_scale, parse_listing_ttl_seconds
@@ -492,6 +493,8 @@ ANALYST_MODE = parse_analyst_mode(os.getenv("ANALYST_MODE"))  # off | last_resor
 REVIEW_CACHE.hours = parse_review_cache_hours(os.getenv("REVIEW_CACHE_HOURS"))  # hours a finished Review is reused for the same code on the same day; default 3, 0 = off
 freeflags.SOURCE = ApiFootball.from_environment()  # None without API_FOOTBALL_KEY: no free injury and lineup flags, no model check
 ANALYST_PROVIDER = parse_analyst_provider(os.getenv("ANALYST_PROVIDER"))  # comma list tried in order, e.g. gemini,claude (the next only when the earlier is unavailable); default claude
+PAID_POLICY.call_limit = parse_paid_call_limit(os.getenv("CLAUDE_CALL_LIMIT"))  # Claude lookups allowed in one request (the paid, last tier); default 10, 0 = never
+PAID_POLICY.after_empty = parse_claude_after_empty(os.getenv("CLAUDE_AFTER_EMPTY"))  # ask Claude even when Gemini found nothing for a game; default off
 RUN_LIMIT.value = parse_call_limit(os.getenv("ANALYST_CALL_LIMIT"))  # analyst calls allowed in one request; default 40
 ANALYST_DAILY_CALL_LIMIT = parse_daily_call_limit(os.getenv("ANALYST_DAILY_CALL_LIMIT"))  # paid analyst calls per Lagos day; unset = 40, unreadable = refuse to start
 # Spec 14-1 (speed). Each is read once here; a value that is present but unreadable stops the bot from starting.

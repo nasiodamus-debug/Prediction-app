@@ -135,7 +135,7 @@ def test_claude_is_asked_only_for_what_gemini_left_missing_and_the_answers_are_c
 def test_claude_is_asked_when_gemini_found_nothing_was_discarded_or_was_unavailable():
     for first in (AnalystReport(), AnalystReport(rejected="bad"), AnalystUnavailable("limit")):
         a, b = Fake(first), Fake(AnalystReport((stat("home.xg_for"),)))
-        report = asyncio.run(FallbackAnalyst([a, b]).research(Q))
+        report = asyncio.run(FallbackAnalyst([a, b], after_empty=True).research(Q))
         assert (a.calls, b.calls) == (1, 1) and [i.name for i in report.stats] == ["home.xg_for"] and not report.rejected
     with pytest.raises(AnalystUnavailable):
         asyncio.run(FallbackAnalyst([Fake(AnalystUnavailable("x")), Fake(AnalystUnavailable("y"))]).research(Q))
@@ -161,7 +161,7 @@ def test_only_a_paid_analysts_usage_is_counted_as_spend():
     from predictions.core.analyst import AnalystUsage
     free, paid = Fake(AnalystReport(usage=AnalystUsage(100, 10, 5))), Fake(AnalystReport(usage=AnalystUsage(7, 3, 2)))
     paid.paid = True
-    usage = asyncio.run(FallbackAnalyst([free, paid]).research(Q)).usage
+    usage = asyncio.run(FallbackAnalyst([free, paid], after_empty=True).research(Q)).usage
     assert (usage.input_tokens, usage.output_tokens, usage.searches) == (7, 3, 2)
 
 
@@ -213,3 +213,86 @@ def test_a_daily_quota_429_tells_the_fallback_how_long_to_stay_away():
     now[0] = 3600.0   # an hour later the default 15 minutes would be over, but the quota said hours
     asyncio.run(chain.research(Q))
     assert dead.calls == 1
+
+
+# ---- cost controls on the paid tier: essential stats only, nothing after an empty Gemini answer, a per-request limit
+def paid(result):
+    fake = Fake(result)
+    fake.paid = True
+    fake.name = "claude"
+    return fake
+
+
+def free(result):
+    fake = Fake(result)
+    fake.name = "gemini"
+    return fake
+
+
+WIDE = AnalystQuery("Arsenal", "Chelsea", "Premier League", "2026-10-03",
+                    ("home.xg_for", "home.goals_for", "away.xg_for", "away.goals_for"), "soccer",
+                    essential=("home.goals_for", "away.goals_for"))
+
+
+def test_claude_is_asked_only_for_the_essential_stats_that_are_still_missing():
+    asked = []
+
+    class Spy(Fake):
+        paid = True
+        name = "claude"
+
+        async def research(self, query):
+            asked.append(query.wanted)
+            return AnalystReport((stat("home.goals_for"),))
+
+    first = free(AnalystReport((stat("away.xg_for"),)))          # Gemini found one stat, so the game is worth a paid look
+    chain = FallbackAnalyst([first, Spy(None)])
+    asyncio.run(chain.research(WIDE))
+    assert asked == [("home.goals_for", "away.goals_for")]        # not the xG the lower leagues never have
+    nothing_essential = FallbackAnalyst([free(AnalystReport((stat("home.goals_for"), stat("away.goals_for")))), paid(AnalystReport())])
+    report = asyncio.run(nothing_essential.research(WIDE))
+    assert nothing_essential._analysts[1].calls == 0 and not report.incomplete   # only xG left: not worth paying for
+    assert nothing_essential.skipped_nonessential == 1
+
+
+def test_claude_is_not_asked_when_gemini_answered_but_found_nothing_unless_switched_on():
+    a, b = free(AnalystReport()), paid(AnalystReport((stat("home.goals_for"),)))
+    chain = FallbackAnalyst([a, b])
+    report = asyncio.run(chain.research(WIDE))
+    assert b.calls == 0 and chain.skipped_empty == 1 and not report.stats and not report.incomplete   # final, so it is kept for the day
+    a2, b2 = free(AnalystReport()), paid(AnalystReport((stat("home.goals_for"),)))
+    asyncio.run(FallbackAnalyst([a2, b2], after_empty=True).research(WIDE))
+    assert b2.calls == 1
+    a3, b3 = free(AnalystUnavailable("limit")), paid(AnalystReport((stat("home.goals_for"),)))
+    asyncio.run(FallbackAnalyst([a3, b3]).research(WIDE))
+    assert b3.calls == 1                                          # Gemini being down is not evidence that nothing exists
+
+
+def test_the_request_limit_on_claude_holds_and_a_held_back_answer_is_not_kept():
+    b = paid(AnalystReport((stat("home.goals_for"),)))
+    chain = FallbackAnalyst([free(AnalystReport((stat("away.xg_for"),))), b], paid_limit=2)
+    reports = [asyncio.run(chain.research(WIDE)) for _ in range(4)]
+    assert b.calls == 2 and chain.skipped_cap == 2
+    assert [r.incomplete for r in reports] == [False, False, True, True]
+    zero = paid(AnalystReport())
+    asyncio.run(FallbackAnalyst([free(AnalystUnavailable("x")), zero], paid_limit=0).research(WIDE))   # no error: held back, not "down"
+    assert zero.calls == 0
+
+
+def test_the_breakdown_names_each_analyst_and_why_claude_was_skipped():
+    chain = FallbackAnalyst([free(AnalystReport()), paid(AnalystReport())], paid_limit=3)
+    asyncio.run(chain.research(WIDE))
+    text = chain.breakdown()
+    assert "Gemini 1" in text and "1 game(s) where Gemini found nothing" in text and "Claude" in text
+    assert FallbackAnalyst([free(AnalystReport())]).breakdown() == ""
+
+
+def test_the_paid_policy_settings_parse_and_refuse_bad_values():
+    from predictions.core.analyst import parse_claude_after_empty, parse_paid_call_limit
+    assert parse_paid_call_limit(None) == 10 and parse_paid_call_limit("0") == 0 and parse_paid_call_limit(" 25 ") == 25
+    for bad in ("-1", "x", "1001", "2.5"):
+        with pytest.raises(ValueError):
+            parse_paid_call_limit(bad)
+    assert parse_claude_after_empty(None) is False and parse_claude_after_empty("TRUE") is True and parse_claude_after_empty("off") is False
+    with pytest.raises(ValueError):
+        parse_claude_after_empty("maybe")
