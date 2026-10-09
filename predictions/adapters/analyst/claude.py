@@ -37,7 +37,8 @@ CLIENT_RETRIES = 1
 
 # The ONLY place the web-search tool is configured. Change the version here if Anthropic retires it
 # (the newer web_search_20260209 adds dynamic filtering through code execution, which this bot does not need).
-WEB_SEARCH_TOOL = {"type": "web_search_20250305", "name": "web_search", "max_uses": 4}
+MAX_SEARCHES = 2                # per lookup: Claude is the last, paid tier, so it gets a small search allowance (cost control)
+WEB_SEARCH_TOOL = {"type": "web_search_20250305", "name": "web_search", "max_uses": MAX_SEARCHES}
 
 SPORT_NAMES = {"soccer": "football (soccer)", "basketball": "basketball",
                "american_football": "American football (NFL and US college football)"}
@@ -137,6 +138,8 @@ def _answer_text(text: str) -> str:
 
 
 class ClaudeAnalyst:
+    paid = True   # its tokens and searches are billed (the free Gemini analyst's are not): see select.FallbackAnalyst
+
     def __init__(self, client=None, api_key: str | None = None, model: str = MODEL, last_resort: bool = False):
         if client is None:
             if not api_key:
@@ -165,13 +168,13 @@ class ClaudeAnalyst:
                  len(report.flags), report.usage.searches, f", discarded ({report.rejected})" if report.rejected else "")
         return report
 
-    async def _research(self, query: AnalystQuery) -> AnalystReport:
-        request = build_request(query, self._model)
+    async def _call(self, request: dict, continuations: int = MAX_CONTINUATIONS):
+        """Send the request, resuming a paused turn; returns (final response, usage). Raises AnalystUnavailable."""
         messages = list(request["messages"])
         searches = tokens_in = tokens_out = 0
         response = None
         try:
-            for _ in range(1 + MAX_CONTINUATIONS):
+            for _ in range(1 + continuations):
                 response = await self._client.messages.create(**{**request, "messages": messages})
                 u = _usage(response)
                 tokens_in, tokens_out, searches = tokens_in + u.input_tokens, tokens_out + u.output_tokens, searches + u.searches
@@ -182,7 +185,10 @@ class ClaudeAnalyst:
             status = getattr(error, "status_code", None)
             detail = f"HTTP {status}" if status else type(error).__name__
             raise AnalystUnavailable(f"the Claude service could not be used ({detail})") from None
-        usage = AnalystUsage(tokens_in, tokens_out, searches)
+        return response, AnalystUsage(tokens_in, tokens_out, searches)
+
+    async def _research(self, query: AnalystQuery) -> AnalystReport:
+        response, usage = await self._call(build_request(query, self._model))
         stop = getattr(response, "stop_reason", "")
         if stop != "end_turn":
             return AnalystReport(rejected=f"the answer stopped early ({stop or 'unknown'})", usage=usage)

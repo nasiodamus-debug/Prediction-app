@@ -121,6 +121,8 @@ def _retry_after(response) -> float | None:
 
 
 class GeminiAnalyst:
+    paid = False   # free tier: its usage is not counted as spend
+
     def __init__(self, client=None, gemini_key: str | None = None, serper_key: str | None = None,
                  model: str = MODEL, last_resort: bool = False):
         if client is None:

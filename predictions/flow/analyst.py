@@ -3,10 +3,14 @@ the analyst itself is behind the `Analyst` port and only ever sees fixture ident
 from __future__ import annotations
 
 import asyncio
+import json
 from datetime import datetime, timezone
+from pathlib import Path
 from typing import Awaitable, Callable
 
-from predictions.core.analyst import (DEFAULT_DAILY_CALL_LIMIT, RUN_LIMIT, AnalystFlag, AnalystReport, AnalystUsage, query_for)
+from predictions.core.analyst import (DEFAULT_DAILY_CALL_LIMIT, RUN_LIMIT, AnalystFlag, AnalystReport, AnalystUsage, ContextFlag,
+                                      query_for)
+from predictions.core.inputs import Input
 from predictions.core.dates import lagos_today
 from predictions.core.ports import Analyst, AnalystUnavailable
 from predictions.core.stats import (CAT_HISTORY, INSUFFICIENT, FixtureStats, add_reason, assess_goals_only, merge_analyst, missing_for,
@@ -23,38 +27,91 @@ ANALYST_CONCURRENCY = 3   # per-fixture analyst calls in flight at once (spec-14
 
 
 class AnalystCache:
-    """What the analyst answered, kept in memory for the rest of the Lagos day, per (fixture identity, requested inputs)
-    (spec-14-1, AD-23). A repeated request for the same fixture and inputs is served from here: it makes no call, counts
-    against neither the per-request nor the daily limit and costs nothing. Only a valid answer is kept (an unavailable
-    service or a discarded malformed answer is never kept). It holds nothing but the schema-validated report. `enabled` is
-    False when CACHE_TTL_SCALE is 0. The day rolls over by Lagos date."""
+    """What the analyst answered, kept for the rest of the Lagos day, per fixture and the stats asked for (spec-14-1, AD-23). A
+    repeated request is served from here: it makes no call, counts against neither the per-request nor the daily limit and costs
+    nothing. A request is served by ANY answer that was asked for at least those stats, so a stat Claude (or Gemini) already
+    looked for today, found or not, is never paid for again. Only a valid, final answer is kept: not an unavailable service, a
+    discarded malformed answer, or an answer whose last tier could not be reached for the stats still missing. It holds nothing
+    but the schema-validated report. `enabled` is False when CACHE_TTL_SCALE is 0. The day rolls over by Lagos date.
 
-    def __init__(self):
+    With a `directory` the day's answers are also written to analyst-<day>.json there and read back after a restart (older days'
+    files are removed); a file that cannot be read or written is ignored, never an error."""
+
+    def __init__(self, directory: Path | str | None = None):
         self.enabled = True
+        self.directory = Path(directory) if directory else None
         self._day = None
-        self._items: dict = {}
+        self._items: dict[str, dict[frozenset, AnalystReport]] = {}
+
+    def _file(self) -> Path | None:
+        return self.directory / f"analyst-{self._day}.json" if self.directory and self._day else None
 
     def _roll(self, now: datetime) -> None:
         day = lagos_today(now)
         if day != self._day:
             self._day, self._items = day, {}
+            self._load()
+
+    def _load(self) -> None:
+        path = self._file()
+        if path is None:
+            return
+        try:
+            for old in self.directory.glob("analyst-*.json"):
+                if old != path:
+                    old.unlink(missing_ok=True)
+            data = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+            for entry in data.get("entries", []):
+                stats = tuple(Input(i["name"], float(i["value"]), str(i["unit"]), str(i["source"])) for i in entry["stats"])
+                flags = tuple(AnalystFlag(ContextFlag(f["flag"]), str(f["source"])) for f in entry["flags"])
+                self._items.setdefault(str(entry["match"]), {})[frozenset(entry["asked"])] = AnalystReport(stats, flags)
+        except (OSError, ValueError, KeyError, TypeError):
+            self._items = {}
+
+    def _save(self) -> None:
+        path = self._file()
+        if path is None:
+            return
+        entries = [{"match": match, "asked": sorted(asked),
+                    "stats": [{"name": i.name, "value": i.value, "unit": i.unit, "source": i.source} for i in report.stats],
+                    "flags": [{"flag": f.flag.value, "source": f.source} for f in report.flags]}
+                   for match, by_asked in self._items.items() for asked, report in by_asked.items()]
+        try:
+            self.directory.mkdir(parents=True, exist_ok=True)
+            temp = path.with_suffix(".tmp")
+            temp.write_text(json.dumps({"version": 1, "entries": entries}), encoding="utf-8")
+            temp.replace(path)
+        except OSError:
+            pass
 
     def get(self, key, now: datetime):
         if not self.enabled:
             return None
         self._roll(now)
-        return self._items.get(key)
+        match_id, wanted = key
+        by_asked = self._items.get(str(match_id))
+        if not by_asked:
+            return None
+        asked = frozenset(wanted)
+        if asked in by_asked:
+            return by_asked[asked]
+        for known, report in by_asked.items():
+            if asked <= known:
+                return AnalystReport(tuple(i for i in report.stats if i.name in asked), report.flags)
+        return None
 
     def put(self, key, report, now: datetime) -> None:
-        if self.enabled and not report.rejected:
+        if self.enabled and not report.rejected and not report.incomplete:
             self._roll(now)
-            self._items[key] = report
+            match_id, wanted = key
+            self._items.setdefault(str(match_id), {})[frozenset(wanted)] = report
+            self._save()
 
     def clear(self) -> None:
         self._day, self._items = None, {}
 
     def __len__(self) -> int:
-        return len(self._items)
+        return sum(len(v) for v in self._items.values())
 
 
 ANALYST_CACHE = AnalystCache()   # shared by every request of this process

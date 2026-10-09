@@ -53,6 +53,7 @@ def _fresh_caches():
     STATS_CACHE.hits = STATS_CACHE.misses = 0
     ANALYST_CACHE.clear()
     ANALYST_CACHE.enabled = True
+    ANALYST_CACHE.directory = None   # importing app.py points it at local_data; a test must never read or write the real files
     app = sys.modules.get("app")   # the bot module: its daily games cache must never reach the network from a test
     saved = None
     if app is not None and hasattr(app, "DAY_CACHE"):

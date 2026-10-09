@@ -103,6 +103,7 @@ class AnalystReport:
     flags: tuple[AnalystFlag, ...] = ()
     rejected: str = ""
     usage: AnalystUsage = AnalystUsage()
+    incomplete: bool = False   # a later analyst could not be reached for the stats still missing: do not keep this for the day
 
 
 def clean_identifier(value: object) -> str:

@@ -383,23 +383,25 @@ def test_the_cache_key_is_the_fixture_and_the_requested_inputs():
     analyst = FakeAnalyst()
     f, g = game("Alpha", "Beta", "Netherlands - Eredivisie"), game("Gamma", "Delta", "Netherlands - Eredivisie")
     run_ = AnalystRun(analyst, limit=10, clock=lambda: now)
-    ask(run_, f)
-    ask(run_, f, ("home.matches", "away.matches"))   # other inputs: a new call
-    ask(run_, f, ())                                  # flags only: a new call
+    ask(run_, f, ("home.matches", "away.matches"))   # a new call
+    ask(run_, f)                                      # fewer inputs than already asked today: served from the cache
+    ask(run_, f, ())                                  # flags only: also served (every answer carries its flags)
     ask(run_, g)                                      # another fixture: a new call
-    assert run_.calls == 4 and run_.cache_hits == 0
-    ask(run_, f)
+    assert run_.calls == 2 and run_.cache_hits == 2
+    ask(run_, f, ("away.matches", "home.matches"))   # the same inputs in another order: served
     ask(run_, g)
-    assert run_.calls == 4 and run_.cache_hits == 2
+    assert run_.calls == 2 and run_.cache_hits == 4
+    ask(run_, f, ("home.xg_for",))                   # a stat nobody has asked for yet today: a new call
+    assert run_.calls == 3
 
 
 def test_the_analyst_cache_lasts_the_lagos_day_only():
     cache = AnalystCache()
     now = datetime(2026, 10, 1, 9, 0, tzinfo=timezone.utc)
     report = AnalystReport()
-    cache.put("k", report, now)
-    assert cache.get("k", now + timedelta(hours=13, minutes=59)) is report      # 23:59 Lagos, same day
-    assert cache.get("k", now + timedelta(hours=14)) is None                    # midnight in Lagos: a new day
+    cache.put(("k", ()), report, now)
+    assert cache.get(("k", ()), now + timedelta(hours=13, minutes=59)) is report      # 23:59 Lagos, same day
+    assert cache.get(("k", ()), now + timedelta(hours=14)) is None                    # midnight in Lagos: a new day
 
 
 def test_a_malformed_answer_and_an_outage_are_never_cached():
@@ -440,5 +442,54 @@ def test_the_analyst_cache_holds_only_schema_validated_reports_and_nothing_from_
     now = datetime(2026, 10, 1, 9, 0, tzinfo=timezone.utc)
     f = game("Alpha", "Beta", "Netherlands - Eredivisie")
     ask(AnalystRun(FakeAnalyst(), clock=lambda: now), f)
-    values = list(ANALYST_CACHE._items.values())
+    values = [report for by_asked in ANALYST_CACHE._items.values() for report in by_asked.values()]
     assert len(values) == 1 and isinstance(values[0], AnalystReport)
+
+
+# ---- the analyst cache: reuse by subset, nothing incomplete kept, and a copy on disk that survives a restart
+def _cache_key(fixture_id, *wanted):
+    return (fixture_id, tuple(wanted))
+
+
+def test_an_analyst_answer_serves_any_later_request_for_the_same_or_fewer_stats_the_same_day(tmp_path):
+    from datetime import datetime, timezone
+    from predictions.core.analyst import AnalystReport
+    from predictions.core.inputs import Input
+    now = datetime(2026, 10, 9, 12, 0, tzinfo=timezone.utc)
+    cache = AnalystCache(tmp_path)
+    report = AnalystReport((Input("home.xg_for", 1.4, "xG per match", "analyst-sourced:x"),))
+    cache.put(_cache_key("m1", "home.xg_for", "away.xg_for"), report, now)       # asked for two, found one
+    assert cache.get(_cache_key("m1", "home.xg_for", "away.xg_for"), now) is report
+    only_home = cache.get(_cache_key("m1", "home.xg_for"), now)
+    assert [i.name for i in only_home.stats] == ["home.xg_for"]
+    assert cache.get(_cache_key("m1", "away.xg_for"), now).stats == ()           # looked for, not found: not paid for again
+    assert cache.get(_cache_key("m1", "home.goals_for"), now) is None            # never asked: a real miss
+    assert cache.get(_cache_key("m2", "home.xg_for"), now) is None
+
+
+def test_an_incomplete_or_discarded_answer_is_not_kept(tmp_path):
+    from datetime import datetime, timezone
+    from predictions.core.analyst import AnalystReport
+    now = datetime(2026, 10, 9, 12, 0, tzinfo=timezone.utc)
+    cache = AnalystCache(tmp_path)
+    cache.put(_cache_key("m1", "home.xg_for"), AnalystReport(incomplete=True), now)
+    cache.put(_cache_key("m1", "home.xg_for"), AnalystReport(rejected="bad"), now)
+    assert len(cache) == 0 and not list(tmp_path.glob("*.json"))
+
+
+def test_the_days_answers_are_read_back_after_a_restart_and_an_old_days_file_is_removed(tmp_path):
+    from datetime import datetime, timedelta, timezone
+    from predictions.core.analyst import AnalystFlag, AnalystReport, ContextFlag
+    from predictions.core.inputs import Input
+    now = datetime(2026, 10, 9, 12, 0, tzinfo=timezone.utc)
+    first = AnalystCache(tmp_path)
+    report = AnalystReport((Input("home.xg_for", 1.4, "xG per match", "analyst-sourced:x"),),
+                           (AnalystFlag(next(iter(ContextFlag)), "site page"),))
+    first.put(_cache_key("m1", "home.xg_for"), report, now)
+    reborn = AnalystCache(tmp_path)                                               # a new process
+    got = reborn.get(_cache_key("m1", "home.xg_for"), now)
+    assert got.stats == report.stats and got.flags == report.flags
+    assert reborn.get(_cache_key("m1", "home.xg_for"), now + timedelta(days=1)) is None
+    assert not any("2026-10-09" in f.name for f in tmp_path.glob("analyst-*.json"))
+    (tmp_path / "analyst-2026-10-10.json").write_text("not json")
+    assert AnalystCache(tmp_path).get(_cache_key("m1", "home.xg_for"), now + timedelta(days=1)) is None   # unreadable: ignored

@@ -108,13 +108,61 @@ class Fake:
         return self.result
 
 
-def test_fallback_goes_to_claude_only_when_gemini_is_unavailable():
-    a, b = Fake(AnalystUnavailable("limit")), Fake(AnalystReport())
-    assert asyncio.run(FallbackAnalyst([a, b]).research(Q)) is b.result and (a.calls, b.calls) == (1, 1)
-    rejected, c = Fake(AnalystReport(rejected="bad")), Fake(AnalystReport())
-    assert asyncio.run(FallbackAnalyst([rejected, c]).research(Q)).rejected and c.calls == 0
+def stat(name, value=1.0):
+    from predictions.core.inputs import Input
+    return Input(name, value, "xG per match", "analyst-sourced:test")
+
+
+def test_claude_is_asked_only_for_what_gemini_left_missing_and_the_answers_are_combined():
+    q = AnalystQuery("Arsenal", "Chelsea", "Premier League", "2026-10-03", ("home.xg_for", "home.xg_against", "away.xg_for"))
+    asked = []
+
+    class Spy(Fake):
+        async def research(self, query):
+            asked.append(query.wanted)
+            return await super().research(query)
+
+    gemini, claude = Spy(AnalystReport((stat("home.xg_for"),))), Spy(AnalystReport((stat("home.xg_against"), stat("away.xg_for"))))
+    report = asyncio.run(FallbackAnalyst([gemini, claude]).research(q))
+    assert asked == [q.wanted, ("home.xg_against", "away.xg_for")]          # Claude sees only the gap
+    assert {i.name for i in report.stats} == set(q.wanted) and not report.incomplete
+    full = Spy(AnalystReport(tuple(stat(n) for n in q.wanted)))
+    never = Spy(AnalystReport())
+    asyncio.run(FallbackAnalyst([full, never]).research(q))
+    assert never.calls == 0                                                  # nothing missing: no paid call
+
+
+def test_claude_is_asked_when_gemini_found_nothing_was_discarded_or_was_unavailable():
+    for first in (AnalystReport(), AnalystReport(rejected="bad"), AnalystUnavailable("limit")):
+        a, b = Fake(first), Fake(AnalystReport((stat("home.xg_for"),)))
+        report = asyncio.run(FallbackAnalyst([a, b]).research(Q))
+        assert (a.calls, b.calls) == (1, 1) and [i.name for i in report.stats] == ["home.xg_for"] and not report.rejected
     with pytest.raises(AnalystUnavailable):
         asyncio.run(FallbackAnalyst([Fake(AnalystUnavailable("x")), Fake(AnalystUnavailable("y"))]).research(Q))
+    both_bad, c = Fake(AnalystReport(rejected="bad")), Fake(AnalystReport(rejected="worse"))
+    assert asyncio.run(FallbackAnalyst([both_bad, c]).research(Q)).rejected
+
+
+def test_a_flags_only_query_is_answered_by_the_first_analyst_alone():
+    flags_only = AnalystQuery("Arsenal", "Chelsea", "Premier League", "2026-10-03", ())
+    a, b = Fake(AnalystReport()), Fake(AnalystReport())
+    asyncio.run(FallbackAnalyst([a, b]).research(flags_only))
+    assert (a.calls, b.calls) == (1, 0)
+
+
+def test_an_answer_is_marked_incomplete_when_the_paid_tier_was_unreachable_for_the_missing_stats():
+    a, b = Fake(AnalystReport((stat("home.xg_for"),))), Fake(AnalystUnavailable("down"))
+    q = AnalystQuery("Arsenal", "Chelsea", "Premier League", "2026-10-03", ("home.xg_for", "home.xg_against"))
+    report = asyncio.run(FallbackAnalyst([a, b]).research(q))
+    assert [i.name for i in report.stats] == ["home.xg_for"] and report.incomplete
+
+
+def test_only_a_paid_analysts_usage_is_counted_as_spend():
+    from predictions.core.analyst import AnalystUsage
+    free, paid = Fake(AnalystReport(usage=AnalystUsage(100, 10, 5))), Fake(AnalystReport(usage=AnalystUsage(7, 3, 2)))
+    paid.paid = True
+    usage = asyncio.run(FallbackAnalyst([free, paid]).research(Q)).usage
+    assert (usage.input_tokens, usage.output_tokens, usage.searches) == (7, 3, 2)
 
 
 def test_a_failed_provider_is_skipped_until_the_cooldown_passes():

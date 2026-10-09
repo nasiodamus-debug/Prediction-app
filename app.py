@@ -504,6 +504,7 @@ PLACE_MODE = parse_place_mode(os.getenv("PLACE_MODE"))                       # A
 SHOW_BROWSER = (os.getenv("SHOW_BROWSER") or "").strip().lower() in ("true", "on", "1", "yes")  # opt-in: open a visible Chrome window for SportyBet so you can watch the Place click
 STATS_CACHE.set_scale(CACHE_TTL_SCALE)
 ANALYST_CACHE.enabled = CACHE_TTL_SCALE > 0
+ANALYST_CACHE.directory = Path(__file__).resolve().parent / "local_data" / "analyst_cache"   # today's analyst answers survive a restart
 SESSIONS = SessionManager(max_stake=MAX_STAKE, book_mode=PLACE_MODE == "book")  # the one active list session, in memory
 BOOKING_DESK = PendingStake()  # AD-25: the one open 'how much did you stake?' question (in memory; a restart forgets it)
 DB_PATH = Path(__file__).resolve().parent / "local_data" / "predictions.db"
