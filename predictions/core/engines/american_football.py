@@ -65,13 +65,18 @@ def league_of(competition: str) -> str | None:
 
 # ---- model ----
 MODEL_NAME = "normal-points-kn-v1"
-SHRINK_GAMES = 4.0                 # a team's rate is (n * own + K * league) / (n + K): football samples are tiny (judgement)
+SHRINK_GAMES = {NFL: 4.0, COLLEGE: 4.0}   # a team's rate is (n * own + K * league) / (n + K): football samples are tiny (judgement).
+                                          # College was 6 for a few hours on 2026-10-10 without evidence; the backtest found 4 at least as
+                                          # good for margins and winners and within 0.1 point for totals, so it is back to 4.
 HOME_FIELD_POINTS = {NFL: 2.0, COLLEGE: 2.5}        # margin edge in points, split half and half (judgement)
 FH_HOME_SHARE = 0.5                # the home edge in the first half is this share of the full-game edge (judgement)
-MARGIN_SD = {NFL: 13.5, COLLEGE: 17.0}              # sd of the final margin (judgement)
-TOTAL_SD = {NFL: 10.5, COLLEGE: 14.0}               # sd of the game total
-TEAM_SD = {NFL: 7.5, COLLEGE: 10.0}                 # sd of one side's points
-FH_TOTAL_SD = {NFL: 7.0, COLLEGE: 9.0}              # sd of the first-half total
+# College standard deviations are MEASURED (2026-10-10 walk-forward backtest, tools/football_backtest.py: 1,149 games of 2025 and 2026,
+# weeks 5-16, predicted from the earlier weeks only): actual margin sd 17.7, total 15.5, one side 11.8, 1st-half total 11.1. The NFL values
+# are still judgement.
+MARGIN_SD = {NFL: 13.5, COLLEGE: 17.7}              # sd of the final margin
+TOTAL_SD = {NFL: 10.5, COLLEGE: 15.5}               # sd of the game total
+TEAM_SD = {NFL: 7.5, COLLEGE: 11.8}                 # sd of one side's points
+FH_TOTAL_SD = {NFL: 7.0, COLLEGE: 11.1}             # sd of the first-half total
 FH_TEAM_SD = {NFL: 5.2, COLLEGE: 6.6}               # sd of one side's first-half points
 MIN_TEAM_POINTS, MAX_TEAM_POINTS = 3.0, 55.0
 MIN_FH_POINTS, MAX_FH_POINTS = 1.0, 35.0
@@ -79,6 +84,16 @@ MAX_MARGIN = 80                    # the margin distribution runs from -MAX_MARG
 MAX_POINTS = 200                   # totals run from 0 to this
 MIN_LINE, MAX_LINE = Decimal("5"), Decimal("120")
 MAX_SPREAD = Decimal("40")
+
+# ---- limits on what the model may claim (2026-10-10 review of the first settled week: 54 legs, 72.8% predicted, 53.7% won;
+#      picks with an expected value above +50% won 1 of 8, and overs 2 of 10). College only: the NFL data was not separable.
+MAX_EV = {NFL: None, COLLEGE: 0.20}      # a pick claiming more edge than this is not passed: a bigger claimed edge over the
+                                          # bookmaker is more likely a model error (same idea as the soccer goals-only cap)
+COLLEGE_OVERS_PAUSED = True               # no college Over (game, team or 1st-half total) is played until the rules are re-reviewed
+MIN_GAMES = {NFL: 3, COLLEGE: 4}          # completed regular-season games a team needs before it is priced (read by the ESPN source)
+RULE_PAUSED = "College Overs paused"
+PAUSED_REASON = ("disqualified: college football Overs are paused (the first settled week: 2 wins from 10), so none is played "
+                 "whatever the model says")
 
 # The key-number table: the share of all games decided by exactly this many points (either team). The owner's figures
 # are NFL 3 = about 14.5% and 7 = about 9.8%; for the others the owner gave only the ORDER (NFL: 3, 7, then 6, 10, 14;
@@ -216,6 +231,19 @@ class _Model:
             other = "away" if s == "home" else "home"
             base = self.rate_for[s] * self.rate_against[other] / self.league_ppg
             self.mu[s] = _clamp(base + (edge if s == "home" else -edge), MIN_TEAM_POINTS, MAX_TEAM_POINTS)
+        # opponent-adjusted rates (college): used for the MARGIN only (handicaps and the winner); totals stay on the raw rates
+        adj = [f"{s}.adj_points_{k}" for s in SIDES for k in ("for", "against")]
+        self.adjusted = all(n in self.by for n in adj)
+        if self.adjusted:
+            adj_for = {s: self._shrink(self.by[f"{s}.adj_points_for"].value, self.n[s], self.league_ppg) for s in SIDES}
+            adj_against = {s: self._shrink(self.by[f"{s}.adj_points_against"].value, self.n[s], self.league_ppg) for s in SIDES}
+            self.mu_margin = {}
+            for s in SIDES:
+                other = "away" if s == "home" else "home"
+                base = adj_for[s] * adj_against[other] / self.league_ppg
+                self.mu_margin[s] = _clamp(base + (edge if s == "home" else -edge), MIN_TEAM_POINTS, MAX_TEAM_POINTS)
+        else:
+            self.mu_margin = self.mu
         fh = [f"{s}.fh_points_{k}" for s in SIDES for k in ("for", "against")]
         self.has_fh = all(n in self.by for n in fh)
         if self.has_fh:
@@ -234,14 +262,14 @@ class _Model:
         self.wind = self.by.get("match.wind_mph")
         self._margin = None
 
-    @staticmethod
-    def _shrink(own: float, games: float, league: float) -> float:
-        return (games * own + SHRINK_GAMES * league) / (games + SHRINK_GAMES)
+    def _shrink(self, own: float, games: float, league: float) -> float:
+        k = SHRINK_GAMES[self.league]
+        return (games * own + k * league) / (games + k)
 
     # ---- distributions
     def margin(self) -> dict[int, float]:
         if self._margin is None:
-            self._margin = margin_pmf(self.mu["home"] - self.mu["away"], MARGIN_SD[self.league], KEY_NUMBERS[self.league])
+            self._margin = margin_pmf(self.mu_margin["home"] - self.mu_margin["away"], MARGIN_SD[self.league], KEY_NUMBERS[self.league])
         return self._margin
 
     def p_home_wins(self) -> float:
@@ -279,6 +307,9 @@ class _Model:
         else:
             expected = (f"expected points {self.mu['home']:.1f} - {self.mu['away']:.1f} "
                         f"(total {sum(self.mu.values()):.1f})")
+            if self.adjusted:
+                expected += (f"; margin and winner from opponent-adjusted rates (expected margin "
+                             f"{self.mu_margin['home'] - self.mu_margin['away']:+.1f})")
         return f"inputs: {parts}; {expected}, {MODEL_NAME}"
 
 
@@ -295,6 +326,11 @@ class _Pricer:
     def _evaluation(self, market: str, selection: str, odds: Decimal, estimate: Estimate,
                     notes: tuple[str, ...]) -> Evaluation:
         passed, ev, reason = validate(estimate, odds)
+        cap = MAX_EV.get(self.model.league)
+        if passed and cap is not None and ev > Decimal(str(cap)):
+            passed = False
+            reason = (f"expected value {percent(float(ev))} is above the {percent(cap)} cap for college football: a claimed edge "
+                      f"that large over the bookmaker is more likely a model error than a bargain")
         return Evaluation(self.fixture.match_id, market, selection, odds, estimate, ev, passed, reason,
                           "", "", tuple(n for n in notes if n))
 
@@ -445,6 +481,8 @@ class AmericanFootballEngine:
         Missing wind comes first (never assumed calm), then the wind limit, then the clock-control baseline."""
         if kind not in WIND_GUARDED_KINDS:
             return None
+        if COLLEGE_OVERS_PAUSED and model.league == COLLEGE:
+            return ("paused", RULE_PAUSED, PAUSED_REASON)
         if model.wind is None:
             return ("insufficient", RULE_WIND,
                     f"{INSUFFICIENT_DATA}: no wind forecast for this game, so an Over is never assumed calm")

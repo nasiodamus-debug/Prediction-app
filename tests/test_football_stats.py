@@ -375,7 +375,16 @@ def test_preseason_and_unfinished_games_are_not_counted():
 
 def test_fewer_than_three_games_is_insufficient_data():
     result = fetch(Espn(boards=history(weeks=(3,))), BILLS)[BILLS.match_id]
-    assert result.status == INSUFFICIENT and any("missing required input" in r for r in result.reasons)
+    assert result.status == INSUFFICIENT and any("only 1 completed regular-season game" in r for r in result.reasons)
+
+
+def test_a_college_team_needs_four_completed_games_not_three():
+    three = Espn(boards={w: week_board(w, [college_event(w * 10 + 1, "Delaware Blue Hens", "Liberty Flames", 7 * w)])
+                         for w in (1, 2, 3)}, current=week_board(4, []))
+    game = fixture("Delaware Fightin\u00b4 Blue Hens", "Liberty Flames", competition=COLLEGE)
+    result = fetch(three, game)[game.match_id]
+    assert result.status == INSUFFICIENT and any("only 3 completed regular-season game(s)" in r and "4 are needed" in r
+                                                  for r in result.reasons)
 
 
 def test_no_games_at_all_is_insufficient_data_naming_the_team():
@@ -432,10 +441,10 @@ def college_event(eid, home, away, day):
 
 
 def college_api():
-    api = Espn(boards={w: week_board(w, [college_event(w * 10 + 1, "Delaware Blue Hens", "Liberty Flames", 7 * w),
-                                          college_event(w * 10 + 2, "Tulsa Golden Hurricane", "North Texas Mean Green", 7 * w),
-                                          college_event(w * 10 + 3, "Miami Hurricanes", "Miami (OH) RedHawks", 7 * w)])
-                       for w in (1, 2, 3)}, current=week_board(4, []))
+    api = Espn(boards={w: week_board(w, [college_event(w * 10 + 1, "Delaware Blue Hens", "Liberty Flames", 7 * (w - 1)),
+                                          college_event(w * 10 + 2, "Tulsa Golden Hurricane", "North Texas Mean Green", 7 * (w - 1)),
+                                          college_event(w * 10 + 3, "Miami Hurricanes", "Miami (OH) RedHawks", 7 * (w - 1))])
+                       for w in (1, 2, 3, 4)}, current=week_board(5, []))
     return api
 
 

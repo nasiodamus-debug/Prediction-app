@@ -21,6 +21,18 @@ from predictions.core.model import PROBABILITY_FLOOR, Estimate, Evaluation, vali
 from predictions.core.options import closest_option
 from predictions.core.types import Fixture, MarketOffer, MatchId, Outcome
 
+
+@pytest.fixture(autouse=True)
+def _college_limits_off(monkeypatch):
+    """These tests are about the model, the shield and the routing rules, with large fabricated edges: the college edge cap, the
+    Over pause and the college shrinkage are put back to the NFL-style values here, and tested on their own in
+    tests/test_college_limits.py."""
+    monkeypatch.setitem(af.MAX_EV, af.COLLEGE, None)
+    monkeypatch.setattr(af, "COLLEGE_OVERS_PAUSED", False)
+    monkeypatch.setitem(af.SHRINK_GAMES, af.COLLEGE, 4.0)
+    for name, old in (("MARGIN_SD", 17.0), ("TOTAL_SD", 14.0), ("TEAM_SD", 10.0), ("FH_TOTAL_SD", 9.0)):   # the thresholds below were tuned on these
+        monkeypatch.setitem(getattr(af, name), af.COLLEGE, old)
+
 D = Decimal
 KICKOFF = datetime(2026, 10, 4, 17, 0, tzinfo=timezone.utc)
 DATA = Path(__file__).resolve().parent / "data"

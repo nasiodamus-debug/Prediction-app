@@ -105,11 +105,11 @@ class FcsApi:
             return httpx.Response(404)
         group = params.get("groups")
         self.groups.append(group)
-        week = int(params.get("week", 4))
-        if group == "81" and 1 <= week <= 3:
-            return httpx.Response(200, json=week_board(week, [college_event(900 + week, FCS_HOME, FCS_AWAY, 7 * week)]))
-        if group == "80" and 1 <= week <= 3:
-            return httpx.Response(200, json=week_board(week, [college_event(800 + week, FBS_TEAM, ("Tulsa Golden Hurricane", "4"), 7 * week)]))
+        week = int(params.get("week", 5))
+        if group == "81" and 1 <= week <= 4:
+            return httpx.Response(200, json=week_board(week, [college_event(900 + week, FCS_HOME, FCS_AWAY, 7 * (week - 1))]))
+        if group == "80" and 1 <= week <= 4:
+            return httpx.Response(200, json=week_board(week, [college_event(800 + week, FBS_TEAM, ("Tulsa Golden Hurricane", "4"), 7 * (week - 1))]))
         return httpx.Response(200, json=week_board(week, []))
 
     def source(self):

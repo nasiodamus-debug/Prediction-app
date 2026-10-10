@@ -45,10 +45,11 @@ import httpx
 from predictions.adapters.weather.openmeteo import fetch_wind
 from predictions.adapters.weather.college_stadiums import college_stadium_for
 from predictions.adapters.weather.stadiums import stadium_for_city
-from predictions.core.engines.american_football import COLLEGE, NFL, league_of
+from predictions.core.engines.american_football import COLLEGE, MIN_GAMES, NFL, league_of
 from predictions.core.identity import resolve_team
 from predictions.core.inputs import Input
 from predictions.core.ports import StatsFetchError
+from predictions.core.ratings import adjusted_ratings, results_of
 from predictions.core.stats import FixtureStats, ambiguous, assess, insufficient
 from predictions.core.ttl_cache import STATS_CACHE, TTL_FORM_SECONDS, request_key
 from predictions.core.types import Fixture, MatchId, normalize_team
@@ -259,6 +260,23 @@ def team_inputs(side: str, window: list[tuple[Side, Side]], rank: int | None, so
     return inputs
 
 
+def adjusted_inputs(games: list[PlayedGame], home_id: str, away_id: str, source: str) -> list[Input]:
+    """Opponent-adjusted points for and against for the two teams (core/ratings.py, no ridge), found over every game of the window.
+    The backtest (tools/football_backtest.py, 1,149 college games) found these predict college margins and winners better than the
+    raw averages (margin miss 13.7 -> 13.3, winners right 69% -> 71.5%) and totals slightly worse, so the engine uses them for
+    handicaps and winners only. [] when the games give no ratings."""
+    ratings = adjusted_ratings(results_of(games), ridge=0.0)
+    if ratings is None:
+        return []
+    unit = "points per game, opponent-adjusted"
+    found: list[Input] = []
+    for side, team_id in (("home", home_id), ("away", away_id)):
+        rate_for, rate_against = ratings.rate_for(team_id), ratings.rate_against(team_id)
+        if rate_for is not None and rate_against is not None:
+            found += [Input(f"{side}.adj_points_for", rate_for, unit, source), Input(f"{side}.adj_points_against", rate_against, unit, source)]
+    return found
+
+
 def league_inputs(games: list[PlayedGame], source: str) -> list[Input]:
     if not games:
         return []
@@ -404,6 +422,10 @@ class EspnFootballStats:
                 if not window:
                     problems.append(f"{name} has no completed regular-season games in the last {LOOKBACK_WEEKS} weeks")
                     continue
+                if len(window) < MIN_GAMES.get(league, 3):
+                    problems.append(f"{name} has only {len(window)} completed regular-season game(s) in the last {LOOKBACK_WEEKS} "
+                                    f"weeks; {MIN_GAMES[league]} are needed")
+                    continue
                 raw.extend(team_inputs(side, window, ranks.get(team_id), source))
                 if pace.get(team_id) is not None:
                     seconds, rush = pace[team_id]
@@ -413,6 +435,8 @@ class EspnFootballStats:
                 results[match_id] = insufficient(match_id, *problems)
                 continue
             raw.extend(league_in)
+            if league == COLLEGE:   # verified on college games only; the NFL keeps the raw averages
+                raw.extend(adjusted_inputs(games, home_id, away_id, source))
             wind = await self._wind(client, league, fixture, home_name, away_name, scheduled, now)
             if wind is not None:
                 raw.append(wind)

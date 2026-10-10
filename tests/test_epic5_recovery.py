@@ -812,6 +812,8 @@ def test_a_session_from_a_review_lists_only_approved_picks_and_disqualified_ids_
 @pytest.fixture
 def app_chain(monkeypatch, tmp_path):
     """The real handler chain for Matchday AND Review, a fake bookmaker, and a real store."""
+    from test_review import freeze_review_clock
+    freeze_review_clock(monkeypatch)   # the sample code's kickoffs are fixed dates: pin the clock before them
     sent, edits, answers, events = [], [], [], []
     scenario = {"gate": None}
     evals, listing = two_pick_setup()
@@ -875,9 +877,7 @@ def press_by_label(chain, label):
     chain.press(OWNER_ID, find(chain.buttons(-1), label))
 
 
-def test_review_keeps_its_text_and_adds_the_interactive_list_after_it(app_chain, monkeypatch):
-    from test_review import freeze_review_clock
-    freeze_review_clock(monkeypatch)
+def test_review_keeps_its_text_and_adds_the_interactive_list_after_it(app_chain):
     chain = app_chain
     chain.text(OWNER_ID, "Review ABC123")
     texts = [t for t, _ in chain.sent]

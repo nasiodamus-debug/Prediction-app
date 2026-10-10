@@ -12,6 +12,7 @@ from predictions.core.analyst import (DEFAULT_DAILY_CALL_LIMIT, RUN_LIMIT, Analy
                                       query_for)
 from predictions.core.inputs import Input
 from predictions.core.dates import lagos_today
+from predictions.core.engines.american_football import COLLEGE, league_of
 from predictions.core.inputs import GOALS_ONLY_REGISTRY
 from predictions.core.ports import Analyst, AnalystUnavailable
 from predictions.core.stats import (CAT_HISTORY, INSUFFICIENT, FixtureStats, add_reason, assess_goals_only, merge_analyst, missing_for,
@@ -298,6 +299,8 @@ async def fill_missing_inputs(fixtures: list[Fixture], stats: dict[MatchId, Fixt
             continue
         if run.last_resort and season_not_started(entry):
             continue   # nothing to find: the free source says the team has no recent games (preseason or offseason)
+        if fixture.match_id.sport == "american_football" and league_of(fixture.competition) == COLLEGE:
+            continue   # a college team ESPN does not cover is below FBS/FCS: web-found numbers are not a basis for a pick
         work.append((fixture, entry, wanted))
     reports = await gather_in_order([(lambda f=f, w=w: run.ask(f, w, paid_worthy(f, w, goals_only_fallback)))
                                      for f, _, w in work], concurrency)

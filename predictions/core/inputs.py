@@ -122,6 +122,9 @@ FOOTBALL_REGISTRY: dict[str, InputSpec] = {s.stat: s for s in (
     InputSpec("matches", "games", FOOTBALL_MIN_MATCHES, 40, True),
     InputSpec("points_for", "points per game", 0.0, 70.0, True),
     InputSpec("points_against", "points per game", 0.0, 70.0, True),
+    # opponent-adjusted rates (core/ratings.py), college only: what the team would score / allow against an average opponent
+    InputSpec("adj_points_for", "points per game, opponent-adjusted", -10.0, 90.0, False),
+    InputSpec("adj_points_against", "points per game, opponent-adjusted", -10.0, 90.0, False),
     InputSpec("q1_points_for", "1st-quarter points per game", 0.0, 21.0, False),
     InputSpec("fh_points_for", "1st-half points per game", 0.0, 45.0, False),
     InputSpec("fh_points_against", "1st-half points per game", 0.0, 45.0, False),
