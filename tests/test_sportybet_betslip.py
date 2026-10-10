@@ -1131,3 +1131,61 @@ def test_a_driver_error_with_the_account_still_logged_in_stays_an_unexpected_fai
     rig.site.add_outcome = boom
     with pytest.raises(BookmakerError, match="failed unexpectedly"):
         run(rig.bm.load_slip(rig.legs))
+
+
+# ---- what a lost session leaves behind to diagnose it: a screenshot unless the login BOXES (the owner's number) are on screen
+def test_a_lost_session_saves_a_screenshot_when_only_the_header_button_shows_but_not_when_the_boxes_do(rig):
+    async def times_out(*a, **k):
+        rig.site.logged_in = False
+        raise TimeoutError()
+
+    async def boxes_not_showing():
+        return False
+    rig.site.add_outcome = times_out
+    rig.site.login_form_visible = boxes_not_showing                 # the compact header: a Login button, no phone box
+    with pytest.raises(BookmakerError, match="logged your account out"):
+        run(rig.bm.load_slip(rig.legs))
+    assert rig.site.shots and list(rig.shots.glob("failure-load-*.png"))
+
+
+def test_a_lost_session_with_the_login_boxes_showing_saves_no_screenshot(rig):
+    async def times_out(*a, **k):
+        rig.site.logged_in = False
+        raise TimeoutError()
+
+    async def boxes_showing():
+        return True
+    rig.site.add_outcome = times_out
+    rig.site.login_form_visible = boxes_showing
+    with pytest.raises(BookmakerError, match="logged your account out"):
+        run(rig.bm.load_slip(rig.legs))
+    assert rig.site.shots == [] and not list(rig.shots.glob("*.png"))
+
+
+def test_the_evidence_note_names_the_page_path_and_markers_and_never_raises():
+    from types import SimpleNamespace
+    from predictions.adapters.sportybet.betslip import SELECTORS, SportyBetSite
+
+    class Loc:
+        def __init__(self, visible):
+            self.visible = visible
+
+        async def count(self):
+            return 1 if self.visible is not None else 0
+
+        @property
+        def first(self):
+            return self
+
+        async def is_visible(self):
+            return bool(self.visible)
+
+    page = SimpleNamespace(url="https://www.sportybet.com/ng/sport/football/sr:match:1?token=SECRET",
+                           locator=lambda selector: Loc(selector == SELECTORS.login_button))
+    site = SportyBetSite.__new__(SportyBetSite)
+    site.page, site.s = page, SELECTORS
+    note = run(site.logout_evidence())
+    assert note == "page /ng/sport/football/sr:match:1; login boxes not visible; header Login button visible" and "SECRET" not in note
+    broken = SportyBetSite.__new__(SportyBetSite)
+    broken.page, broken.s = SimpleNamespace(url=None, locator=lambda s: (_ for _ in ()).throw(RuntimeError("x"))), SELECTORS
+    assert "could not be read" in run(broken.logout_evidence()) or run(broken.logout_evidence()).startswith("page")

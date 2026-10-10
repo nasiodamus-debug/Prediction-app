@@ -210,6 +210,13 @@ class ListFixtures:
         return self.fixtures
 
 
+@pytest.fixture(autouse=True)
+def _smoke_clock(monkeypatch):
+    """The smoke script's own session manager reads the real clock, and the sample games kick off on a fixed date: pin it before them."""
+    from predictions.flow.session import SessionManager
+    monkeypatch.setattr(betslip_smoke, "SessionManager", lambda: SessionManager(clock=lambda: NOW))
+
+
 def smoke_listing():
     return [make_fixture("Alpha", "Beta", [totals_offer("2.5", "1.85", "2.00")], 14),
             make_fixture("Gamma", "Delta", [totals_offer("2.5", "1.50", "2.60")], 16),

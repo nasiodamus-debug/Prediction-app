@@ -18,7 +18,7 @@ import test_gate as tg
 import test_mlb_engine as tm
 import test_nhl_engine as tn
 import test_soccer_optimization as tso
-from fakes_bookmaker import FakeBookmaker, make_fixture, pick_evaluation, totals_offer
+from fakes_bookmaker import NOW, FakeBookmaker, make_fixture, pick_evaluation, totals_offer
 from predictions.adapters.sportybet.betslip import SportyBetBookmaker
 from predictions.core.betting import leg_from_evaluation
 from predictions.core.engines import ENGINES
@@ -423,14 +423,14 @@ def test_games_never_carry_an_under_option_even_if_one_was_built_by_hand():
 
 
 def test_a_session_start_ignores_an_under_evaluation():
-    manager = SessionManager()
+    manager = SessionManager(clock=lambda: NOW)
     session = manager.start([pick_evaluation(selection="Under 2.5", odds="2.00")], SID)
     assert len(session.menu) == 0 and len(session.slip) == 0
 
 
 # ------------------------------------------------------------------ the betslip loader
 def test_the_loader_fails_closed_on_an_under_pick_and_never_touches_the_bookmaker():
-    manager = SessionManager()
+    manager = SessionManager(clock=lambda: NOW)
     manager.start([pick_evaluation(selection="Over 2.5", odds="1.85")], SID)
     session = manager.active
     assert manager.act(OWNER, SID, session.state_version, Action.DONE).status is Status.APPLIED
@@ -454,7 +454,7 @@ def test_the_sportybet_adapter_refuses_to_load_an_under_leg():
 
 def test_a_restored_snapshot_drops_a_saved_under_pick():
     from predictions.flow import snapshot
-    manager = SessionManager()
+    manager = SessionManager(clock=lambda: NOW)
     over = pick_evaluation("Alpha", "Beta", selection="Over 2.5")
     under = pick_evaluation("Gamma", "Delta", selection="Under 2.5", odds="2.00")
     manager.start([over], SID)

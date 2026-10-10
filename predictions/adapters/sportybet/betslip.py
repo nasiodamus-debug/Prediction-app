@@ -135,6 +135,9 @@ CHROME_MISSING_TEXT = ("BROWSER_MODE=real needs Google Chrome installed on this 
                        "Google Chrome, or set BROWSER_MODE=standard in config.env and restart the bot. Nothing was placed.")
 PAGE_LOAD_MS = 60_000
 LOGIN_FORM_WAIT_MS = 8_000
+ACCOUNT_CHECK_WAIT_MS = 12_000   # how long to wait for the page's own account call (its verdict on the login) after a page load
+BALANCE_WAIT_MS = 15_000   # how long to wait for the header balance to fill in (it reads "NGN ---" until the account data arrives)
+ACCOUNT_CALL = "/patron/account/info"   # the call the site makes on every page load; 200 = a valid login, 401 = not (probed 2026-10-10)
 SESSION_LOST = ("SportyBet logged your account out while the games were being added (the site ended the session, possibly because "
                 "the account was opened somewhere else). Nothing was placed. Close SportyBet on other devices and press Try again.")
 LOGIN_RECHECKS = 2            # before 'not logged in' is believed, the login form must still show after this many re-checks
@@ -329,6 +332,8 @@ class SportyBetSite:
         self._credentials, self._storage_path = credentials, storage_path
         self._allow_place = bool(allow_place)
         self.s = selectors
+        self._account_status: int | None = None   # the status of the page's latest account call; None = not seen (or no way to see it)
+        self._listening = False
 
     # ---- small helpers
     async def _count(self, selector: str) -> int:
@@ -352,12 +357,91 @@ class SportyBetSite:
         return (await loc.first.inner_text()).strip()
 
     # ---- login
+    def _listen(self) -> None:
+        """Remember the status of the site's own account call (a valid login answers 200, a stale one 401). Needs a page that can
+        report its responses; one that cannot leaves the status unknown and the older 'no login form' rule in charge."""
+        if self._listening or not hasattr(self.page, "on"):
+            return
+
+        def seen(response) -> None:
+            try:
+                if ACCOUNT_CALL in str(response.url):
+                    self._account_status = int(response.status)
+            except Exception:
+                pass
+
+        self.page.on("response", seen)
+        self._listening = True
+
+    async def _account_known(self, wait_ms: int) -> int | None:
+        """The status of the page's account call once it has been seen (waiting up to wait_ms), else None."""
+        if not self._listening:
+            return None
+
+        async def seen() -> bool:
+            return self._account_status is not None
+
+        await self._poll(seen, wait_ms)
+        return self._account_status
+
+    async def _balance_state(self) -> str:
+        """What the header balance shows: "shown" (a number), "loading" ("NGN ---": the account data has not arrived, which is what a
+        refused login looks like), "hidden" (the owner hid it with stars) or "unknown" (not found, or a page that cannot be read)."""
+        try:
+            found = await self.page.evaluate(
+                "() => { const t = ((document.body && document.body.innerText) || '').slice(0, 3000);"
+                " const m = t.match(/NGN\\s*([\\d,]+(?:\\.\\d+)?|-{2,}|\\*{2,})/); return m ? m[1] : null; }")
+        except Exception:
+            return "unknown"
+        if not found:
+            return "unknown"
+        text = str(found)
+        if text.startswith("-"):
+            return "loading"
+        return "hidden" if text.startswith("*") else "shown"
+
+    async def _balance_confirmed(self) -> bool:
+        """False only when the balance STAYS at "NGN ---" for BALANCE_WAIT_MS: it is looked at again and again, because it fills in a
+        moment after the page loads. A balance shown, hidden by the owner, or not findable does not count against the login."""
+        async def not_loading() -> bool:
+            return await self._balance_state() != "loading"
+
+        return await self._poll(not_loading, BALANCE_WAIT_MS)
+
+    async def _forget_session(self) -> None:
+        """Drop a stale login (cookies and page storage) so the site shows its login form again."""
+        await self.context.clear_cookies()
+        try:
+            await self.page.evaluate("() => { try { localStorage.clear(); sessionStorage.clear(); } catch (e) {} }")
+        except Exception:
+            pass
+
     async def login(self) -> None:
-        """Open the site; if the login form shows, log in with the owner's details. Uses the stored session when it
-        is still valid (then the form never appears)."""
+        """Open the site and make sure the account is REALLY logged in. A saved login can look valid (the page shows My Account and no
+        login form) while the site refuses it (its account call answers 401 and the token refresh is refused): the page then
+        has no real session, which is how games were once added to a slip that was not logged in. So the site's own account call
+        is the judge: 200 keeps the saved login; a refusal clears it and logs in with the owner's details; and a fresh login
+        only counts once a page reload still gets 200 (it must hold, not just look right)."""
+        self._listen()
+        self._account_status = None
         await self.page.goto(self.s.home_url, wait_until="domcontentloaded", timeout=PAGE_LOAD_MS)
-        if not await self._poll(lambda: self._visible(self.s.login_phone), LOGIN_FORM_WAIT_MS):
-            return  # no login form: the stored session is still logged in
+        verdict = await self._account_known(ACCOUNT_CHECK_WAIT_MS)
+        if verdict == 200 and await self._balance_confirmed():
+            return  # a valid saved login: the site accepts it and the balance is showing
+        if verdict is None:
+            if not await self._poll(lambda: self._visible(self.s.login_phone), LOGIN_FORM_WAIT_MS):
+                if await self._balance_confirmed():
+                    return  # no verdict and no login form: the older rule, the saved login is taken as valid
+                await self._forget_session()      # ... but the balance never filled in: the page only looks logged in
+                await self.page.goto(self.s.home_url, wait_until="domcontentloaded", timeout=PAGE_LOAD_MS)
+                if not await self._poll(lambda: self._visible(self.s.login_phone), LOGIN_FORM_WAIT_MS):
+                    raise BookmakerError("SportyBet did not show its login form after the old login was cleared.")
+        else:
+            await self._forget_session()      # refused: the page only LOOKS logged in
+            self._account_status = None
+            await self.page.goto(self.s.home_url, wait_until="domcontentloaded", timeout=PAGE_LOAD_MS)
+            if not await self._poll(lambda: self._visible(self.s.login_phone), LOGIN_FORM_WAIT_MS):
+                raise BookmakerError("SportyBet did not show its login form after the old login was cleared.")
         if self._credentials is None:
             raise BookmakerError("SportyBet asked for a login and no login details are available.")
         await self.page.locator(self.s.login_phone).first.fill(self._credentials.national_phone())
@@ -369,15 +453,39 @@ class SportyBetSite:
 
         if not await self._poll(form_gone, LOGIN_DONE_WAIT_MS):
             raise BookmakerError("The SportyBet login did not complete (wrong details, a code or a captcha was asked for).")
+        if self._listening:
+            self._account_status = None
+            await self.page.reload(wait_until="domcontentloaded", timeout=PAGE_LOAD_MS)
+            if await self._account_known(ACCOUNT_CHECK_WAIT_MS) != 200:
+                raise BookmakerError("The SportyBet login did not hold after the page was reloaded (the site refused the new login).")
+        if not await self._balance_confirmed():
+            raise BookmakerError("SportyBet is logged in but its balance never appeared, so the login cannot be trusted.")
         await self.save_state()
 
     async def save_state(self) -> None:
         if self._storage_path is not None:
             await self.context.storage_state(path=str(self._storage_path))
 
+    async def login_form_visible(self) -> bool:
+        """True only when the login boxes themselves are on screen: the one case where a screenshot would show the phone number."""
+        return await self._visible(self.s.login_phone)
+
+    async def logout_evidence(self) -> str:
+        """A short note of what the page shows when a lost session is suspected: the page path (no query, no secrets) and which login
+        markers are visible. Never raises."""
+        try:
+            path = urlsplit(str(self.page.url)).path or "/"
+            markers = [("login boxes", self.s.login_phone), ("header Login button", self.s.login_button)]
+            seen = [f"{label} {'visible' if await self._visible(selector) else 'not visible'}" for label, selector in markers]
+            return f"page {path}; " + "; ".join(seen)
+        except Exception as error:
+            return f"the page could not be read ({type(error).__name__})"
+
     async def logged_out(self) -> bool:
         """True when the page shows the login form (the home page) OR the header's Login button (the compact header on an event
         page has no boxes, only that button, which is also what a logged-out visitor sees there; probed anonymously 2026-10-09)."""
+        if self._account_status in (401, 403):
+            return True   # the site's own account call was refused: whatever the page looks like, there is no login
         return await self._visible(self.s.login_phone) or await self._visible(self.s.login_button)
 
     # ---- the betslip
@@ -1156,6 +1264,15 @@ class SportyBetBookmaker:
             pass   # a diagnostic is a courtesy; it must never hide or change the real outcome
 
     @staticmethod
+    async def _note_lost_session(site, when: str) -> None:
+        """Log (to the console only) what the page showed when the session looked lost, so a wrong guess can be told from a real one."""
+        evidence = getattr(site, "logout_evidence", None)
+        try:
+            log.warning("session looked lost (%s): %s", when, await evidence() if evidence else "no detail available")
+        except Exception:
+            pass
+
+    @staticmethod
     async def _lost_session(site) -> bool:
         """True when the page now shows the account logged out. Never raises (a page that cannot be read is not 'logged out')."""
         try:
@@ -1169,7 +1286,8 @@ class SportyBetBookmaker:
         if site is None:
             return
         try:
-            if await site.logged_out():
+            form_showing = getattr(site, "login_form_visible", site.logged_out)   # only the boxes can show the number, not the header button
+            if await form_showing():
                 raise RuntimeError("login form showing")  # a screenshot would show the phone number: skip it
             self._screenshot_dir.mkdir(parents=True, exist_ok=True)
             stamp = self._clock().strftime("%Y%m%dT%H%M%S%f")
@@ -1329,11 +1447,13 @@ class SportyBetBookmaker:
                 # a page or driver failure while adding (a timeout, a page that never settled): when the account was logged out
                 # meanwhile, that is the cause, and the owner is told so instead of "unexpected"
                 if await self._lost_session(site):
+                    await self._note_lost_session(site, "an add failed")
                     raise BookmakerError(SESSION_LOST) from None
                 raise
             else:
                 added.append(result)
         if await self._lost_session(site):
+            await self._note_lost_session(site, "after the last add")
             raise BookmakerError(SESSION_LOST)
         if not added:
             return LoadAttempt(None, tuple(failed))

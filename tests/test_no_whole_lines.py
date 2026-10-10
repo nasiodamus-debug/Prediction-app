@@ -19,7 +19,7 @@ import test_mlb_engine as tm
 import test_nhl_engine as tn
 import test_no_under as tnu
 import test_soccer_optimization as tso
-from fakes_bookmaker import FakeBookmaker, make_fixture, pick_evaluation, totals_offer
+from fakes_bookmaker import NOW, FakeBookmaker, make_fixture, pick_evaluation, totals_offer
 from predictions.adapters.sportybet.betslip import SportyBetBookmaker
 from predictions.core import market_rules
 from predictions.core.betting import Leg, leg_from_evaluation
@@ -379,14 +379,14 @@ def test_games_never_carry_a_whole_line_option_even_if_one_was_built_by_hand():
 
 
 def test_a_session_start_ignores_a_whole_line_evaluation():
-    manager = SessionManager()
+    manager = SessionManager(clock=lambda: NOW)
     session = manager.start([pick_evaluation(market="Over/Under 2.0", selection="Over 2.0", odds="1.60")], SID)
     assert len(session.menu) == 0 and len(session.slip) == 0
 
 
 # ------------------------------------------------------------------ the betslip loader and the adapter
 def test_the_loader_fails_closed_on_a_whole_line_pick_and_never_touches_the_bookmaker():
-    manager = SessionManager()
+    manager = SessionManager(clock=lambda: NOW)
     manager.start([pick_evaluation(odds="1.85")], SID)
     session = manager.active
     assert manager.act(OWNER, SID, session.state_version, Action.DONE).status is Status.APPLIED
@@ -403,7 +403,7 @@ def test_the_loader_fails_closed_on_a_whole_line_pick_and_never_touches_the_book
 
 def test_the_loader_also_refuses_a_whole_line_leg_whose_text_looks_plain():
     # the text says a half line but the leg's own specifier is whole: the leg check catches it
-    manager = SessionManager()
+    manager = SessionManager(clock=lambda: NOW)
     manager.start([pick_evaluation(odds="1.85")], SID)
     assert manager.act(OWNER, SID, manager.active.state_version, Action.DONE).status is Status.APPLIED
     assert manager.act(OWNER, SID, manager.active.state_version, Action.CONFIRM).status is Status.APPLIED
@@ -423,7 +423,7 @@ def test_the_sportybet_adapter_refuses_to_load_a_whole_line_leg():
 # ------------------------------------------------------------------ snapshot restore
 def test_a_restored_snapshot_drops_a_saved_whole_line_pick_and_alternative():
     from predictions.flow import snapshot
-    manager = SessionManager()
+    manager = SessionManager(clock=lambda: NOW)
     over = pick_evaluation("Alpha", "Beta")
     whole = pick_evaluation("Gamma", "Delta", market="Over/Under 2.0", selection="Over 2.0", odds="1.60")
     manager.start([over], SID)

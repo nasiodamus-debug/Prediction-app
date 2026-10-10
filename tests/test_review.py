@@ -479,6 +479,7 @@ def owner_message(text, user_id=None):
 
 
 def test_review_runs_the_new_pipeline(monkeypatch):
+    freeze_review_clock(monkeypatch)
     reader = FakeCodeReader(selections())
     monkeypatch.setattr(bot, "SportyBetCodeReader", lambda: reader)
     monkeypatch.setattr(bot, "review_stats_sources", lambda: {"soccer": FakeStats()})

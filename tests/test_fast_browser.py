@@ -213,7 +213,10 @@ def test_no_check_was_removed_from_the_site_driver():
     assert "HISTORY_POLL_GAP_MS" in source and "verify_reading" in source and "history_bet_matches" in source
 
 
-def test_the_smoke_script_prints_the_measured_seconds_per_step():
+def test_the_smoke_script_prints_the_measured_seconds_per_step(monkeypatch):
+    # the script's own session manager reads the real clock, and the sample games kick off on a fixed date: pin it before them
+    from predictions.flow.session import SessionManager
+    monkeypatch.setattr(betslip_smoke, "SessionManager", lambda: SessionManager(clock=lambda: NOW))
     listing = smoke_listing()
     fake = FakeBookmaker(listing, dry_run=True)
     lines = []
