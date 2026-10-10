@@ -135,6 +135,8 @@ CHROME_MISSING_TEXT = ("BROWSER_MODE=real needs Google Chrome installed on this 
                        "Google Chrome, or set BROWSER_MODE=standard in config.env and restart the bot. Nothing was placed.")
 PAGE_LOAD_MS = 60_000
 LOGIN_FORM_WAIT_MS = 8_000
+SESSION_LOST = ("SportyBet logged your account out while the games were being added (the site ended the session, possibly because "
+                "the account was opened somewhere else). Nothing was placed. Close SportyBet on other devices and press Try again.")
 LOGIN_RECHECKS = 2            # before 'not logged in' is believed, the login form must still show after this many re-checks
 log = logging.getLogger("sportybet")
 LOGIN_RECHECK_PAUSE_S = 2.0   # ... each one this many seconds apart (the form was seen to appear for a moment on a logged-in page)
@@ -374,7 +376,9 @@ class SportyBetSite:
             await self.context.storage_state(path=str(self._storage_path))
 
     async def logged_out(self) -> bool:
-        return await self._visible(self.s.login_phone)
+        """True when the page shows the login form (the home page) OR the header's Login button (the compact header on an event
+        page has no boxes, only that button, which is also what a logged-out visitor sees there; probed anonymously 2026-10-09)."""
+        return await self._visible(self.s.login_phone) or await self._visible(self.s.login_button)
 
     # ---- the betslip
     async def betslip_count(self) -> int:
@@ -1151,6 +1155,14 @@ class SportyBetBookmaker:
         except Exception:
             pass   # a diagnostic is a courtesy; it must never hide or change the real outcome
 
+    @staticmethod
+    async def _lost_session(site) -> bool:
+        """True when the page now shows the account logged out. Never raises (a page that cannot be read is not 'logged out')."""
+        try:
+            return bool(await site.logged_out())
+        except Exception:
+            return False
+
     async def _fail(self, operation: str) -> None:
         """Save a local screenshot (never sent anywhere) and close the browser so the next operation starts clean."""
         site, self._site = self._site, None
@@ -1313,8 +1325,16 @@ class SportyBetBookmaker:
                 if not skip_failed:
                     raise BookmakerError(str(error)) from None
                 failed.append(FailedLeg(result.leg.key, str(error)))
+            except Exception:
+                # a page or driver failure while adding (a timeout, a page that never settled): when the account was logged out
+                # meanwhile, that is the cause, and the owner is told so instead of "unexpected"
+                if await self._lost_session(site):
+                    raise BookmakerError(SESSION_LOST) from None
+                raise
             else:
                 added.append(result)
+        if await self._lost_session(site):
+            raise BookmakerError(SESSION_LOST)
         if not added:
             return LoadAttempt(None, tuple(failed))
         # 4. Read the betslip back and verify it holds exactly the legs that WERE added (anything else: fail closed).

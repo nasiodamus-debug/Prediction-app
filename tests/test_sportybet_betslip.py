@@ -1097,3 +1097,37 @@ def test_the_login_check_at_load_time_is_rechecked_too(rig):
     flashing(rig.site, [True, False])
     loaded = run(rig.bm.load_slip(rig.legs))
     assert loaded is not None and len(saved) == 1 and saved[0][1].startswith("logincheck-load-")
+
+
+# ---- a session that is lost WHILE the games are being added is named, not reported as an unexpected failure
+def test_a_session_lost_during_the_adds_is_named_when_the_driver_times_out(rig):
+    async def times_out(*a, **k):
+        rig.site.logged_in = False                  # SportyBet ended the session as the event page opened
+        raise TimeoutError()
+    rig.site.add_outcome = times_out
+    with pytest.raises(BookmakerError, match="logged your account out while the games were being added"):
+        run(rig.bm.load_slip(rig.legs))
+    assert rig.site.closed and "PLACE" not in rig.site.log
+
+
+def test_a_session_lost_after_the_last_add_is_caught_before_the_slip_is_read(rig):
+    original = rig.site.add_outcome
+
+    async def add_then_lose(*a, **k):
+        await original(*a, **k)
+        rig.site.logged_in = False
+    rig.site.add_outcome = add_then_lose
+    with pytest.raises(BookmakerError, match="logged your account out"):
+        run(rig.bm.load_slip(rig.legs))
+    assert "read" not in rig.site.log
+
+
+def test_a_driver_error_with_the_account_still_logged_in_stays_an_unexpected_failure(rig):
+    class DriverTimeout(Exception):      # Playwright's own TimeoutError is not asyncio's
+        pass
+
+    async def boom(*a, **k):
+        raise DriverTimeout()
+    rig.site.add_outcome = boom
+    with pytest.raises(BookmakerError, match="failed unexpectedly"):
+        run(rig.bm.load_slip(rig.legs))

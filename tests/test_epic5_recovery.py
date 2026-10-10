@@ -875,7 +875,9 @@ def press_by_label(chain, label):
     chain.press(OWNER_ID, find(chain.buttons(-1), label))
 
 
-def test_review_keeps_its_text_and_adds_the_interactive_list_after_it(app_chain):
+def test_review_keeps_its_text_and_adds_the_interactive_list_after_it(app_chain, monkeypatch):
+    from test_review import freeze_review_clock
+    freeze_review_clock(monkeypatch)
     chain = app_chain
     chain.text(OWNER_ID, "Review ABC123")
     texts = [t for t, _ in chain.sent]

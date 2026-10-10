@@ -148,3 +148,29 @@ def test_win_either_half_prices_yes_from_two_independent_halves_and_never_prices
     assert yes[0].estimate.probability > max(h1[0], h2[0])                 # at least each half alone
     away = _price_with(tuple(HOME_FAVOURITE), "Away Team to Win Either Half", "", ("Yes",))[0]
     assert away.estimate.probability == pytest.approx(1 - (1 - h1[2]) * (1 - h2[2]), abs=2e-3)
+
+
+# ---- 1st / 2nd half totals (half lines, Over only, Review only)
+def test_first_half_over_under_is_priced_from_the_assumed_first_half_share():
+    lam = TOTAL * FIRST_HALF_SHARE
+    over = price("1st Half - Over/Under", "total=0.5", "Over 0.5", "68")
+    assert over.estimate.probability == pytest.approx(1 - poisson_cdf(0, lam), abs=2e-3)
+    assert over.market == "1st Half total 0.5" and over.selection == "1st Half Over 0.5"
+    assert "assumed 45%" in over.notes[0]
+    assert price("1st Half - Over/Under", "total=1.5", "Over 1.5", "68").estimate.probability == pytest.approx(1 - poisson_cdf(1, lam), abs=2e-3)
+
+
+def test_a_half_total_with_the_line_only_in_the_outcome_text_is_priced_too():
+    over = price("1st Half - Over/Under", "", "Over 0.5", "68")        # as a booking code spells it
+    assert over.estimate.probability == pytest.approx(1 - poisson_cdf(0, TOTAL * FIRST_HALF_SHARE), abs=2e-3)
+
+
+def test_second_half_totals_use_the_second_half_share_and_whole_lines_and_unders_are_never_priced():
+    over = price("2nd Half - Over/Under", "total=0.5", "Over 0.5")
+    assert over.estimate.probability == pytest.approx(1 - poisson_cdf(0, TOTAL * SECOND_HALF_SHARE), abs=2e-3)
+    for spec, outcome in (("total=1", "Over 1"), ("total=0.5", "Under 0.5")):          # whole line (AD-21) / Under (AD-20)
+        offer = MarketOffer("68", "1st Half - Over/Under", spec, (Outcome(outcome, D("1.50")),))
+        assert not any(e.passed for e in SoccerEngine().evaluate_exact(fixture([], competition=TOP), HOME_FAVOURITE, offer))
+    assert SoccerEngine().understands(MarketOffer("68", "1st Half - Over/Under", "total=0.5", ()))
+    f = fixture([MarketOffer("68", "1st Half - Over/Under", "total=0.5", (Outcome("Over 0.5", D("1.4")),))], competition=TOP)
+    assert SoccerEngine().evaluate(f, HOME_FAVOURITE, f.markets) == []                  # Matchday never prices it

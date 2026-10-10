@@ -54,6 +54,14 @@ ALIASES: Mapping[str, str] = {
     "leeds united": "leeds",
     "west ham united": "west ham",
     "los chankas cyc": "los chankas",
+    "vitoria sc guimaraes": "vitoria de guimaraes",
+    "union gilloise": "union st gilloise",
+    "maritimo madeira": "maritimo",
+    "estoril praia": "estoril",
+    "cdt real oruro": "real oruro",
+    "csd xelaju mc": "xelaju mc",
+    "csd independiente del valle": "independiente del valle",
+    "besiktas istanbul": "besiktas",
 }
 
 # Words that carry no identity ("Arsenal FC" is "Arsenal"). Used only in the partial match.

@@ -34,6 +34,20 @@ from predictions.telegram.render import MESSAGE_LIMIT
 
 DATA = Path(__file__).resolve().parent / "data"
 NOW = datetime(2026, 10, 1, 9, 0, tzinfo=timezone.utc)
+
+
+def freeze_review_clock(monkeypatch):
+    """Review reads the real clock, and the sample code's kickoffs are fixed dates: once the real date passes one, the game counts
+    as started and is not judged, so a test that counts the saved evaluations changes with the calendar. Pin the clock before
+    every kickoff in the sample (1 October 2026, 09:00 UTC)."""
+    import predictions.flow.review as review_module
+
+    class FrozenDateTime(datetime):
+        @classmethod
+        def now(cls, tz=None):
+            return datetime(2026, 10, 1, 9, 0, tzinfo=timezone.utc)
+
+    monkeypatch.setattr(review_module, "datetime", FrozenDateTime)
 SAMPLE = json.loads((DATA / "sportybet_share_code_sample.json").read_text(encoding="utf-8"))
 INVALID = json.loads((DATA / "sportybet_share_code_invalid.json").read_text(encoding="utf-8"))
 
@@ -495,6 +509,7 @@ def test_review_with_no_code_asks_for_one_through_the_handler(monkeypatch):
 
 
 def test_review_saves_through_the_store_and_reports_a_failed_save(monkeypatch, tmp_path):
+    freeze_review_clock(monkeypatch)
     monkeypatch.setattr(bot, "SportyBetCodeReader", lambda: FakeCodeReader(selections()))
     monkeypatch.setattr(bot, "review_stats_sources", lambda: {"soccer": FakeStats()})
     monkeypatch.setattr(bot.ClaudeAnalyst, "from_environment", classmethod(lambda cls, mode="full": None))

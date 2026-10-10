@@ -1,6 +1,7 @@
 """Free context flags and the model check, from API-Football (soccer, games of TODAY only).
 
-Flags (cost nothing, no AI call): a team with KEY_PLAYER_OUT_MIN or more players listed out for the fixture raises
+Flags (cost nothing, no AI call): a team with KEY_PLAYER_OUT_MIN or more DISTINCT players ruled out (doubts do not count, and
+players under YOUTH_AGE by the squad list do not either) for the fixture raises
 `key_player_out`; a game that kicks off within LINEUP_DUE_MINUTES with no published line-ups raises `lineup_uncertain`.
 They are the same AnalystFlag values the AI analyst produces, so the gate treats them the same way: a flagged game can only
 become NO VALID PLAY - PASS, an estimate is never touched. The service lists every absent player, not only key ones, so
@@ -27,11 +28,41 @@ from predictions.core.types import Fixture, MatchId, normalize_team
 log = logging.getLogger("freeflags")
 
 SOURCE: ApiFootball | None = None
-KEY_PLAYER_OUT_MIN = 3        # players listed out for one team before `key_player_out` is raised
+DEFAULT_KEY_PLAYER_OUT_MIN = 5
+KEY_PLAYER_OUT_MIN = DEFAULT_KEY_PLAYER_OUT_MIN   # DISTINCT players listed out for one team before `key_player_out` is raised (KEY_PLAYERS_OUT_MIN)
+MAX_KEY_PLAYER_OUT_MIN = 30
+YOUTH_AGE = 21                # a listed player younger than this (by the team's squad list) is not counted as a key player out
+DOUBT_KINDS = frozenset({"questionable", "doubtful"})   # listed as a doubt, not ruled out: not counted
 LINEUP_DUE_MINUTES = 40       # a game this close to kickoff with no line-ups raises `lineup_uncertain`
 PREDICTION_GAP = 0.25         # the vendor puts the pick this far (0 to 1) below our estimate: warn
 MATCH_WINDOW = timedelta(minutes=45)
 SOURCE_NAME = "API-Football"
+
+
+async def _without_youth(source, players: list) -> list:
+    """Drop players the team's squad list gives as younger than YOUTH_AGE. A squad that cannot be read (or a source with none), or
+    a player who is not in it, filters nothing: the count is only ever lowered by a known age."""
+    squad = getattr(source, "squad", None)
+    team_id = next((p.team_id for p in players if p.team_id is not None), None)
+    if squad is None or team_id is None:
+        return players
+    try:
+        ages = await squad(team_id)
+    except Exception:
+        return players
+    return [p for p in players if p.player_id is None or ages.get(p.player_id, YOUTH_AGE) >= YOUTH_AGE]
+
+
+def parse_key_player_min(raw) -> int:
+    """KEY_PLAYERS_OUT_MIN: distinct players out before a team's game is flagged. Unset or empty keeps the default; a value that is
+    not a whole number from 1 to 30 raises ValueError (the message never echoes the value)."""
+    if raw is None or not str(raw).strip():
+        return DEFAULT_KEY_PLAYER_OUT_MIN
+    text = str(raw).strip()
+    if not text.isascii() or not text.isdigit() or not 1 <= int(text) <= MAX_KEY_PLAYER_OUT_MIN:
+        raise ValueError("KEY_PLAYERS_OUT_MIN in config.env is not a whole number from 1 to 30. Fix it or remove the line to use "
+                         f"the default of {DEFAULT_KEY_PLAYER_OUT_MIN}, then start the bot again.")
+    return int(text)
 
 
 def _now() -> datetime:
@@ -123,7 +154,12 @@ async def free_flags(fixtures: list[Fixture], now: datetime | None = None,
         by_team: dict[str, list] = {}
         for missing in injuries.get(api.id, ()):
             by_team.setdefault(missing.team, []).append(missing)
-        for team, players in by_team.items():
+        for team, listed in by_team.items():
+            # only players ruled out (not doubts), each counted once (the service repeats a player once per listed issue)
+            out = [p for p in listed if p.kind.strip().lower() not in DOUBT_KINDS]
+            players = list({normalize_team(p.player): p for p in out}.values())
+            if len(players) >= KEY_PLAYER_OUT_MIN:
+                players = await _without_youth(source, players)   # one squad request, only for a team already at the threshold
             if len(players) >= KEY_PLAYER_OUT_MIN:
                 names = ", ".join(f"{p.player} ({p.reason or p.kind})" for p in players[:4])
                 more = f" and {len(players) - 4} more" if len(players) > 4 else ""

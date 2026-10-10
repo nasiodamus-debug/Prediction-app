@@ -357,6 +357,10 @@ def market_kind(offer: MarketOffer) -> str | None:
         return "double_chance_2h"
     if _BOTH_HALVES_UNDER.fullmatch(name_key):
         return "both_halves_under"
+    if offer.market_id == "68" or name_key == "1st half - over/under":
+        return "first_half_goals"
+    if name_key == "2nd half - over/under":
+        return "second_half_goals"
     team_corners = _TEAM_CORNERS.fullmatch(name_key)
     if team_corners:
         return f"{team_corners.group(1)}_corners"
@@ -475,6 +479,8 @@ class SoccerEngine:
                  "result_2up": ctx.exact_result_2up, "handicap3": ctx.exact_three_way_handicap,
                  "multigoals_2h": ctx.exact_multigoals_second_half, "double_chance_2h": ctx.exact_double_chance_second_half,
                  "both_halves_under": ctx.exact_both_halves_under,
+                 "first_half_goals": lambda: ctx.exact_half_totals("first_half_goals"),
+                 "second_half_goals": lambda: ctx.exact_half_totals("second_half_goals"),
                  "home_corners": lambda: ctx.exact_team_corners("home"), "away_corners": lambda: ctx.exact_team_corners("away"),
                  "home_win_either_half": lambda: ctx.exact_win_either_half("home"),
                  "away_win_either_half": lambda: ctx.exact_win_either_half("away")}.get(kind)
@@ -753,6 +759,31 @@ class _Context:
                                                     notes=(f"half goals assumed {FIRST_HALF_SHARE:.0%} / {SECOND_HALF_SHARE:.0%} of the game's",)))
                 elif side == "yes":
                     results.append(self._under_type(title, "Yes", outcome.odds, p_both, "'Yes' is an Under (fewer goals in both halves)"))
+        return results
+
+    def exact_half_totals(self, kind: str) -> list[Evaluation]:
+        """1st Half / 2nd Half Over/Under, half lines only (AD-21): the half's goals are Poisson with the assumed share of the
+        game's goals (FIRST_HALF_SHARE / SECOND_HALF_SHARE, the same assumption the other half markets use). Review only."""
+        first = kind == "first_half_goals"
+        label, share = ("1st Half", FIRST_HALF_SHARE) if first else ("2nd Half", SECOND_HALF_SHARE)
+        lam = self.total * share
+        results = []
+        for offer in self._offers(kind):
+            line = totals_line(offer.specifier)
+            if line is None:   # the line is in the outcome text only ("Over 0.5"), as on a booking code
+                texts = {re.sub(r"[^0-9.]", "", o.name) for o in offer.outcomes}
+                line = totals_line(f"total={texts.pop()}") if len(texts) == 1 else None
+            if line is None:
+                continue
+            over_win, under_win, push = line_probabilities(lambda k: poisson_cdf(k, lam), line)
+            for side in SIDES_PLAYED:
+                outcome = _outcome(offer, side)
+                if outcome is None:
+                    continue
+                estimate = self._estimate(over_win, under_win, push, side)
+                results.append(self._evaluation(
+                    f"{label} total {fmt_line(line)}", f"{label} {side.title()} {fmt_line(line)}", outcome.odds, estimate, "", "",
+                    (f"{label.lower()} goals assumed {share:.0%} of the game's",)))
         return results
 
     def exact_team_corners(self, team: str) -> list[Evaluation]:

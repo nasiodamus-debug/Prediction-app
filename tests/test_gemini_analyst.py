@@ -296,3 +296,13 @@ def test_the_paid_policy_settings_parse_and_refuse_bad_values():
     assert parse_claude_after_empty(None) is False and parse_claude_after_empty("TRUE") is True and parse_claude_after_empty("off") is False
     with pytest.raises(ValueError):
         parse_claude_after_empty("maybe")
+
+
+def test_the_eight_names_the_stats_source_spells_differently_are_matched_by_alias():
+    from predictions.core.identity import resolve_team
+    pairs = {"Vitoria SC Guimaraes": "Vitória de Guimarães", "Union Gilloise": "Union St.-Gilloise", "Maritimo Madeira": "Maritimo",
+             "Estoril Praia": "Estoril", "Cdt Real Oruro": "Real Oruro", "CSD Xelaju MC": "Xelajú MC",
+             "CSD Independiente del Valle": "Independiente del Valle", "Besiktas Istanbul": "Besiktas"}
+    for bookmaker, source in pairs.items():
+        match = resolve_team(bookmaker, [source, "Some Other Club"])
+        assert match.status == "matched" and match.method == "alias", bookmaker

@@ -491,6 +491,7 @@ def acquire_instance_lock(path=LOCK_PATH):
 MAX_STAKE = parse_max_stake(os.getenv("MAX_STAKE"))  # NGN; a stake above it is refused (set MAX_STAKE in config.env)
 ANALYST_MODE = parse_analyst_mode(os.getenv("ANALYST_MODE"))  # off | last_resort (default) | full; anything else = refuse to start
 REVIEW_CACHE.hours = parse_review_cache_hours(os.getenv("REVIEW_CACHE_HOURS"))  # hours a finished Review is reused for the same code on the same day; default 3, 0 = off
+freeflags.KEY_PLAYER_OUT_MIN = freeflags.parse_key_player_min(os.getenv("KEY_PLAYERS_OUT_MIN"))  # distinct players out before the key_player_out flag; default 5
 freeflags.SOURCE = ApiFootball.from_environment()  # None without API_FOOTBALL_KEY: no free injury and lineup flags, no model check
 ANALYST_PROVIDER = parse_analyst_provider(os.getenv("ANALYST_PROVIDER"))  # comma list tried in order, e.g. gemini,claude (the next only when the earlier is unavailable); default claude
 PAID_POLICY.call_limit = parse_paid_call_limit(os.getenv("CLAUDE_CALL_LIMIT"))  # Claude lookups allowed in one request (the paid, last tier); default 10, 0 = never

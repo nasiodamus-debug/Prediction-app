@@ -18,6 +18,12 @@ from predictions.flow.freeflags import disagreement_lines, free_flags, match_fix
 NOW = datetime(2026, 10, 3, 12, 0, tzinfo=timezone.utc)
 
 
+@pytest.fixture(autouse=True)
+def _default_threshold(monkeypatch):
+    """Importing app.py elsewhere in the suite reads the owner's real config.env; these tests are about the default."""
+    monkeypatch.setattr(freeflags, "KEY_PLAYER_OUT_MIN", freeflags.DEFAULT_KEY_PLAYER_OUT_MIN)
+
+
 def game(home="Atletico Mineiro", away="Flamengo", minutes=300, sport="soccer"):
     kickoff = NOW + timedelta(minutes=minutes)
     return Fixture(MatchId(sport, "Serie A", kickoff, home.lower(), away.lower()), "Serie A", home, away, kickoff, False)
@@ -113,12 +119,31 @@ def test_an_unmatched_spelling_gets_no_flags_and_no_error():
 
 
 # ---------------------------------------------------------------- flags
-def test_three_or_more_absent_players_raise_key_player_out_two_do_not():
-    src = FakeSource([api()], {1: out("Atletico Mineiro", 3) + out("Flamengo", 2)})
+def test_five_or_more_distinct_absent_players_raise_key_player_out_four_do_not():
+    assert freeflags.KEY_PLAYER_OUT_MIN == 5
+    src = FakeSource([api()], {1: out("Atletico Mineiro", 5) + out("Flamengo", 4)})
     found = run(free_flags([game()], NOW, src))
     flags = found[game().match_id]
-    assert [f.flag for f in flags] == [ContextFlag.KEY_PLAYER_OUT] and "Atletico Mineiro without 3" in flags[0].source
-    assert run(free_flags([game()], NOW, FakeSource([api()], {1: out("Atletico Mineiro", 2)}))) == {}
+    assert [f.flag for f in flags] == [ContextFlag.KEY_PLAYER_OUT] and "Atletico Mineiro without 5" in flags[0].source
+    assert run(free_flags([game()], NOW, FakeSource([api()], {1: out("Atletico Mineiro", 4)}))) == {}
+
+
+def test_a_player_listed_for_several_issues_is_counted_once():
+    repeated = tuple(Missing("Atletico Mineiro", name, "Missing Fixture", reason)
+                     for name, reason in (("C. Jones", "Thigh Injury"), ("J. Stones", "Injury"), ("C. Jones", "Thigh Injury"),
+                                          ("C. Jones", "Hamstring"), ("P1", "Injury"), ("P1", "Suspended")))   # 6 rows, 3 players
+    assert run(free_flags([game()], NOW, FakeSource([api()], {1: repeated}))) == {}
+    assert run(free_flags([game()], NOW, FakeSource([api()], {1: out("Atletico Mineiro", 5) + out("Atletico Mineiro", 5)})))   # still 5 players
+
+
+def test_the_key_player_threshold_is_adjustable_and_refuses_bad_values(monkeypatch):
+    assert freeflags.parse_key_player_min(None) == 5 and freeflags.parse_key_player_min(" 3 ") == 3
+    for bad in ("0", "31", "x", "-2", "2.5"):
+        with pytest.raises(ValueError):
+            freeflags.parse_key_player_min(bad)
+    monkeypatch.setattr(freeflags, "KEY_PLAYER_OUT_MIN", 3)
+    found = run(free_flags([game()], NOW, FakeSource([api()], {1: out("Atletico Mineiro", 3)})))
+    assert [f.flag for f in found[game().match_id]] == [ContextFlag.KEY_PLAYER_OUT]
 
 
 def test_lineup_uncertain_only_near_kickoff_and_only_when_known_unpublished():
@@ -188,3 +213,60 @@ def test_client_failures_are_no_data_never_an_error():
     assert run(refused.fixtures(NOW.date())) == [] and run(refused.injuries(NOW.date())) == {}
     down = client(lambda r: httpx.Response(500, json={}))
     assert run(down.lineups_published(99)) is None and run(down.prediction(99)) is None
+
+
+# ---- doubts and youth players do not count toward "key players out"
+class SquadSource(FakeSource):
+    def __init__(self, *args, ages=None, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._ages = ages
+
+    async def squad(self, team_id):
+        self.calls.append(f"squad:{team_id}")
+        if isinstance(self._ages, Exception):
+            raise self._ages
+        return self._ages or {}
+
+
+def listed(team, specs):
+    """specs: (name, kind, player id, team id)"""
+    return tuple(Missing(team, n, k, "Injury", pid, tid) for n, k, pid, tid in specs)
+
+
+def test_players_listed_as_doubts_are_not_counted():
+    rows = listed("Arsenal", [(f"P{i}", "Missing Fixture", i, 42) for i in range(4)] + [("Q1", "Questionable", 90, 42), ("Q2", "Doubtful", 91, 42)])
+    assert run(free_flags([game()], NOW, FakeSource([api()], {1: rows}))) == {}                  # 4 out + 2 doubts: not 5
+    rows += listed("Arsenal", [("P4", "Missing Fixture", 4, 42)])
+    flags = run(free_flags([game()], NOW, FakeSource([api()], {1: rows})))[game().match_id]
+    assert "Arsenal without 5" in flags[0].source
+
+
+def test_players_the_squad_list_gives_as_under_21_are_not_counted_and_the_squad_is_asked_only_when_needed():
+    rows = listed("Arsenal", [(f"P{i}", "Missing Fixture", i, 42) for i in range(6)])
+    ages = {0: 18, 1: 19, 2: 27, 3: 30, 4: 24, 5: 21}                      # two youth players: 4 remain
+    source = SquadSource([api()], {1: rows}, ages=ages)
+    assert run(free_flags([game()], NOW, source)) == {} and source.calls.count("squad:42") == 1
+    ages[1] = 25                                                           # one youth player: 5 remain
+    flags = run(free_flags([game()], NOW, SquadSource([api()], {1: rows}, ages=ages)))[game().match_id]
+    assert "Arsenal without 5" in flags[0].source
+    few = SquadSource([api()], {1: listed("Arsenal", [("P0", "Missing Fixture", 0, 42)])}, ages=ages)
+    run(free_flags([game()], NOW, few))
+    assert not any(c.startswith("squad") for c in few.calls)               # below the threshold: no squad request
+
+
+def test_an_unreadable_squad_or_an_unknown_player_filters_nothing():
+    rows = listed("Arsenal", [(f"P{i}", "Missing Fixture", i, 42) for i in range(5)])
+    for ages in ({}, None, RuntimeError("boom"), {99: 17}):               # empty, none, an error, a squad without these players
+        flags = run(free_flags([game()], NOW, SquadSource([api()], {1: rows}, ages=ages)))
+        assert game().match_id in flags, ages
+    no_ids = tuple(Missing("Arsenal", f"P{i}", "Missing Fixture", "Injury") for i in range(5))   # older shape: no ids at all
+    assert game().match_id in run(free_flags([game()], NOW, SquadSource([api()], {1: no_ids}, ages={0: 18})))
+
+
+def test_the_injury_and_squad_parsers_keep_the_ids_and_ages():
+    from predictions.adapters.apifootball.client import parse_squad
+    inj = parse_injuries([{"fixture": {"id": 7}, "team": {"id": 42, "name": "A"},
+                           "player": {"id": 22090, "name": "W. Saliba", "type": "Missing Fixture", "reason": "Back Injury"}}])
+    assert inj[7][0] == Missing("A", "W. Saliba", "Missing Fixture", "Back Injury", 22090, 42)
+    assert parse_squad([{"players": [{"id": 1, "age": 18}, {"id": 2, "age": None}, {"name": "no id", "age": 30}]}]) == {1: 18}
+    assert parse_squad([]) == {} and parse_squad([{"players": "bad"}]) == {}

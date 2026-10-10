@@ -24,6 +24,7 @@ TTL_FIXTURES_SECONDS = 3600
 TTL_INJURIES_SECONDS = 1800
 TTL_LINEUPS_SECONDS = 300
 TTL_PREDICTION_SECONDS = 3 * 3600
+TTL_SQUAD_SECONDS = 24 * 3600
 
 
 @dataclass(frozen=True)
@@ -42,6 +43,8 @@ class Missing:
     player: str
     kind: str     # for example "Missing Fixture" or "Questionable"
     reason: str   # for example "Muscle Injury" or "Yellow Cards"
+    player_id: int | None = None   # to look the player up in the team's squad (age)
+    team_id: int | None = None
 
 
 @dataclass(frozen=True)
@@ -76,6 +79,26 @@ def parse_fixtures(response: list) -> list[ApiFixture]:
     return found
 
 
+def _int_or_none(value) -> int | None:
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def parse_squad(response: list) -> dict[int, int]:
+    """player id -> age for one team's squad (probed 2026-10-10: the squad list carries id, name, age, number and position)."""
+    ages: dict[int, int] = {}
+    try:
+        for player in response[0]["players"]:
+            pid, age = _int_or_none(player.get("id")), _int_or_none(player.get("age"))
+            if pid is not None and age is not None:
+                ages[pid] = age
+    except (IndexError, KeyError, TypeError, AttributeError):
+        return {}
+    return ages
+
+
 def parse_injuries(response: list) -> dict[int, tuple[Missing, ...]]:
     by_fixture: dict[int, list[Missing]] = {}
     for item in response:
@@ -83,7 +106,7 @@ def parse_injuries(response: list) -> dict[int, tuple[Missing, ...]]:
             player = item["player"]
             by_fixture.setdefault(int(item["fixture"]["id"]), []).append(
                 Missing(str(item["team"]["name"]), str(player["name"]), str(player.get("type") or ""),
-                        str(player.get("reason") or "")))
+                        str(player.get("reason") or ""), _int_or_none(player.get("id")), _int_or_none(item["team"].get("id"))))
         except (KeyError, TypeError, ValueError):
             continue
     return {k: tuple(v) for k, v in by_fixture.items()}
@@ -136,6 +159,11 @@ class ApiFootball:
 
     async def injuries(self, day: date) -> dict[int, tuple[Missing, ...]]:
         return await self._get("/injuries", {"date": day.isoformat()}, TTL_INJURIES_SECONDS, parse_injuries) or {}
+
+    async def squad(self, team_id: int) -> dict[int, int]:
+        """player id -> age for a team (one request, kept for the day). Empty when it could not be read or the team has no squad
+        list on the plan (small leagues), which means 'no age filter', never a guess."""
+        return await self._get("/players/squads", {"team": team_id}, TTL_SQUAD_SECONDS, parse_squad) or {}
 
     async def lineups_published(self, fixture_id: int) -> bool | None:
         """True or False, or None when it could not be read (never guessed as 'not published')."""
