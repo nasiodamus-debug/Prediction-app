@@ -71,6 +71,17 @@ GOALS_ONLY_CAP_REASON = ("goals-only estimate beats the market by more than {cap
                          "(rough model, no opponent strength)")
 XG_INPUT_NAMES = ("home.xg_for", "home.xg_against", "away.xg_for", "away.xg_against")
 
+# ---- Market blend (owner decision 2026-10-11, from tools/soccer_backtest.py) ----
+# 11,978 games over 5 seasons: the bookmakers' closing prices beat this model on both the match result and Over 2.5, every step toward the
+# market scored better, and where the model claimed an edge over the market the market was right (Over 2.5: the model said 54%, the
+# market 43-46%, it hit 39-44%). So the probability for the match result, double chance and goal-total (half line) picks is
+# MARKET_WEIGHT of the bookmaker's own price with its margin removed + the rest from the model. The price used is the one on the
+# fixture's own listing (and the offer being judged); with no complete price the model alone is used, and the pick says so.
+# Corners, cards, team totals, handicaps and the Review-only markets are NOT blended (no price data tested for them).
+MARKET_WEIGHT = 0.75
+MARKET_NOTE = "probability blended {pct:.0%} with the bookmaker's own price"
+MARKET_MISSING_NOTE = "no complete bookmaker price to blend with: model alone"
+
 # ---- Spec 11-1: the five play types Matchday considers (owner request of 2026-10-01) ----
 # (a) total goals OVER half lines of 1.5 and above (no whole or quarter line, AD-21); (b) match winner
 # (Home or Away from the 1X2; a Draw alone is not a play); (c) double chance Home or Draw / Away or Draw; (d) total yellow cards
@@ -487,6 +498,51 @@ class SoccerEngine:
         return extra() if extra is not None else []
 
 
+def _fair(odds: Sequence[Decimal]) -> list[float] | None:
+    """Probabilities from decimal odds with the bookmaker's margin taken out proportionally; None for odds that cannot be a price."""
+    try:
+        raw = [1.0 / float(o) for o in odds]
+    except (ZeroDivisionError, ValueError, TypeError, InvalidOperation):
+        return None
+    if any(r <= 0 or r >= 1.0001 for r in raw):
+        return None
+    total = sum(raw)
+    return [r / total for r in raw]
+
+
+def market_result(offers: Sequence[MarketOffer]) -> tuple[float, float, float] | None:
+    """Fair (home, draw, away) from the first complete 1X2 offer."""
+    for offer in offers:
+        if market_kind(offer) != "result":
+            continue
+        found = [_outcome(offer, n) for n in ("home", "draw", "away")]
+        if all(f is not None for f in found):
+            fair = _fair([f.odds for f in found])
+            if fair is not None:
+                return fair[0], fair[1], fair[2]
+    return None
+
+
+def market_overs(offers: Sequence[MarketOffer]) -> dict[Decimal, float]:
+    """Fair P(over) per half line, from the goal-total offers that list both an Over and an Under."""
+    found: dict[Decimal, float] = {}
+    for offer in offers:
+        if market_kind(offer) != "goals":
+            continue
+        line = totals_line(offer.specifier)
+        over, under = _outcome(offer, "over"), _outcome(offer, "under")
+        if line is None or over is None or under is None or line in found:
+            continue
+        fair = _fair([over.odds, under.odds])
+        if fair is not None:
+            found[line] = fair[0]
+    return found
+
+
+def blend(model: float, market: float | None) -> float:
+    return model if market is None else MARKET_WEIGHT * market + (1.0 - MARKET_WEIGHT) * model
+
+
 class _Context:
     """One fixture's model, so every market is priced from the same rates."""
 
@@ -497,6 +553,32 @@ class _Context:
         self.by_name = {i.name: i for i in used}
         self.goals_only = is_goals_only(used)
         self.model = GOALS_ONLY_MODEL_NAME if self.goals_only else MODEL_NAME
+        priced = [*self.offers, *getattr(fixture, "markets", ())]   # the offer being judged first, then the fixture's own listing
+        self.market_1x2 = market_result(priced)
+        self.market_over = market_overs(priced)
+
+    def _market_note(self, used: bool) -> tuple[str, ...]:
+        if MARKET_WEIGHT <= 0:
+            return ()
+        return (MARKET_NOTE.format(pct=MARKET_WEIGHT),) if used else (MARKET_MISSING_NOTE,)
+
+    def result_probs(self) -> tuple[float, float, float]:
+        """(home, draw, away): the model's scoreline grid, blended with the bookmaker's own 1X2 price when it is complete."""
+        model = result_probabilities(self.home, self.away)
+        if self.market_1x2 is None or MARKET_WEIGHT <= 0:
+            return model
+        mixed = [blend(m, k) for m, k in zip(model, self.market_1x2)]
+        total = sum(mixed)
+        return mixed[0] / total, mixed[1] / total, mixed[2] / total
+
+    def over_probs(self, line: Decimal) -> tuple[float, float, float, bool]:
+        """(P over wins, P under wins, P push, blended) for a goal line. Only a half line has a price to blend with."""
+        over_win, under_win, push = line_probabilities(lambda k: poisson_cdf(k, self.total), line)
+        market = self.market_over.get(line)
+        if market is None or push or MARKET_WEIGHT <= 0:
+            return over_win, under_win, push, False
+        mixed = blend(over_win, market)
+        return mixed, 1.0 - mixed, 0.0, True
 
     # -- shared
     def _offers(self, kind: str):
@@ -525,19 +607,19 @@ class _Context:
 
     # -- goal totals (Story 2.4 a, spec 11-1, AD-21): Over HALF lines from 1.5 only; a whole or quarter line is never priced here
     def goal_totals(self) -> list[Evaluation]:
-        cdf = lambda k: poisson_cdf(k, self.total)  # noqa: E731
         results: list[Evaluation] = []
         for offer in self._offers("goals"):
             line = totals_line(offer.specifier)
             if line is None or line < MATCHDAY_MIN_GOAL_LINE:
                 continue
-            over_win, under_win, _ = line_probabilities(cdf, line)
+            over_win, under_win, _, mixed = self.over_probs(line)
             for side in SIDES_PLAYED:
                 outcome = _outcome(offer, side)
                 if outcome is None:
                     continue
                 results.append(self._evaluation(f"Over/Under {line}", f"{side.title()} {line}", outcome.odds,
-                                                self._estimate(over_win, under_win, 0.0, side)))
+                                                self._estimate(over_win, under_win, 0.0, side),
+                                                notes=self._market_note(mixed)))
         return results
 
     # -- exact selections for Review (Story 4.2)
@@ -547,13 +629,13 @@ class _Context:
             line = whole_total_line(offer.specifier) or totals_line(offer.specifier)
             if line is None:
                 continue
-            over_win, under_win, push = line_probabilities(lambda k: poisson_cdf(k, self.total), line)
+            over_win, under_win, push, mixed = self.over_probs(line)
             for side in SIDES_PLAYED:
                 outcome = _outcome(offer, side)
                 if outcome is None:
                     continue
                 estimate = self._estimate(over_win, under_win, push, side)
-                notes = (_push_note(estimate, line),) if push else ()
+                notes = (_push_note(estimate, line),) if push else self._market_note(mixed)
                 results.append(self._evaluation(f"Over/Under {fmt_line(line)}", f"{side.title()} {fmt_line(line)}",
                                                 outcome.odds, estimate, "", "", notes))
         return results
@@ -837,13 +919,14 @@ class _Context:
 
     def exact_results(self) -> list[Evaluation]:
         results = []
-        probs = result_probabilities(self.home, self.away)
+        probs = self.result_probs()
+        notes = self._market_note(self.market_1x2 is not None)
         for offer in self._offers("result"):
             for name, p in zip(("home", "draw", "away"), probs):
                 outcome = _outcome(offer, name)
                 if outcome is not None:
                     results.append(self._evaluation("1X2", name.title(), outcome.odds,
-                                                    Estimate(min(p, 1.0), self.used, self.model)))
+                                                    Estimate(min(p, 1.0), self.used, self.model), notes=notes))
         return results
 
     # -- double chance (spec 11-1): the same scoreline grid as the 1X2, so the three can never disagree
@@ -851,7 +934,8 @@ class _Context:
         offers = self._offers("double_chance")
         if not offers:
             return []
-        win_h, draw, win_a = result_probabilities(self.home, self.away)
+        win_h, draw, win_a = self.result_probs()
+        notes = self._market_note(self.market_1x2 is not None)
         choices = [*DOUBLE_CHANCE_CHOICES, ("Home or Away", "home or away")] if exact else list(DOUBLE_CHANCE_CHOICES)
         chances = {"Home or Draw": win_h + draw, "Away or Draw": win_a + draw, "Home or Away": win_h + win_a}
         results = []
@@ -861,7 +945,7 @@ class _Context:
                 if len(found) != 1:
                     continue
                 estimate = Estimate(min(chances[text], 1.0), self.used, self.model)
-                results.append(self._evaluation("Double Chance", text, found[0].odds, estimate))
+                results.append(self._evaluation("Double Chance", text, found[0].odds, estimate, notes=notes))
         return results
 
     # -- 1X2 and the swap (Story 2.4 b)
@@ -869,7 +953,8 @@ class _Context:
         offers = self._offers("result")
         if not offers:
             return []
-        probs = result_probabilities(self.home, self.away)
+        probs = self.result_probs()
+        notes = self._market_note(self.market_1x2 is not None)
         results = []
         for offer in offers:
             for name, p in zip(("home", "draw", "away"), probs):
@@ -879,7 +964,7 @@ class _Context:
                 if outcome is None:
                     continue
                 estimate = Estimate(min(p, 1.0), self.used, self.model)
-                base = self._evaluation("1X2", name.title(), outcome.odds, estimate)
+                base = self._evaluation("1X2", name.title(), outcome.odds, estimate, notes=notes)
                 if (outcome.odds <= SWAP_MIN_ODDS or estimate.probability >= PROBABILITY_FLOOR
                         or estimate.probability < SWAP_MIN_ESTIMATE):
                     results.append(base)
@@ -890,7 +975,6 @@ class _Context:
     def _candidates(self, team: str):
         """(market, selection, odds, estimate, line) for every listed conversion target: Over match-goals lines only."""
         found = []
-        cdf_total = lambda k: poisson_cdf(k, self.total)  # noqa: E731
         for offer in self._offers("goals"):
             line = totals_line(offer.specifier)
             if line is None or line not in SWAP_TOTAL_LINES:
@@ -898,7 +982,7 @@ class _Context:
             outcome = _outcome(offer, "over")
             if outcome is None:
                 continue
-            over_win, under_win, push = line_probabilities(cdf_total, line)
+            over_win, under_win, push, _ = self.over_probs(line)
             found.append((f"Over/Under {fmt_line(line)}", f"Over {fmt_line(line)}", outcome.odds,
                           self._estimate(over_win, under_win, push, "over"), line))
         return found

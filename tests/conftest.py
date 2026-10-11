@@ -93,3 +93,10 @@ def _no_weekly_catch_up_by_the_calendar(monkeypatch):
     import sys
     if "app" in sys.modules:
         monkeypatch.setattr(sys.modules["app"], "WEEKLY_ENABLED", False)
+
+
+@pytest.fixture(autouse=True)
+def _no_market_blend(monkeypatch):
+    """The older soccer tests pin the model's own probabilities; the market blend (tests/test_market_blend.py) is switched on there."""
+    from predictions.core.engines import soccer
+    monkeypatch.setattr(soccer, "MARKET_WEIGHT", 0.0)
