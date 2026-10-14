@@ -35,6 +35,7 @@ from predictions.adapters.sportybet.code import SportyBetCodeReader
 from predictions.adapters.sportybet.event import SportyBetEventMarkets
 from predictions.adapters.sportybet.serialize import SerializedCodeReader, SerializedEventMarkets, SerializedFixtures
 from predictions.adapters.sportybet.fixtures import SportyBetFixtures
+from predictions.adapters.footballdata.goals import FootballDataGoalsStats
 from predictions.adapters.footballdata.stats import FootballDataInputs
 from predictions.adapters.espn.stats import EspnBasketballStats
 from predictions.adapters.espn.football import EspnFootballStats
@@ -579,8 +580,8 @@ async def present_result(update, gate, origin="matchday"):
 
 def soccer_stats_source():
     """Soccer stats (Story 9.3): Understat (xG) first for its six domestic leagues, then ESPN (goals only) for the UEFA and
-    international competitions it lists; a game covered by both uses Understat."""
-    return FirstCoveringStats([UnderstatStats(), EspnSoccerStats()], sanitize_error)
+    international competitions it lists, then football-data.co.uk (goals only) for the lower divisions; the first source that covers a game answers it."""
+    return FirstCoveringStats([UnderstatStats(), EspnSoccerStats(), FootballDataGoalsStats()], sanitize_error)
 
 
 def review_stats_sources():

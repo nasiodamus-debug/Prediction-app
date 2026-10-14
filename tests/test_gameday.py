@@ -539,3 +539,24 @@ def test_basketball_evaluations_are_saved_with_inputs_sources_and_the_rule_appli
     row = next(r for r in rows if r["selection"] == locked.selection)
     assert row["sport"] == "basketball" and row["rule"].startswith("ORTG lock") and row["original"]
     assert row["inputs"] and row["placed"] == 0 and len(rows) == len(evals)
+
+
+# ================================================================ hockey and baseball betslip wording (probed anonymously, 2026-10-13)
+def test_hockey_and_baseball_markets_are_looked_for_under_the_titles_the_game_page_really_uses():
+    from types import SimpleNamespace as NS
+    name = SportyBetBookmaker._page_market_name
+
+    def found(sport, market_id, listed, specifier=""):
+        return NS(leg=NS(market_id=market_id, match_id=NS(sport=sport)), fixture=NS(home="Home FC", away="Away FC"),
+                  offer=NS(name=listed, specifier=specifier))
+
+    assert name(found("hockey", "406", "Winner (incl. OT and pen.)")) == "Winner (incl. overtime and penalties)"
+    assert name(found("hockey", "412", "Total (OT and P)", "total=6")) == "Total (incl. overtime and penalties)"
+    assert name(found("hockey", "18", "Total", "total=5.5")) == "Over/Under"
+    assert name(found("hockey", "410", "Handicap 2 (incl. OT and pen.)", "hcp=-3.5")) == "Handicap (incl. overtime and penalties)"
+    assert name(found("hockey", "16", "Handicap 3 way", "hcp=0.5")) == "Asian Handicap 0.5"
+    assert name(found("hockey", "446", "Xth period - total", "total=1.5|periodnr=1")) == "1st period - total"
+    assert name(found("hockey", "19", "Competitor1 total", "total=1.5")) == "Home FC Over/Under"
+    assert name(found("baseball", "260", "Competitor1 total", "total=4.5")) == "Home FC total (incl. extra innings)"
+    assert name(found("baseball", "261", "Competitor2 total", "total=4.5")) == "Away FC total (incl. extra innings)"
+    assert name(found("baseball", "256", "Handicap (incl. extra innings)", "hcp=-1.5")) == "Handicap (incl. extra innings)"

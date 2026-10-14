@@ -471,9 +471,10 @@ def test_a_fixture_no_source_covers_stays_not_covered():
 
 # ---------------------------------------------------------------- the wiring in app.py
 def test_matchday_and_review_use_understat_first_then_espn():
+    from predictions.adapters.footballdata.goals import FootballDataGoalsStats
     source = bot.soccer_stats_source()
     assert isinstance(source, FirstCoveringStats)
-    assert [type(s) for s in source._sources] == [UnderstatStats, EspnSoccerStats]
+    assert [type(s) for s in source._sources] == [UnderstatStats, EspnSoccerStats, FootballDataGoalsStats]
     assert isinstance(bot.review_stats_sources()["soccer"], FirstCoveringStats)
 
 

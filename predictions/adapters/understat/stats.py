@@ -13,7 +13,7 @@ from datetime import datetime, timedelta, timezone
 
 import httpx
 
-from predictions.core.identity import resolve_team
+from predictions.core.identity import TeamMatch, resolve_team
 from predictions.core.inputs import Input
 from predictions.core.ports import StatsFetchError
 from predictions.core.stats import FixtureStats, ambiguous, assess, insufficient
@@ -211,6 +211,10 @@ class UnderstatStats:
         resolved = {}
         for side, name in (("home", fixture.home), ("away", fixture.away)):
             match = resolve_team(name, teams)
+            if match.status == "ambiguous" and len(match.matches) == 1:
+                # One candidate that only differs by an extra word: the schedule check below (this exact pair near this
+                # kickoff) confirms it; if that fails the fixture is not evaluated.
+                match = TeamMatch("matched", match.matches, "partial")
             if match.status == "ambiguous":
                 return ambiguous(
                     mid, f"Which team is '{name}' ({side})? It could be: {', '.join(match.matches)}.",

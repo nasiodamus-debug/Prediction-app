@@ -56,12 +56,20 @@ def test_allowed_soccer_competitions(competition):
 
 
 @pytest.mark.parametrize("competition", [
+    "England - EFL Cup", "Scotland - League Cup", "Japan - J.League Cup", "Portugal - Taca da Liga",
+    "France - Coupe de la Ligue", "Argentina - Copa de la Liga",
+])
+def test_domestic_league_cups_are_allowed(competition):
+    assert is_allowed("Matchday", "soccer", competition)[0]
+
+
+@pytest.mark.parametrize("competition", [
     "England - Premier League 2", "England - Premier League, Reserves", "Argentina - Primera LPF, Reserves",
     "England Amateur - U21 Professional Development League", "International Youth - U21 UEFA European Championship, Qualification",
     "International Youth - U19 Friendly Games", "International Youth - U23 Friendly Games", "International - World Cup U20",
     "England Amateur - Super League Women", "Mexico - Liga MX, Women", "Switzerland - Super League, Women",
     "Argentina - Primera Division, Women", "Brazil - Brasileiro A1, Women", "USA - National Womens Soccer League",
-    "England - FA Cup", "England - EFL Cup", "Germany - DFB Pokal", "Brazil - Copa do Brasil",
+    "England - FA Cup", "England - EFL Trophy", "England - National League Cup", "Israel - League Cup, National", "Germany - DFB Pokal", "Brazil - Copa do Brasil",
     "International Clubs - Club Friendly Games", "Simulated Reality League - SRL Club Friendlies",
     "Simulated Reality League - UEFA Nations League SRL", "England - Championship", "Germany - 2. Bundesliga",
     "Spain - LALIGA HYPERMOTION", "Portugal - Liga Portugal 2", "Greece - Super League 2", "Costa Rica - Liga de Ascenso",
@@ -376,10 +384,11 @@ def test_an_eredivisie_game_is_answered_by_espn_goals_only():
 
 
 def test_the_composite_order_is_still_understat_then_espn():
+    from predictions.adapters.footballdata.goals import FootballDataGoalsStats
     from predictions.adapters.understat.stats import UnderstatStats
     source = bot.soccer_stats_source()
     assert isinstance(source, FirstCoveringStats)
-    assert [type(s) for s in source._sources] == [UnderstatStats, espn.EspnSoccerStats]
+    assert [type(s) for s in source._sources] == [UnderstatStats, espn.EspnSoccerStats, FootballDataGoalsStats]
 
 
 # ---------------------------------------------------------------- the daily analyst limit

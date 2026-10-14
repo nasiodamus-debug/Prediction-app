@@ -123,6 +123,17 @@ SOCCER_DOMESTIC: dict[str, str] = {
 
 # (b) Men's continental club cups (category "International Clubs").
 SOCCER_CONTINENTAL: dict[str, str] = {
+    # --- Domestic league cups (top-flight clubs; the Toto Cup "League Cup, National", EFL Trophy and National League Cup are not)
+    "england efl cup": "England EFL Cup (Carabao Cup)",                      # [seen]
+    "england league cup": "England EFL Cup (Carabao Cup)",                   # not seen
+    "scotland league cup": "Scotland League Cup",                            # not seen
+    "scotland premier sports cup": "Scotland League Cup",                    # not seen
+    "japan j league cup": "Japan J.League Cup",                              # [seen]
+    "portugal taca da liga": "Portugal Taca da Liga",                        # not seen
+    "portugal league cup": "Portugal Taca da Liga",                          # not seen
+    "france coupe de la ligue": "France Coupe de la Ligue",                  # not seen
+    "argentina copa de la liga": "Argentina Copa de la Liga",                # not seen
+    "argentina copa de la liga profesional": "Argentina Copa de la Liga",    # not seen
     "international clubs uefa champions league": "UEFA Champions League",           # [seen]
     "international clubs uefa europa league": "UEFA Europa League",                 # [seen]
     "international clubs uefa conference league": "UEFA Conference League",         # [seen]

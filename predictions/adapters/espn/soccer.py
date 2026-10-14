@@ -34,7 +34,7 @@ from zoneinfo import ZoneInfo
 
 import httpx
 
-from predictions.core.identity import ALIASES as BASE_ALIASES, resolve_team
+from predictions.core.identity import ALIASES as BASE_ALIASES, TeamMatch, resolve_team
 from predictions.core.inputs import GOALS_ONLY_MIN_MATCHES, Input
 from predictions.core.ports import StatsFetchError
 from predictions.core.stats import FixtureStats, ambiguous, assess_goals_only, insufficient
@@ -84,6 +84,11 @@ DOMESTIC: dict[str, str] = {
     "usa mls": "usa.1", "mexico liga mx": "mex.1", "costa rica primera division": "crc.1",
     "costa rica liga promerica": "crc.1", "el salvador primera division": "slv.1", "honduras liga nacional": "hon.1",
     "guatemala liga nacional": "gua.1", "jamaica premier league": "jam.1",
+    # domestic league cups (slugs probed read-only 2026-10-13, each answered 200)
+    "england efl cup": "eng.league_cup", "england league cup": "eng.league_cup",
+    "scotland league cup": "sco.cis", "scotland premier sports cup": "sco.cis",
+    "france coupe de la ligue": "fra.coupe_de_la_ligue", "argentina copa de la liga": "arg.copa_lpf",
+    "argentina copa de la liga profesional": "arg.copa_lpf",
 }
 CONTINENTAL: dict[str, str] = {
     "international clubs conmebol libertadores": "conmebol.libertadores", "international clubs copa libertadores": "conmebol.libertadores",
@@ -382,6 +387,10 @@ class EspnSoccerStats:
         resolved: dict[str, tuple[str, str]] = {}
         for side, name in (("home", fixture.home), ("away", fixture.away)):
             match = resolve_team(_canon(name, slug), list(teams), aliases)
+            if match.status == "ambiguous" and len(match.matches) == 1:
+                # One candidate that only differs by an extra word ("Coventry City" v "Coventry"): the listed-game check below
+                # (this exact pair near this kickoff) is what confirms it; if that fails the fixture is not evaluated.
+                match = TeamMatch("matched", match.matches, "partial")
             if match.status == "ambiguous":
                 names = [teams[c][1] for c in match.matches]
                 return ambiguous(mid, f"Which team is '{name}' ({side})? It could be: {', '.join(names)}.", names)

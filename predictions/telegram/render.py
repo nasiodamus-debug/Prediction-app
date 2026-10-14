@@ -219,6 +219,18 @@ def _whole_ignored(gate: GateResult) -> int:
     return gate.whole_ignored + sum(1 for e in gate.rejected if is_whole_or_quarter_line(e) and not is_under(e))
 
 
+def near_break_even_lines(gate: GateResult, rejected: list) -> list[str]:
+    """Picks at or above the probability floor whose EV is negative, nearest to break-even first, that the list above did not
+    already show. For information only: none of them is advised."""
+    shown = {id(e) for e in rejected[:MAX_REJECTIONS_SHOWN]}
+    near = sorted((e for e in rejected if not e.insufficient and id(e) not in shown
+                   and e.estimate.probability >= PROBABILITY_FLOOR and e.ev is not None and e.ev < 0),
+                  key=lambda e: -e.ev)[:MAX_REJECTIONS_SHOWN]
+    if not near:
+        return []
+    return ["", f"At least {PROBABILITY_FLOOR:.0%} but expected value negative, nearest to break-even (not advised):"] +         [evaluation_line(gate, e) for e in near]
+
+
 def gate_lines(gate: GateResult) -> list[str]:
     """Passing picks, or the closest rejections when nothing passes. Never Markdown."""
     skipped = f"{gate.skipped} game(s) skipped for insufficient data." if gate.skipped else ""
@@ -237,6 +249,7 @@ def gate_lines(gate: GateResult) -> list[str]:
     if rejected:
         lines.append("Closest rejections:")
         lines += [evaluation_line(gate, e, True) for e in rejected[:MAX_REJECTIONS_SHOWN]]
+        lines += near_break_even_lines(gate, rejected)
     lines += refused
     if unders:
         lines.append(under_line(unders))

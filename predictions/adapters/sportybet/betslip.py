@@ -208,6 +208,17 @@ class Selectors:
     bb_fh_total_title: str = "1st Half - Over/Under"
     bb_handicap_title: str = "Handicap (incl. overtime) {line}"
 
+    # Hockey (probed anonymously on an NHL game page and its betslip, 2026-10-13, VERIFIED-ANON): the page title AND the betslip
+    # row's market say these words, which differ from the listing's names ("Winner (incl. OT and pen.)", "Total (OT and P)",
+    # "Total", "Handicap 2 (incl. OT and pen.)", "Handicap 3 way"). Team totals use the shared "<Team> Over/Under" title.
+    hockey_titles: tuple = (("406", "Winner (incl. overtime and penalties)"), ("412", "Total (incl. overtime and penalties)"),
+                            ("18", "Over/Under"), ("410", "Handicap (incl. overtime and penalties)"))
+    hockey_three_way_handicap_title: str = "Asian Handicap {line}"   # listing market 16, one wrapper per line
+    hockey_first_period_total_title: str = "1st period - total"      # listing market 446 ("Xth period - total", periodnr=1)
+    # Baseball (probed anonymously 2026-10-13, VERIFIED-ANON): most listed names are the page's own; only the team totals
+    # (listing "Competitor1 total" / "Competitor2 total") differ.
+    baseball_team_total_title: str = "{team} total (incl. extra innings)"
+
     # Soccer play types added by spec 11-1 (probed anonymously on the public game page and betslip of an international game that
     # lists them, 2026-10-01, all VERIFIED-ANON): the wrapper title AND the betslip row's market say the same words as the
     # event endpoint's market name, so `_page_market_name` simply uses the listed offer's name:
@@ -1350,6 +1361,16 @@ class SportyBetBookmaker:
             soccer_titles = {"10": SELECTORS.double_chance_title, "166": SELECTORS.corners_title, "139": SELECTORS.cards_title}
             if leg.market_id in soccer_titles:
                 return soccer_titles[leg.market_id]
+        if leg.match_id.sport == "hockey":   # VERIFIED-ANON titles (see Selectors)
+            titles = dict(SELECTORS.hockey_titles)
+            if leg.market_id in titles:
+                return titles[leg.market_id]
+            if leg.market_id == "16":
+                return SELECTORS.hockey_three_way_handicap_title.format(line=found.offer.specifier.partition("=")[2].strip())
+            if leg.market_id == "446" and "periodnr=1" in found.offer.specifier:
+                return SELECTORS.hockey_first_period_total_title
+        if leg.match_id.sport == "baseball" and leg.market_id in ("260", "261"):   # VERIFIED-ANON (see Selectors)
+            return SELECTORS.baseball_team_total_title.format(team=fixture.home if leg.market_id == "260" else fixture.away)
         # American football uses the same SportyBet market ids and names as basketball (UNVERIFIED on the game page).
         if leg.match_id.sport in ("basketball", "american_football"):
             return SportyBetBookmaker._basketball_market_name(found)
