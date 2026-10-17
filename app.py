@@ -56,6 +56,7 @@ from predictions.flow.gameday import run_gameday
 from predictions.flow.jobs import BackgroundJobs
 from predictions.flow.loading import KIND_FAILED, KIND_ISSUES, KIND_LOADED, KIND_PARTIAL, run_load
 from predictions.flow.matchday import run_matchday
+from predictions.flow.mega import parse_mega_max_picks, run_mega
 from predictions.flow.booking import ST_ASK, ST_NOTED, ST_RECORDED, PendingStake, press
 from predictions.flow.booking import stake_reply as booking_stake_reply
 from predictions.flow.placement import run_placement
@@ -499,6 +500,7 @@ PAID_POLICY.call_limit = parse_paid_call_limit(os.getenv("CLAUDE_CALL_LIMIT"))  
 PAID_POLICY.after_empty = parse_claude_after_empty(os.getenv("CLAUDE_AFTER_EMPTY"))  # ask Claude even when Gemini found nothing for a game; default off
 RUN_LIMIT.value = parse_call_limit(os.getenv("ANALYST_CALL_LIMIT"))  # analyst calls allowed in one request; default 40
 ANALYST_DAILY_CALL_LIMIT = parse_daily_call_limit(os.getenv("ANALYST_DAILY_CALL_LIMIT"))  # paid analyst calls per Lagos day; unset = 40, unreadable = refuse to start
+MEGA_MAX_PICKS = parse_mega_max_picks(os.getenv("MEGA_MAX_PICKS"))  # most picks one Mega list holds; unset = 20, unreadable = refuse to start
 # Spec 14-1 (speed). Each is read once here; a value that is present but unreadable stops the bot from starting.
 CACHE_TTL_SCALE = parse_cache_ttl_scale(os.getenv("CACHE_TTL_SCALE"))      # multiplies the stats cache times; unset = 1, 0 = cache off
 LISTING_TTL_SECONDS = parse_listing_ttl_seconds(os.getenv("LISTING_TTL_SECONDS"))  # age of the daily cache's odds before a refresh; unset = 600, 0 = off
@@ -1188,6 +1190,7 @@ async def start_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "• `Matchday [Date]` — Audits Soccer (Goals, Corners, Yellow Cards). The date can be `today`, `tomorrow` or days such as `3 and 5 October`\n"
         "• `America [Date]` — Evaluates MLB, NHL and American football (NFL and college) games together (same date forms)\n"
         "• `Gameday [Date]` — Audits Basketball slates (game, team and 1H totals, spread, winner) (same date forms)\n"
+        "• `Mega [Date]` — Football only, every competition: ONE pick per game at 60% or more (odds 1.25 or more), as one list across the dates, e.g. `Mega 17 18 19 October`\n"
         "• `Review [Booking Code]` — Reads a SportyBet code and judges each selection (soccer, basketball, MLB, NHL and American football)\n"
         "• `Results` — Reads SportyBet's own result for each of your PLACED bets and legs (also checked daily at 09:00 Lagos time)\n"
         "• `Calibration` — Win rate of your placed, graded legs by the model's probability band\n"
@@ -1251,6 +1254,8 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         engine_type = "GAMEDAY"
     elif re.match(r"^Matchday\b", text, re.I):
         engine_type = "MATCHDAY"
+    elif re.match(r"^Mega\b", text, re.I):
+        engine_type = "MEGA"
     elif re.match(r"^Review\b", text, re.I):
         engine_type = "REVIEW"
     elif re.match(r"^Results\b", text, re.I):
@@ -1284,7 +1289,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 except Exception as error:
                     logging.getLogger(__name__).warning("Could not remove the booking buttons: %s", sanitize_error(error))
             return
-        await update.message.reply_text("⚠️ Unrecognized trigger. Please start with `Matchday`, `America`, `Gameday`, `Review`, `Results`, `Calibration`, `Mybets`, `Cache`, `Weekly` or `Decisions`. Join plays into one list with `and`, e.g. `Gameday, Matchday and America 5 and 6 October` or `Review 23B45S and America 6 October`. For the three slates add a date, `today` or `tomorrow`, e.g. `Matchday today`.")
+        await update.message.reply_text("⚠️ Unrecognized trigger. Please start with `Matchday`, `America`, `Gameday`, `Mega`, `Review`, `Results`, `Calibration`, `Mybets`, `Cache`, `Weekly` or `Decisions`. Join plays into one list with `and`, e.g. `Gameday, Matchday and America 5 and 6 October` or `Review 23B45S and America 6 October`. For the three slates add a date, `today` or `tomorrow`, e.g. `Matchday today`.")
         return
 
     if engine_type == "CACHE":
@@ -1357,6 +1362,25 @@ async def _matchday_request(update, argument):
         await update.message.reply_text(chunk)  # plain text: no Markdown parsing of SportyBet names
     if evaluated:
         await present_result(update, evaluated[0])
+
+
+async def _mega_collect(argument):
+    # Mega: football only, every competition, ONE pick per game on a 60% floor, one list across all the dates (flow/mega.py).
+    evaluated = []
+    chunks = await run_mega(argument, SerializedFixtures(SportyBetFixtures(), SPORTYBET_LOCK), sanitize_error,
+                            stats_source=soccer_stats_source(), on_result=evaluated.append,
+                            extra_inputs_source=FootballDataInputs(),
+                            event_markets_source=SerializedEventMarkets(SportyBetEventMarkets(), SPORTYBET_LOCK),
+                            max_picks=MEGA_MAX_PICKS)
+    return chunks, evaluated
+
+
+async def _mega_request(update, argument):
+    chunks, evaluated = await _mega_collect(argument)
+    for chunk in chunks:
+        await update.message.reply_text(redact(chunk))  # plain text: no Markdown parsing of SportyBet names
+    if evaluated:
+        await present_result(update, evaluated[0], "mega")
 
 
 async def _gameday_collect(argument):
@@ -1464,7 +1488,7 @@ async def _combined_request(update, parts):
 
 # The long requests: kind -> the function that does the work. A kind runs once at a time (AD-22).
 LONG_REQUESTS = {"RESULTS": _results_request, "MATCHDAY": _matchday_request, "GAMEDAY": _gameday_request,
-                 "AMERICA": _america_request, "REVIEW": _review_request}   # COMBINED is started separately (handle_message)
+                 "MEGA": _mega_request, "AMERICA": _america_request, "REVIEW": _review_request}   # COMBINED is started separately (handle_message)
 _ACKNOWLEDGEMENTS = {
     "RESULTS": "Checking your placed bets against SportyBet. This can take a minute.",
     "REVIEW": "Reviewing that booking code. This can take a minute.",

@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from predictions.core.analyst import RULE_ANALYST_FLAG, AnalystFlag, describe_flags
 from predictions.core.engines import ENGINES
 from predictions.core.market_rules import is_under, is_whole_or_quarter_line, reject_under, reject_whole_line
-from predictions.core.model import Evaluation, FixturePass
+from predictions.core.model import PROBABILITY_FLOOR, Evaluation, FixturePass
 from predictions.core.stats import FixtureStats
 from predictions.core.types import Fixture, MatchId
 
@@ -23,6 +23,8 @@ class GateResult:
     under_rejected: tuple[Evaluation, ...] = ()  # AD-20: Under evaluations refused (never in `rejected`, never listed one by one)
     whole_rejected: tuple[Evaluation, ...] = ()  # AD-21: whole/quarter-line evaluations refused (never in `rejected`, never listed one by one)
     unpriced_games: tuple[MatchId, ...] = ()  # spec 11-1: games with a corners or cards market that could not be priced (no data): not listed as rejections
+    floor: float = PROBABILITY_FLOOR  # the probability floor this result was judged at (Mega: 60%); the wording follows it
+    ev_required: bool = True          # False for Mega: no EV test, so "positive EV" is not said
 
     @property
     def whole_ignored(self) -> int:
@@ -57,9 +59,10 @@ def _best_per_game(passed: list[Evaluation], fixtures: list[Fixture]) -> list[Ev
 
 
 def run_gate(fixtures: list[Fixture], stats: dict[MatchId, FixtureStats],
-             flags: dict[MatchId, tuple[AnalystFlag, ...]] | None = None) -> GateResult:
+             flags: dict[MatchId, tuple[AnalystFlag, ...]] | None = None, per_game_limit: bool = True) -> GateResult:
     """`flags` are analyst context flags (Story 3.2). A flagged fixture can only get STRICTER: it becomes a
-    NO VALID PLAY - PASS and none of its picks is evaluated. Flags never touch an estimate."""
+    NO VALID PLAY - PASS and none of its picks is evaluated. Flags never touch an estimate. `per_game_limit=False` keeps every
+    passing play of a game (Mega ranks the plays itself, flow/mega.py)."""
     flags = flags or {}
     passed, rejected, passes, evaluated, skipped = [], [], [], 0, 0
     unders: list[Evaluation] = []
@@ -98,7 +101,8 @@ def run_gate(fixtures: list[Fixture], stats: dict[MatchId, FixtureStats],
                 unpriced[fixture.match_id] = None   # spec 11-1: a play with no data behind it is simply not considered
                 continue
             (passed if ev.passed else rejected).append(ev)
-    passed = _best_per_game(passed, fixtures)
+    if per_game_limit:
+        passed = _best_per_game(passed, fixtures)
     passed.sort(key=lambda e: (-e.estimate.probability, str(e.match_id), e.selection))
     rejected.sort(key=lambda e: (-e.estimate.probability, str(e.match_id), e.selection))
     return GateResult(tuple(passed), tuple(rejected), evaluated, skipped,

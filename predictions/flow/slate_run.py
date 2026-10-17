@@ -40,6 +40,7 @@ class SportProfile:
     restrict: bool = False                  # Story 10.1: only the competitions in core/competitions.py are looked at
     analyst_fills_stats: bool = True        # False: the AI analyst is never asked for missing stats in this list (Gameday: the
                                             # required ortg, drtg and pace are not in search snippets, so every lookup came back empty)
+    gate: Callable | None = None            # (fixtures, stats, flags) -> GateResult; None = the standard run_gate (Mega supplies its own)
 
 
 MATCHDAY = SportProfile("Matchday", "soccer", "20 and 22 September", main_odds, restrict=True)
@@ -49,7 +50,9 @@ GAMEDAY = SportProfile("Gameday", "basketball", "20 and 22 October", basketball_
 # MultiSportFixtures, its stats from a MultiSportStats (flow/america.py), and each game's odds line from its own sport.
 AMERICA = SportProfile("America", "baseball, hockey, american_football", "20 and 22 October", multi_sport_main_odds,
                        restrict=True)
-PROFILES = {"matchday": MATCHDAY, "gameday": GAMEDAY, "america": AMERICA}  # by slate origin (see telegram/slate.py)
+# `Mega` (flow/mega.py): football only, every competition, one pick per game on a 60% floor; its gate is supplied by run_mega.
+MEGA = SportProfile("Mega", "soccer", "17 and 18 October", main_odds, restrict=False, analyst_fills_stats=False)
+PROFILES = {"matchday": MATCHDAY, "gameday": GAMEDAY, "america": AMERICA, "mega": MEGA}  # by slate origin (see telegram/slate.py)
 
 
 def ask_for_date(profile: SportProfile) -> str:
@@ -124,6 +127,7 @@ async def run_slate(profile: SportProfile, argument: str, source: FixtureSource,
     applied to them here, and the list then says when their odds were read."""
     now = now or datetime.now(timezone.utc)
     trigger = profile.trigger
+    gate_of = profile.gate or run_gate
 
     ignored = not_open = 0
 
@@ -192,13 +196,13 @@ async def run_slate(profile: SportProfile, argument: str, source: FixtureSource,
                 selection.fixtures, lookup_failed = await _with_event_markets(selection.fixtures, stats,
                                                                               event_markets_source)
             flags = merge_flags(flags, await free_flags(selection.fixtures))   # API-Football injuries and lineups (no AI call)
-            gate = run_gate(selection.fixtures, stats, flags)
+            gate = gate_of(selection.fixtures, stats, flags)
             if run is not None:
                 # Flags matter most for picks that could be bet: check those with what is left of the call cap.
                 more = await check_flags(selection.fixtures, {e.match_id for e in gate.passed}, run)
                 if more:
                     flags = merge_flags(flags, more)
-                    gate = run_gate(selection.fixtures, stats, flags)
+                    gate = gate_of(selection.fixtures, stats, flags)
                 if run.calls or run.daily_hit or run.cache_hits:
                     stats_note = _join(stats_note, run.summary(skipped))
         except StatsFetchError as error:  # no retry; the fixtures are still listed, none is evaluable

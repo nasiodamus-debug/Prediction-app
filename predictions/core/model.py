@@ -101,6 +101,16 @@ class FixturePass:
     reason: str
 
 
+FLOOR_REASON_MARK = "% floor"             # every floor rejection from `validate` ends with "... below the NN% floor"
+EV_REASON_MARK = "is not positive at odds"  # ... and every EV rejection contains this
+
+
+def is_floor_or_ev_reason(reason: str) -> bool:
+    """True when `reason` is one of the two rejections `validate` itself makes (below the floor, or EV not positive), as
+    opposed to a rule's own refusal (the goals-only cap, an analyst flag). Mega re-judges only these (flow/mega.py)."""
+    return reason.endswith(FLOOR_REASON_MARK) or EV_REASON_MARK in reason
+
+
 def validate(estimate: Estimate, odds: Decimal) -> tuple[bool, Decimal, str]:
     """The floor and EV gate. Returns (passed, ev, reason)."""
     ev = expected_value(estimate.probability, odds, estimate.push)
@@ -108,7 +118,7 @@ def validate(estimate: Estimate, odds: Decimal) -> tuple[bool, Decimal, str]:
         detail = f" (win {percent(estimate.win)} + refund {percent(estimate.push)})" if estimate.push else ""
         return False, ev, f"estimate {percent(estimate.probability)}{detail} is below the {PROBABILITY_FLOOR:.0%} floor"
     if ev <= 0:
-        return False, ev, f"expected value {signed_percent(ev)} is not positive at odds {odds:.2f}"
+        return False, ev, f"expected value {signed_percent(ev)} {EV_REASON_MARK} {odds:.2f}"
     return True, ev, REASON_PASSED
 
 

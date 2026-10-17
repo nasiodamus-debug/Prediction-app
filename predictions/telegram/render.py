@@ -222,6 +222,8 @@ def _whole_ignored(gate: GateResult) -> int:
 def near_break_even_lines(gate: GateResult, rejected: list) -> list[str]:
     """Picks at or above the probability floor whose EV is negative, nearest to break-even first, that the list above did not
     already show. For information only: none of them is advised."""
+    if not gate.ev_required:
+        return []
     shown = {id(e) for e in rejected[:MAX_REJECTIONS_SHOWN]}
     near = sorted((e for e in rejected if not e.insufficient and id(e) not in shown
                    and e.estimate.probability >= PROBABILITY_FLOOR and e.ev is not None and e.ev < 0),
@@ -237,7 +239,7 @@ def gate_lines(gate: GateResult) -> list[str]:
     refused = [pass_line(gate, r) for r in gate.passes]
     rejected, unders = _rejected_not_under(gate)
     if gate.passed:
-        lines = [f"Valid plays (estimate at least {PROBABILITY_FLOOR:.0%} and positive EV):"]
+        lines = [f"Valid plays (estimate at least {gate.floor:.0%}{' and positive EV' if gate.ev_required else ''}):"]
         def kickoff(ev):   # earliest game first, the better estimate first within one kickoff
             fixture = gate.fixtures.get(ev.match_id)
             return (fixture.kickoff_utc if fixture is not None else ev.match_id.kickoff_utc, -ev.estimate.probability)
@@ -306,7 +308,7 @@ def why_lines(gate: GateResult, stats: dict[MatchId, FixtureStats] | None, analy
         lines.append("- " + whole_line_line(wholes))
     if gate.evaluated and rejected:
         lines.append(f"- {len(rejected)} pick(s) were priced from the {gate.evaluated} evaluated game(s) but none "
-                     f"reached {PROBABILITY_FLOOR:.0%} with positive EV.")
+                     f"reached {gate.floor:.0%}{' with positive EV' if gate.ev_required else ''}.")
     elif gate.evaluated and not gate.passes and not unders and not wholes:
         lines.append(f"- The {gate.evaluated} evaluated game(s) offered no pick the model can price.")
     hints = []

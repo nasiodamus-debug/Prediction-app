@@ -25,7 +25,7 @@ from predictions.flow.session import (ISSUE_OPTION, MAX_RETRIES, Action, Issue, 
                                       SessionManager, State, Status)
 from predictions.telegram.render import MESSAGE_LIMIT, clean_text
 
-ORIGIN_NAMES = {"matchday": "Matchday", "gameday": "Gameday", "america": "America", "combined": "a combined request"}  # Session.origin of a slate that came from a trigger
+ORIGIN_NAMES = {"matchday": "Matchday", "gameday": "Gameday", "america": "America", "mega": "Mega", "combined": "a combined request"}  # Session.origin of a slate that came from a trigger
 REVIEW_ORIGIN = "review:"  # Session.origin of a slate that came from `Review <code>` (Story 5.6)
 CALLBACK_PREFIX = "s"
 CALLBACK_LIMIT = 64  # bytes, Telegram's limit for callback data
